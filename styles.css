@@ -124,6 +124,10 @@ header {
 		color: var(--blue);
 	}
 
+	#weather {
+		min-width: 200px;
+	}
+
 	flex-direction: column;
 	font-size: 0.8rem;
 
