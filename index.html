@@ -35,11 +35,13 @@
 	<link rel="icon" type="image/png" href="assets/images/bee-favicon.png">
 </head>
 
-<body>
+<body class='home dark'>
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div class='header-wrapper'>
+			<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+			<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+			<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
+		</div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -57,7 +59,7 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html">Plan Your Visit</a></li>
-				<li><a href="reservations.html">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -70,9 +72,6 @@
 			<ul>
 				<li>Mead</li><li class='hex' aria-hidden='true'></li><li>Food</li><li class='hex' aria-hidden='true'></li><li>Friends</li>
 			</ul>
-		</div>
-		<div id='jobs'>
-			<span>We're hiring for servers and kitchen positions</span> For more information send an email to nancy.martin@opendoorgroup.org
 		</div>
 		<div role='article' id='brand-story-1'>
 			<div class='padded-top'>
@@ -94,13 +93,10 @@
 		<div role='article' id='brand-story-2'>
 			<div>
 				<h2>Come for the place.  <span>Stay for the moment.</span> <span>Leave with a memory.</span></h2>
-				<div class='two-column'>
-					<div>
-						<p>Each small batch captures a fleeting moment: from the year's first blooms, through the warmth of mid-summer, and into the crisp clarity of coastal autumn. No two moments are ever the same, and that's reflected in our work. It's not about replication, but about expression: of place, of season, of story. A story you can savour in every sip.</p>
-					</div>
-					<div>
-						<p>When you visit Foragers, you step into a space shaped by nature, where every pour and each plate reflects the land itself. Here you'll find a quiet, elegant setting to connect: to place, to craft, and to the subtle beauty that arises when intention meets nature.</p>
-					</div>
+				<div class='auto-column'>
+					<p>Each small batch captures a fleeting moment: from the year's first blooms, through the warmth of mid-summer, and into the crisp clarity of coastal autumn. No two moments are ever the same, and that's reflected in our work. It's not about replication, but about expression: of place, of season, of story.</p> 
+					<p>A story you can savour in every sip.</p>
+					<p>When you visit Foragers, you step into a space shaped by nature, where every pour and each plate reflects the land itself. Here you'll find a quiet, elegant setting to connect: to place, 
 				</div>
 			</div>
 		</div>
@@ -124,7 +120,10 @@
 				</div>
 			</div>
 		</div>
-		<div class='orchard-banner banner'></div>
+		<!-- ORCHARD BANNER: full-width atmospheric image break -->
+		<div class='dark-light'>
+			<div class='orchard-banner banner mask'></div>
+		</div>
 		<div role='article' id='orchard'>
 			<div class='padded-block'>
 				<h2>The story of the orchard at Foragers&nbsp;meadery</h2>
@@ -145,7 +144,10 @@
 				</div>
 			</div>
 		</div>
-		<div class='location-banner banner'></div>
+		<!-- LOCATION BANNER: full-width atmospheric image break -->
+		<div class='light-dark'>
+			<div class='location-banner banner mask'></div>
+		</div>
 		<div role='article' id='location' aria-label='Location'>
 			<div class='padded-block'>
 				<h2>A place for you</h2>
@@ -160,8 +162,20 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- CTA -->
+		<section class="cta-section">
+			<div>
+				<h2>Come experience it for&nbsp;yourself</h2>
+				<p>Join us above the orchard for seasonal mead, small plates, and an experience shaped entirely by this place.</p>
+				<div class="btn-group">
+					<a href="reservations.html" class="btn btn-light">Reserve a Table</a>
+					<a href="plan-your-visit.html" class="btn btn-ghost">Plan Your Visit</a>
+				</div>
+			</div>
+		</section>
 	</main>
-	<footer>
+	<footer class="mask dark">
 		<div id='footer-content'>
 			<div id='footer-details'>
 				<div>
@@ -182,6 +196,9 @@
 						<span>Opening soon</span>
 					</div>
 				</div>
+			</div>
+			<div id='jobs'>
+				<span>We're hiring for servers and kitchen positions</span> For more information send an email to nancy.martin@opendoorgroup.org
 			</div>
 			<div id='footer-copyright'>
 				<div>

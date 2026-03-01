@@ -17,9 +17,9 @@
 
 <body>
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+		<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+		<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -37,33 +37,41 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html">Plan Your Visit</a></li>
-				<li><a href="reservations.html">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<main>
-		<section class="page-hero">
+		<!-- HERO -->
+		<section class="page-hero page-hero--framed">
+			<div class="hero-deco hero-deco--left" aria-hidden="true"></div>
 			<div>
 				<span class="page-eyebrow">Orchard &amp; Apiary</span>
 				<h1>Where blossoms hum and apples&nbsp;listen.</h1>
 				<p>Before there was a tasting room, there was land. Before there was mead, there was blossom. The orchard and the hives are not features of Foragers — they are its foundation.</p>
 			</div>
+			<div class="hero-deco hero-deco--right" aria-hidden="true"></div>
 		</section>
 
 		<section class="content-section grey">
 			<div>
 				<h3>The Orchard</h3>
 				<h2>Heritage varieties, planted for flavour and&nbsp;character</h2>
-				<p>Planted on the gentle slope rising from the Salish Sea, our orchard was designed with patience in mind.</p>
-				<p>We grow heritage apple varieties chosen for flavour, resilience, and character — not uniformity. Some bring bright acidity. Others carry subtle spice, honeyed depth, or crisp minerality shaped by coastal air.</p>
-				<p>The orchard moves through its own rhythm: spring arrives in a quiet eruption of blossom. Summer brings shade and slow ripening. Autumn delivers fruit kissed by salt air and late light.</p>
-				<p>These apples find their way into limited-release cysers and seasonal expressions, carrying with them the imprint of soil, season, and sun.</p>
-				<p>The orchard is not behind the meadery. It is beneath it, beside it, and woven through everything we do.</p>
+				<div class='auto-column'>
+					<p>Planted on the gentle slope rising from the Salish Sea, our orchard was designed with patience in mind.</p>
+					<p>We grow heritage apple varieties chosen for flavour, resilience, and character — not uniformity. Some bring bright acidity. Others carry subtle spice, honeyed depth, or crisp minerality shaped by coastal air.</p>
+					<p>The orchard moves through its own rhythm: spring arrives in a quiet eruption of blossom. Summer brings shade and slow ripening. Autumn delivers fruit kissed by salt air and late light.</p>
+					<p>These apples find their way into limited-release cysers and seasonal expressions, carrying with them the imprint of soil, season, and sun.</p>
+					<p>The orchard is not behind the meadery. It is beneath it, beside it, and woven through everything we do.</p>
+				</div>
 			</div>
 		</section>
 
-		<div class='orchard-banner banner'></div>
+		<!-- ORCHARD BANNER: full-width atmospheric image break -->
+		<div class='dark-light'>
+			<div class='orchard-banner banner mask'></div>
+		</div>
 
 		<section class="content-section white">
 			<div>

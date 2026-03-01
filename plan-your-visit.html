@@ -17,9 +17,9 @@
 
 <body>
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+		<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+		<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -37,22 +37,27 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html" aria-current="page">Plan Your Visit</a></li>
-				<li><a href="reservations.html">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<main>
-		<section class="page-hero">
+		<!-- HERO -->
+		<section class="page-hero page-hero--framed">
+			<div class="hero-deco hero-deco--left" aria-hidden="true"></div>
 			<div>
 				<span class="page-eyebrow">Plan Your Visit</span>
 				<h1>Join us above the orchard in Roberts&nbsp;Creek.</h1>
 				<p>Foragers Meadery is located on the Sunshine Coast of British Columbia, nestled between forest and sea. We look forward to welcoming you.</p>
 			</div>
+			<div class="hero-deco hero-deco--right" aria-hidden="true"></div>
 		</section>
 
 		<section class="content-section grey">
 			<div>
+				<h3>Here on the Coast</h3>
+				<h2>Where forest, orchard, and table&nbsp;meet</h2>
 				<div class="visit-info-grid">
 					<div class="visit-info-block">
 						<span class="visit-info-label">Location</span>
@@ -71,12 +76,7 @@
 						Closed Monday and Tuesday.</p>
 						<p>Holiday hours may vary. Please check our reservations page for updates.</p>
 					</div>
-					<div class="visit-info-block">
-						<span class="visit-info-label">Contact</span>
-						<p><a href="mailto:info@foragersmead.ca">info@foragersmead.ca</a></p>
-						<p>Reservations are recommended, particularly for Friday and Saturday evenings. Walk-ins are welcome as space allows.</p>
-						<p><a href="reservations.html" class="btn btn-outline" style="margin-top: 0.75rem;">Reserve a Table</a></p>
-					</div>
+
 				</div>
 
 				<div class="map-placeholder" role="img" aria-label="Map showing Foragers Meadery location in Roberts Creek, BC">

@@ -17,9 +17,9 @@
 
 <body>
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+		<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+		<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -37,18 +37,21 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html">Plan Your Visit</a></li>
-				<li><a href="reservations.html" aria-current="page">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html" aria-current="page">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<main>
-		<section class="page-hero">
+		<!-- HERO -->
+		<section class="page-hero page-hero--framed">
+			<div class="hero-deco hero-deco--left" aria-hidden="true"></div>
 			<div>
 				<span class="page-eyebrow">Reservations</span>
 				<h1>Reserve your place at the&nbsp;table.</h1>
 				<p>We welcome you to gather above the orchard for seasonal plates and estate mead shaped by hive and harvest. Reservations are recommended, particularly for weekend evenings.</p>
 			</div>
+			<div class="hero-deco hero-deco--right" aria-hidden="true"></div>
 		</section>
 
 		<section class="content-section grey">

@@ -33,16 +33,16 @@ const WEATHER_ICON_BASE = '/assets/weather';
 const DIRECTION_ICON_URL = `${WEATHER_ICON_BASE}/direction.svg`;
 
 // Map Open-Meteo WMO codes → Meteocons filenames
-function getMeteocon(weatherCode, isDay) {
-	if (weatherCode === 0) return `clear-${isDay ? 'day' : 'night'}.svg`;
-	if ([1, 2].includes(weatherCode)) return `partly-cloudy-${isDay ? 'day' : 'night'}.svg`;
-	if (weatherCode === 3) return 'cloudy.svg';
-	if ([45, 48].includes(weatherCode)) return 'fog.svg';
-	if ([51, 53, 55, 56, 57].includes(weatherCode)) return 'drizzle.svg';
-	if ([61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) return 'rain.svg';
-	if ([71, 73, 75, 77, 85, 86].includes(weatherCode)) return 'snow.svg';
-	if ([95, 96, 99].includes(weatherCode)) return 'thunderstorms.svg';
-	return 'cloudy.svg';
+function getIcon(weatherCode, isDay) {
+	if (weatherCode === 0) return `clear-${isDay ? 'day' : 'night'}`;
+	if ([1, 2].includes(weatherCode)) return `partly-cloudy-${isDay ? 'day' : 'night'}`;
+	if (weatherCode === 3) return 'cloudy';
+	if ([45, 48].includes(weatherCode)) return 'fog';
+	if ([51, 53, 55, 56, 57].includes(weatherCode)) return 'drizzle';
+	if ([61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) return 'rain';
+	if ([71, 73, 75, 77, 85, 86].includes(weatherCode)) return 'snow';
+	if ([95, 96, 99].includes(weatherCode)) return 'thunderstorms';
+	return 'cloudy';
 }
 
 function weatherLabelFromCode(code) {
@@ -70,6 +70,7 @@ function getWindDirection(degrees) {
 }
 
 async function getWeather(lat, lon) {
+	
 	const url =
 		`https://api.open-meteo.com/v1/forecast` +
 		`?latitude=${lat}` +
@@ -92,41 +93,108 @@ async function getWeather(lat, lon) {
 		wind_dir: getWindDirection(typeof windDeg === 'number' ? windDeg : Number(windDeg)),
 		weather_code: data.current.weather_code,
 		is_day: data.current.is_day === 1,
-		updated_at: data.current.time
+		updated_at: data.current.time,
+		timezone: "America/Vancouver",
 	};
 }
 
 // Foragers, Roberts Creek, BC (approx)
 async function loadWeather() {
-	const weather = await getWeather(49.41, -123.58);
-
-	const el = document.getElementById('weather');
+	const el = document.querySelector('#banner-weather .conditions');
 	if (!el) return;
 
-	const iconFile = getMeteocon(weather.weather_code, weather.is_day);
-	const iconUrl = `${WEATHER_ICON_BASE}/${iconFile}`;
+	// 1) Paint cached markup immediately (prevents flash)
+	const cached = readWeatherCache();
+	if (cached?.markup) {
+		el.innerHTML = cached.markup;
+		// Optional: if you keep .conditions hidden in CSS, reveal it here.
+		el.style.opacity = '1';
+	}
+
+	// 2) If cache is fresh enough, skip network entirely
+	const now = Date.now();
+	const cacheAge = cached?.fetchedAt ? (now - cached.fetchedAt) : Infinity;
+	if (cacheAge < WEATHER_CACHE_TTL_MS) return;
+
+	// 3) Fetch fresh in background
+	let weather;
+	try {
+		weather = await getWeather(49.41, -123.58);
+	} catch (e) {
+		// If fetch fails, keep cached display (no flash)
+		console.error(e);
+		return;
+	}
+
+	// 4) Only update if conditions changed
+	const signature = buildWeatherSignature(weather);
+
+	if (cached?.signature === signature) {
+		// Conditions unchanged; just bump fetchedAt so we don't refetch immediately
+		writeWeatherCache({ ...cached, fetchedAt: now });
+		return;
+	}
+
+	// 5) Conditions changed — build markup and update
+	const markup = buildWeatherMarkup(weather);
+
+	// Avoid repaint if somehow identical
+	if (el.innerHTML !== markup) {
+		el.innerHTML = markup;
+		el.style.opacity = '1';
+	}
+
+	writeWeatherCache({
+		fetchedAt: now,
+		signature,
+		markup
+	});
+}
+
+const WEATHER_CACHE_KEY = 'foragers_weather_v1';
+const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000; // 10 min
+
+function buildWeatherSignature(w) {
+	// Only include what should trigger a visual change (prevents micro-changes from re-rendering)
+	const temp = Number.isFinite(w.temp_c) ? Math.round(w.temp_c) : w.temp_c;
+	const wind = Number.isFinite(w.wind_kph) ? Math.round(w.wind_kph) : w.wind_kph;
+	const rot = Number.isFinite(w.wind_deg) ? Math.round((((w.wind_deg % 360) + 360) % 360)) : 0;
+
+	return [
+		w.weather_code,
+		w.is_day ? 1 : 0,
+		temp,
+		wind,
+		w.wind_dir,
+		rot
+	].join('|');
+}
+
+function buildWeatherMarkup(weather) {
+	const iconFile = getIcon(weather.weather_code, weather.is_day);
+	const iconUrl = `${WEATHER_ICON_BASE}/${iconFile}.svg`;
 	const label = weatherLabelFromCode(weather.weather_code);
 
-	// Normalize just in case (keeps it 0–359)
-	const rot = Number.isFinite(weather.wind_deg) ? ((weather.wind_deg % 360) + 360) % 360 : 0;
+	const rot = Number.isFinite(weather.wind_deg)
+		? ((weather.wind_deg % 360) + 360) % 360
+		: 0;
 
-	el.innerHTML = `
-		<div class="weather-widget" style="display:flex;gap:.75rem;align-items:center;">
+	return `
+		<div class="weather-widget" style="display:flex;gap:.75rem;align-items:center; opacity: 1;">
 			<div>
 				<div>
 					<span>
 						<img
 							src="${iconUrl}"
 							alt="${label}"
-							width="22"
-							height="22"
-							style="position: relative; top: 4px;"
+							class="weather-icon ${iconFile}"
 						/> ${label} • <strong aria-hidden="true" style="letter-spacing: -1px">${weather.temp_c}</strong>ºC
 					</span>
 				</div>
 
 				<div>
-					Wind ${weather.wind_kph} <small>km/h</small><img
+					Wind ${weather.wind_kph} <small>km/h</small>
+					<img
 						src="${DIRECTION_ICON_URL}"
 						alt=""
 						aria-hidden="true"
@@ -138,11 +206,48 @@ async function loadWeather() {
 							transform: rotate(${rot}deg);
 							transform-origin: 50% 50%;
 						"
-					/><small>${weather.wind_dir}</small>
+					/>
+					<small>${weather.wind_dir}</small>
 				</div>
 			</div>
 		</div>
 	`;
+}
+
+function readWeatherCache() {
+	try {
+		const raw = localStorage.getItem(WEATHER_CACHE_KEY);
+		if (!raw) return null;
+		return JSON.parse(raw);
+	} catch {
+		return null;
+	}
+}
+
+function writeWeatherCache(payload) {
+	try {
+		localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify(payload));
+	} catch {
+		// ignore quota/private mode issues
+	}
+}
+
+function readWeatherCache() {
+	try {
+		const raw = localStorage.getItem(WEATHER_CACHE_KEY);
+		if (!raw) return null;
+		return JSON.parse(raw);
+	} catch {
+		return null;
+	}
+}
+
+function writeWeatherCache(payload) {
+	try {
+		localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify(payload));
+	} catch {
+		// ignore quota/private mode issues
+	}
 }
 
 loadWeather().catch(console.error);

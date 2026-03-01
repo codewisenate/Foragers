@@ -7,7 +7,14 @@
 	--text: rgb(21 47 62 / 1);
 	--darktext: rgb(21 43 53 / 1);
 	--content-width: 1024px;
+	
+	--blue-filter: brightness(0) saturate(100%) invert(43%) sepia(10%) saturate(1758%) hue-rotate(164deg) brightness(85%) contrast(87%);
+	
 	font-size: 18px;
+}
+
+@view-transition {
+  navigation: auto;
 }
 
 body {
@@ -70,16 +77,6 @@ div.separator {
 	@media (width > 650px) {
 		margin: auto;
 	}
-
-	&.dark-light{
-		background: white;
-		background: linear-gradient(0deg, white 0%, white 50%, var(--grey) 50%, var(--grey) 100%)
-	}
-	
-	&.light-dark  {
-		background: var(--grey);
-		background: linear-gradient(0deg, var(--grey) 0%, var(--grey) 50%, white 50%, white 100%)
-	}
 	
 	&.left {
 		padding-left: 0;
@@ -100,6 +97,17 @@ div.separator {
 		max-width: 100%;
 	}
 }
+
+.dark-light{
+	background: white;
+	background: linear-gradient(0deg, white 0%, white 50%, var(--grey) 50%, var(--grey) 100%);
+}
+	
+.light-dark  {
+	background: var(--grey);
+	background: linear-gradient(0deg, var(--grey) 0%, var(--grey) 50%, white 50%, white 100%);
+}
+
 img {
 		max-width: 100%;
 	}
@@ -116,7 +124,13 @@ header {
 	line-height: 1.5;
 
 	padding-block: 1rem;
-	padding-inline: 2rem;
+	padding-inline: 1rem;
+
+	@media (width > 700px) {
+		a img {
+			scale: 1.1;
+		}
+	}
 
 	span {
 		display: block;
@@ -124,8 +138,55 @@ header {
 		color: var(--blue);
 	}
 
-	#weather {
-		min-width: 200px;
+	#banner-logo {
+		img {
+			height: 100px;
+			width: 200px;
+		}
+	}
+
+	#banner-location {
+		background-color: white;
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		min-width: 300px;
+		div {
+			width: fit-content;
+		}
+
+	}
+
+	#banner-weather {
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		min-width: 300px;
+		
+		.conditions {
+			opacity: 0; 
+			transition: opacity 120ms linear;
+			white-space: nowrap;
+			width: 100%;
+			
+			.weather-widget {
+
+				width: fit-content;
+
+				.weather-icon { 
+					width: 1.4rem;
+					width: 1.4rem;
+					position: relative;
+					top: 6px;
+					filter: var(--blue-filter);
+				}
+
+			}
+		}
+
+		@media (width <= 650px) {
+			order: 3;
+		}
 	}
 
 	flex-direction: column;
@@ -133,11 +194,13 @@ header {
 
 	@media (width > 374px) {
 		font-size: 1rem;
+		order: 3;
 	}
 
 	@media (width > 650px) {
 		flex-direction: row;
 		font-size: inherit;
+		padding-inline: 2rem;
 	}
 }
 
@@ -310,213 +373,289 @@ div[role="article"] {
 			padding-block: 6rem;
 		}
 	}
-
-	.two-column {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-		gap: 1rem;
-		@media (width > 780px) {
-			gap: 3rem;
-		}
-		max-width: calc(var(--content-width) - 160px);
-		margin-inline: auto;
-		margin-top: 2rem;
-
-		>div {
-			overflow: auto;
-
-			p:first-of-type {
-				margin-top: 0;
-			}
-			p:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		img {
-			min-width: 66%;
-			margin: 3rem auto;
-		}
-
-		div:last-of-type {
-			p:last-of-type::after {
-				content: '';
-				display: inline-block;
-				aspect-ratio: cos(30deg);
-				clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
-				background: var(--lightblue);
-				position: relative;
-				height: 0.75rem;
-				width: 0.66rem;
-				margin-left: 0.33rem;
-			}
-		}
-	}
 }
 
-#hero {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	position: relative;
-	padding-inline: 1rem;
+.auto-column {
+	column-count: 2;
+	column-fill: balance;
 
-	background-image: url('assets/images/hero-bg.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	
-	background-position: 40% top;
-	min-height: 45vh;
-	@media (width > 720px) {
-		background-position: center top;
-		min-height: 800px;
-	}
-	@media (width > 1200px) {
-		background-position: right top;
+	gap: 1rem;
+	@media (width > 780px) {
+		gap: 3rem;
 	}
 
-	>div:first-child {
-		margin: 2rem auto 0 0;
-		max-width: 130px;
-		@media (width > 720px) {
-			margin: 2rem auto auto 12%;
-			max-width: 100%;
-		}
-		@media (width > 1200px) {
-			margin: 2rem 12% auto auto;
-		}
+	max-width: calc(var(--content-width) - 160px);
+	margin-inline: auto;
+	margin-top: 2rem;
+	overflow: auto;
+
+	p:first-of-type {
+		margin-top: 0;
 	}
-	
-	ul {
-		--_hero-text-shadow: 
-			0 0 1rem rgb(0 0 0 / 1), 
-			0 0 0.75rem rgb(0 0 0 / 0.75), 
-			0 0 0.5rem rgb(0 0 0 / 0.5), 
-			0 0 0.25rem rgb(0 0 0 / 0.25);
-		background-color: rgba(0, 0, 0, 0.2);
-		color: white;
-		padding: 0;
-		
-		font-family: "Bodoni Moda", serif;
-		font-optical-sizing: none;
-		
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 
-		font-size: 0.85rem;
-		font-style: normal; 
-		font-weight: 100;
-		text-transform: uppercase;
-		letter-spacing: 0.35rem;
-		line-height: 1.35;
-		margin: 2rem auto;
-		white-space-collapse:break-spaces;
-
-		@media (width > 375px) {
-			font-size: 1rem;
-		}
+	p:last-of-type {
+		margin-bottom: 0;
 		
-		@media (width > 720px) {
-			font-size: 2.5rem;
-			letter-spacing: 0.5rem;
-			margin: 6rem auto;
-		}
-		
-		@media (width > 1220px) {
-			font-size: 3rem;
-			letter-spacing: 0.85rem;
-			margin: 5rem auto;
-		}
-		
-		list-style: none;
-		li {
-			text-shadow: var(--_hero-text-shadow);
+		&::after {
+			content: '';
 			display: inline-block;
-
-			&.hex {
-				content: '';
-				aspect-ratio: cos(30deg);
-				clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
-				background: white;
-				position: relative;
-				
-				margin-left: .25rem;
-				margin-right: .5rem;
-				height: 0.5rem;
-				width: 0.5rem;
-
-				@media (width > 650px) {
-					margin-left: .75rem;
-					margin-right: 1.25rem;
-					height: 1rem;
-					width: 0.85rem;
-				}
-
-				@media (width > 1220px) {
-					margin-left: 1.25rem;
-					margin-right: 2rem;
-					height: 1.5rem;
-					width: 1.25rem;
-				}
-			}
+			aspect-ratio: cos(30deg);
+			clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+			background: var(--lightblue);
+			position: relative;
+			height: 0.75rem;
+			width: 0.66rem;
+			margin-left: 0.33rem;
 		}
 	}
 }
 
-#brand-story-1 {
+.two-column {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+	gap: 1rem;
+	@media (width > 780px) {
+		gap: 3rem;
+	}
+	max-width: calc(var(--content-width) - 160px);
+	margin-inline: auto;
+	margin-top: 2rem;
+
+	>div {
+		overflow: auto;
+
+		p:first-of-type {
+			margin-top: 0;
+		}
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	img {
+		min-width: 66%;
+		margin: 3rem auto;
+	}
+
+	div:last-of-type {
+		p:last-of-type::after {
+			content: '';
+			display: inline-block;
+			aspect-ratio: cos(30deg);
+			clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+			background: var(--lightblue);
+			position: relative;
+			height: 0.75rem;
+			width: 0.66rem;
+			margin-left: 0.33rem;
+		}
+	}
+}
+
+body.dark {
+		header {
+		min-width: 100%;
+		background-color: white;
+		padding: 0;
+
+		.header-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			text-align: center;
+			margin: auto;
+			width: var(--content-width);
+			line-height: 1.5;
+			padding-block: 1rem;
+			flex-direction: row;
+			font-size: inherit;
+			padding-inline: 2rem;
+		}
+	}
+
 	background-color: var(--grey);
 }
 
-#brand-story-2 {
-	h2::before { 
-		content: open-quote;
-		font-size: 2rem;
-		position: relative;
-		top: 0.25rem;
-		opacity: 0.75;
-	}
-	h2 span:last-of-type {
-		line-height: 1;
+body.home {
 
-		&::after { 
-			content: close-quote; 
+	#hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		padding-inline: 1rem;
+		
+		background-image: url('assets/images/hero-bg.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+		background-position: 40% top;
+		min-height: 800px;
+		@media (width > 720px) {
+			background-position: center top;
+			min-height: 800px;
+		}
+		@media (width > 1200px) {
+			background-position: right top;
+		}
+
+		mask-size: contain;
+		mask-repeat: repeat-x;
+		mask-mode: luminance;
+		-webkit-mask-size: contain;
+    	-webkit-mask-repeat: repeat-x;
+		-webkit-mask-mode: luminance;
+		
+		mask-image: url('assets/masks/mask-horizontal-hero-01.png');
+		-webkit-mask-image: url('assets/masks/mask-horizontal-hero-01.png');
+		background-position: center;
+	
+		>div:first-child {
+			margin: 2rem auto 0 0;
+			max-width: 130px;
+			@media (width > 720px) {
+				margin: 2rem auto auto 12%;
+				max-width: 100%;
+			}
+			@media (width > 1200px) {
+				margin: 2rem 12% auto auto;
+			}
+		}
+		
+		ul {
+			--_hero-text-shadow: 
+				0 0 1rem rgb(0 0 0 / 1), 
+				0 0 0.75rem rgb(0 0 0 / 0.75), 
+				0 0 0.5rem rgb(0 0 0 / 0.5), 
+				0 0 0.25rem rgb(0 0 0 / 0.25);
+			background-color: rgba(0, 0, 0, 0.2);
+			color: white;
+			padding: 0;
+			
+			font-family: "Bodoni Moda", serif;
+			font-optical-sizing: none;
+			
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+	
+			font-size: 0.85rem;
+			font-style: normal; 
+			font-weight: 100;
+			text-transform: uppercase;
+			letter-spacing: 0.35rem;
+			line-height: 1.35;
+			margin: 2rem auto;
+			white-space-collapse:break-spaces;
+	
+			@media (width > 375px) {
+				font-size: 1rem;
+			}
+			
+			@media (width > 720px) {
+				font-size: 2.5rem;
+				letter-spacing: 0.5rem;
+				margin: 6rem auto;
+			}
+			
+			@media (width > 1220px) {
+				font-size: 3rem;
+				letter-spacing: 0.85rem;
+				margin: 5rem auto;
+			}
+			
+			list-style: none;
+			li {
+				text-shadow: var(--_hero-text-shadow);
+				display: inline-block;
+	
+				&.hex {
+					content: '';
+					aspect-ratio: cos(30deg);
+					clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+					background: white;
+					position: relative;
+					
+					margin-left: .25rem;
+					margin-right: .5rem;
+					height: 0.5rem;
+					width: 0.5rem;
+	
+					@media (width > 650px) {
+						margin-left: .75rem;
+						margin-right: 1.25rem;
+						height: 1rem;
+						width: 0.85rem;
+					}
+	
+					@media (width > 1220px) {
+						margin-left: 1.25rem;
+						margin-right: 2rem;
+						height: 1.5rem;
+						width: 1.25rem;
+					}
+				}
+			}
+		}
+	}
+	
+	#brand-story-1 {
+		background-color: var(--grey);
+	}
+	
+	#brand-story-2 {
+		background-color: white;
+		h2::before { 
+			content: open-quote;
 			font-size: 2rem;
 			position: relative;
 			top: 0.25rem;
 			opacity: 0.75;
 		}
-	}
-}
-
-#honey {
-	background-color: var(--grey);
-
-	span[lang='it'] {
-		color: var(--blue);
-		display: inline;
-		font-family: "Bodoni Moda", serif;
-		font-style: italic;
-		font-weight: 300;
-		font-optical-sizing: none;
-	}
-
-	#honey-jar {
-		max-width: 280px;
-
-		img {
-			margin: 2rem auto 0;
+		h2 span:last-of-type {
+			line-height: 1;
+	
+			&::after { 
+				content: close-quote; 
+				font-size: 2rem;
+				position: relative;
+				top: 0.25rem;
+				opacity: 0.75;
+			}
 		}
 	}
+	
+	#honey {
+		background-color: var(--grey);
+	
+		span[lang='it'] {
+			color: var(--blue);
+			display: inline;
+			font-family: "Bodoni Moda", serif;
+			font-style: italic;
+			font-weight: 300;
+			font-optical-sizing: none;
+		}
+	
+		#honey-jar {
+			max-width: 280px;
+	
+			img {
+				margin: 2rem auto 0;
+			}
+		}
+	}
+	
+	#orchard {
+		background-color: white;
+	
+	}
+	
+	#location {
+		background-color: var(--grey);
+	}
 }
 
-#orchard {
-
-}
-
-#location {
-	background-color: var(--grey);
-}
 
 .banner {
 	background-position: center top;
@@ -528,6 +667,19 @@ div[role="article"] {
 	background-size: cover;
 	@media (width > 1536px) {
 		background-size: auto;
+	}
+
+	&.mask {
+		mask-size: fit-content;
+		mask-repeat: no-repeat;
+		mask-mode: luminance;
+		-webkit-mask-size: contain;
+    	-webkit-mask-repeat: repeat;
+		-webkit-mask-mode: luminance;
+		
+		mask-image: url('assets/masks/mask-horizontal-01.png');
+		-webkit-mask-image: url('assets/masks/mask-horizontal-01.png');
+		background-position: center;
 	}
 }
 
@@ -649,6 +801,7 @@ nav {
 		font-size: 0.7rem;
 		font-weight: 300;
 		letter-spacing: 0.1em;
+		line-height: 1.5;
 		text-transform: uppercase;
 		padding: 0.9rem 0;
 
@@ -680,7 +833,7 @@ nav {
 					bottom: 0;
 					left: 0.85rem;
 					right: 0.85rem;
-					height: 1px;
+					height: 2px;
 					background: rgb(255 255 255 / 0.45);
 				}
 			}
@@ -699,6 +852,8 @@ nav {
 		radial-gradient(ellipse at 80% 20%, rgb(69 106 135 / 0.2) 0%, transparent 60%),
 		var(--headline);
 	color: white;
+	
+	min-height: 700px;
 	padding-block: 4rem;
 	padding-inline: 2rem;
 
@@ -746,6 +901,52 @@ nav {
 		max-width: 52ch;
 		margin: 1.5rem 0 0;
 		text-wrap: pretty;
+	}
+}
+
+.page-hero--framed {
+	padding: 0;
+	display: grid;
+	grid-template-columns: minmax(0, 30%) minmax(30%, 40%) minmax(0, 30%);
+	overflow: hidden;
+	background: var(--headline);
+	background: linear-gradient(180deg,var(--headline) 85%, var(--grey) 85%);
+
+	&.light {
+		background: linear-gradient(180deg,var(--headline) 85%, white 85%);
+	}
+
+	> div:not(.hero-deco) {
+		padding-inline: 2rem;
+		padding-block: 6rem 12rem;
+	}
+
+	.hero-deco {
+		background-image: url('assets/images/hero-bg.jpg'), url('assets/images/hero-bg.jpg');
+		background-size: cover;
+		mask-size: 100% 100%;
+		mask-repeat: no-repeat;
+		mask-mode: luminance;
+		-webkit-mask-size: 100% 100%;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-mode: luminance;
+		width: 100%;
+
+		&.hero-deco--left {
+			mask-image: url('assets/masks/mask-left-01.png');
+			-webkit-mask-image: url('assets/masks/mask-left-01.png');
+			background-position: 0% center;
+		}
+
+		&.hero-deco--right {
+			mask-image: url('assets/masks/mask-right-01.png');
+			-webkit-mask-image: url('assets/masks/mask-right-01.png');
+			background-position: 12% center;
+
+			body.where-it-begins & {
+				background-position: 40% center;
+			}
+		}
 	}
 }
 
@@ -909,6 +1110,10 @@ nav {
 	&.white { background-color: white; }
 }
 
+.page-hero + .content-section {
+	padding-block-start: 0;
+}
+
 /* ============================================================
    THE POUR – MEAD TYPE CARDS
    ============================================================ */
@@ -1021,10 +1226,10 @@ nav {
 			content: '';
 			position: absolute;
 			left: 0;
-			top: 1.05rem;
+			top: 1.15rem;
 			width: 0.5rem;
-			height: 0.44rem;
-			aspect-ratio: cos(30deg);
+			height: 0.6rem;
+			aspect-ratio: 1;
 			clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
 			background: var(--lightblue);
 		}

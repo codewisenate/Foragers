@@ -17,9 +17,9 @@
 
 <body>
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+		<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+		<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -37,18 +37,21 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html" aria-current="page">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html">Plan Your Visit</a></li>
-				<li><a href="reservations.html">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<main>
-		<section class="page-hero">
+		<!-- HERO -->
+		<section class="page-hero page-hero--framed light">
+			<div class="hero-deco hero-deco--left" aria-hidden="true"></div>
 			<div>
 				<span class="page-eyebrow">Rooted in Craft</span>
 				<h1>Experience shaped by patience, guided by&nbsp;place.</h1>
 				<p>Foragers did not begin as an idea. It began as a continuation — of craft, of hospitality, and of a belief that what we make should reflect where we are.</p>
 			</div>
+			<div class="hero-deco hero-deco--right" aria-hidden="true"></div>
 		</section>
 
 		<section class="content-section white">
@@ -62,7 +65,7 @@
 			</div>
 		</section>
 
-		<div class='dark-light left separator'>
+		<div class='light-dark left separator'>
 			<img src='assets/images/apple-blossoms.png' alt='A bunch of apple blossoms' loading="lazy" />
 		</div>
 
@@ -117,8 +120,8 @@
 				<h2>Come share the table with&nbsp;us</h2>
 				<p>Above the orchard, guests gather for small plates and seasonal mead. Beneath that experience lies years of learning, refinement, and quiet ambition.</p>
 				<div class="btn-group">
-					<a href="reservations.html" class="btn btn-light">Reserve a Table</a>
-					<a href="plan-your-visit.html" class="btn btn-ghost">Plan Your Visit</a>
+					<a href="plan-your-visit.html" class="btn btn-light">Plan Your Visit</a>
+					<a href="reservations.html" class="btn btn-ghost">Reserve a Table</a>
 				</div>
 			</div>
 		</section>

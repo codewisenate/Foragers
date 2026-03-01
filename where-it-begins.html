@@ -15,11 +15,11 @@
 	<link rel="icon" type="image/png" href="assets/images/bee-favicon.png">
 </head>
 
-<body>
+<body class="where-it-begins">
 	<header>
-		<div id="weather" aria-live="polite"></div>
-		<div><a href="index.html"><img src='assets/images/foragers-header-logo.svg' width="211" height="97" alt='Foragers Meadery — Home' /></a></div>
-		<div><span>Sunshine Coast</span> Roberts Creek BC</div>
+		<div id="banner-weather" aria-live="polite"><div class='conditions'></div></div>
+		<div id="banner-logo"><a href="index.html"><img src='assets/images/foragers-header-logo.svg' alt='Foragers Meadery — Home' /></a></div>
+		<div id="banner-location"><div><span>Sunshine Coast</span> Roberts Creek BC</div></div>
 	</header>
 
 	<nav aria-label="Main navigation">
@@ -37,7 +37,7 @@
 				<li><a href="on-the-table.html">On the Table</a></li>
 				<li><a href="rooted-in-craft.html">Rooted in Craft</a></li>
 				<li><a href="plan-your-visit.html">Plan Your Visit</a></li>
-				<li><a href="reservations.html">Reserve your place</a></li>
+				<li><a href="reserve-your-place.html">Reserve your place</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -45,22 +45,30 @@
 	<main>
 
 		<!-- HERO -->
-		<section class="page-hero">
+		<section class="page-hero page-hero--framed">
+			<div class="hero-deco hero-deco--left" aria-hidden="true"></div>
 			<div>
 				<span class="page-eyebrow">Where It Begins</span>
 				<h1>Where land and season shape everything that&nbsp;follows.</h1>
 				<p>At Foragers, mead does not begin in a tank or a barrel. It begins in blossom, in soil, in weather, and in time.</p>
 			</div>
+			<div class="hero-deco hero-deco--right" aria-hidden="true"></div>
 		</section>
 
 		<!-- SECTION 1: grey — The Landscape -->
 		<section class="content-section grey">
 			<div>
 				<h3>The Landscape</h3>
-				<h2>Rooted in the rhythm of the&nbsp;coast</h2>
-				<p>Our estate rises gently from the Salish Sea, surrounded by evergreen forest and coastal light. The orchard was planted with intention: heritage apple varieties chosen for flavour, resilience, and character.</p>
-				<p>We work within the rhythm of the seasons, not against it. Spring blossoms bring delicate floral notes to our honey. Summer deepens fruit and nectar. Autumn delivers crisp acidity and subtle spice.</p>
-				<p>No two years are identical. We believe that's something to honour, not correct.</p>
+				<h2>Rooted in the rhythm of the coast</h2>
+				<div class='two-column'>
+					<div>
+						<p>Our estate rises gently from the Salish Sea, surrounded by evergreen forest and coastal light. The orchard was planted with intention: heritage apple varieties chosen for flavour, resilience, and character.</p>
+						<p>We work within the rhythm of the seasons, not against it.</p>
+					</div>
+					<div>
+						<p>Spring blossoms bring delicate floral notes to our honey. Summer deepens fruit and nectar. Autumn delivers crisp acidity and subtle spice.</p>
+						<p>No two years are identical. We believe that's something to honour, not correct.</p>
+					</div>
 			</div>
 		</section>
 
@@ -84,7 +92,9 @@
 		</section>
 
 		<!-- ORCHARD BANNER: full-width atmospheric image break -->
-		<div class='orchard-banner banner'></div>
+		<div class='light-dark'>
+			<div class='orchard-banner banner mask'></div>
+		</div>
 
 		<!-- SECTION 3: grey — From Field to Glass to Table -->
 		<section class="content-section grey">
@@ -109,10 +119,15 @@
 			<div>
 				<h3>Expression Over Replication</h3>
 				<h2>Something living — shaped by weather, bloom, and&nbsp;time</h2>
-				<p>In a world that values uniformity, we choose expression.</p>
-				<p>Small-batch fermentations allow honey, fruit, and time to speak without excess manipulation. Seasonal menus shift according to what is freshest and most compelling.</p>
-				<p>The result is not something manufactured to remain identical year after year, but something living — shaped by weather, bloom, harvest, and the quiet patience of fermentation.</p>
-				<p>When you visit Foragers, you are tasting this moment.</p>
+				<div class='two-column'>
+					<div>
+						<p>In a world that values uniformity, we choose expression.</p>
+						<p>Small-batch fermentations allow honey, fruit, and time to speak without excess manipulation. Seasonal menus shift according to what is freshest and most compelling.</p>
+					</div>
+					<div>
+						<p>The result is not something manufactured to remain identical year after year, but something living — shaped by weather, bloom, harvest, and the quiet patience of fermentation.</p>
+						<p>When you visit Foragers, you are tasting this moment.</p>
+					</div>
 			</div>
 		</section>
 
@@ -126,10 +141,15 @@
 			<div>
 				<h3>A Place to Gather</h3>
 				<h2>Connection above the orchard, surrounded by&nbsp;forest</h2>
-				<p>Where It Begins is not only about land. It is about connection.</p>
-				<p>We built Foragers to be a space where friends gather over shared plates, where conversation moves slowly, and where presence is valued over distraction.</p>
-				<p>Above the orchard, with forest at our back and sea air close by, we invite you to experience something rooted, intentional, and distinctly of this place.</p>
-				<p>Everything begins here.</p>
+				<div class='two-column'>
+					<div>
+						<p>Where It Begins is not only about land. It is about connection.</p>
+						<p>We built Foragers to be a space where friends gather over shared plates, where conversation moves slowly, and where presence is valued over distraction.</p>
+					</div>
+					<div>
+						<p>Above the orchard, with forest at our back and sea air close by, we invite you to experience something rooted, intentional, and distinctly of this place.</p>
+						<p>Everything begins here.</p>
+					</div>
 			</div>
 		</section>
 
@@ -139,7 +159,7 @@
 				<h2>Come experience it for&nbsp;yourself</h2>
 				<p>Join us above the orchard for seasonal mead, small plates, and an experience shaped entirely by this place.</p>
 				<div class="btn-group">
-					<a href="reservations.html" class="btn btn-light">Reserve a Table</a>
+					<a href="orchard-apiary.html" class="btn btn-light">Orchard & apiary</a>
 					<a href="plan-your-visit.html" class="btn btn-ghost">Plan Your Visit</a>
 				</div>
 			</div>
