@@ -44,7 +44,7 @@ Chive Emulsion, Confit Maitake, Stuffed Morel
 
 # Desserts
 
-## Lemon Tartlet
+## Lemon Tart
 
 Espresso Anglaise, Tonka Bean Ice Cream
 
