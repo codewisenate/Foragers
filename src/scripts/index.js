@@ -39,6 +39,80 @@ if (navToggle && navMenu) {
 	});
 }
 
+const navInner = document.querySelector('nav .nav-inner');
+const desktopNavMedia = window.matchMedia('(min-width: 781px)');
+const supportsNavAnchorEffects =
+	typeof CSS !== 'undefined' &&
+	typeof CSS.supports === 'function' &&
+	CSS.supports('anchor-name: --nav-link-1') &&
+	CSS.supports('position-anchor: --nav-link-1');
+
+if (navInner && navMenu && supportsNavAnchorEffects) {
+	let navFadeTimer = 0;
+	let lastNavLink = null;
+
+	function clearNavFadeLock() {
+		window.clearTimeout(navFadeTimer);
+		navInner.classList.remove('is-anchor-fading');
+		navInner.style.removeProperty('--nav-fade-left');
+		navInner.style.removeProperty('--nav-fade-top');
+		navInner.style.removeProperty('--nav-fade-bottom');
+		navInner.style.removeProperty('--nav-fade-width');
+		navInner.style.removeProperty('--nav-fade-height');
+	}
+
+	function rememberNavLink(link) {
+		if (!(link instanceof HTMLAnchorElement)) return;
+		lastNavLink = link;
+		clearNavFadeLock();
+	}
+
+	function lockNavFade() {
+		if (!desktopNavMedia.matches || !(lastNavLink instanceof HTMLAnchorElement)) {
+			clearNavFadeLock();
+			return;
+		}
+
+		const navRect = navInner.getBoundingClientRect();
+		const linkRect = lastNavLink.getBoundingClientRect();
+
+		navInner.style.setProperty('--nav-fade-left', `${linkRect.left - navRect.left}px`);
+		navInner.style.setProperty('--nav-fade-top', `${linkRect.top - navRect.top}px`);
+		navInner.style.setProperty('--nav-fade-bottom', `${linkRect.bottom - navRect.top - 2}px`);
+		navInner.style.setProperty('--nav-fade-width', `${linkRect.width}px`);
+		navInner.style.setProperty('--nav-fade-height', `${linkRect.height}px`);
+		navInner.classList.add('is-anchor-fading');
+
+		navFadeTimer = window.setTimeout(clearNavFadeLock, 220);
+	}
+
+	navMenu.addEventListener('pointerover', (event) => {
+		const link = event.target.closest('a');
+		if (!link || !navMenu.contains(link)) return;
+		rememberNavLink(link);
+	});
+
+	navMenu.addEventListener('focusin', (event) => {
+		const link = event.target.closest('a');
+		if (!link || !navMenu.contains(link)) return;
+		rememberNavLink(link);
+	});
+
+	navMenu.addEventListener('pointerleave', lockNavFade);
+	navMenu.addEventListener('focusout', (event) => {
+		if (navMenu.contains(event.relatedTarget)) return;
+		lockNavFade();
+	});
+
+	if (typeof desktopNavMedia.addEventListener === 'function') {
+		desktopNavMedia.addEventListener('change', clearNavFadeLock);
+	} else if (typeof desktopNavMedia.addListener === 'function') {
+		desktopNavMedia.addListener(clearNavFadeLock);
+	}
+
+	window.addEventListener('resize', clearNavFadeLock);
+}
+
 // Homepage mobile menu accordions
 const menuCategoryToggles = Array.from(document.querySelectorAll('.menu-category-toggle'));
 const menuAccordionMedia = window.matchMedia('(max-width: 920px)');
