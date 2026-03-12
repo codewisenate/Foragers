@@ -1,0 +1,234 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { basename, extname, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
+
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
+const srcRoot = resolve(projectRoot, 'src');
+const contentRoot = resolve(srcRoot, 'content');
+const menuContentPath = resolve(contentRoot, 'menu.md');
+const partialsRoot = resolve(srcRoot, 'partials');
+const projectPages = new Set([
+	'index.html',
+	'where-it-begins.html',
+	'in-the-glass.html',
+	'on-the-table.html',
+	'orchard-apiary.html',
+	'rooted-in-craft.html',
+	'visit-foragers.html',
+	'reserve-your-place.html',
+]);
+
+const htmlEntries = Object.fromEntries(
+	readdirSync(srcRoot)
+		.filter((file) => extname(file) === '.html' && projectPages.has(file))
+		.map((file) => [basename(file, '.html'), resolve(srcRoot, file)])
+);
+
+function getCurrentPage(ctx) {
+	if (ctx.filename) {
+		return basename(ctx.filename);
+	}
+
+	const path = ctx.path?.split('?')[0] ?? '';
+	if (path === '/' || path === '') {
+		return 'index.html';
+	}
+
+	return basename(path);
+}
+
+function readPartial(partialName) {
+	return readFileSync(resolve(partialsRoot, `${partialName}.html`), 'utf8').trim();
+}
+
+function escapeHtml(text) {
+	return text
+		.replaceAll('&', '&amp;')
+		.replaceAll('<', '&lt;')
+		.replaceAll('>', '&gt;')
+		.replaceAll('"', '&quot;')
+		.replaceAll("'", '&#39;');
+}
+
+function slugify(value) {
+	return value
+		.toLowerCase()
+		.normalize('NFKD')
+		.replace(/[^\w\s-]/g, '')
+		.trim()
+		.replace(/\s+/g, '-');
+}
+
+function parseMenuMarkdown(markdown) {
+	const sections = [];
+	let currentSection = null;
+	let currentItem = null;
+	let descriptionLines = [];
+
+	function flushItem() {
+		if (!currentSection || !currentItem) {
+			descriptionLines = [];
+			return;
+		}
+
+		currentItem.description = descriptionLines.join(' ').replace(/\s+/g, ' ').trim();
+		currentSection.items.push(currentItem);
+		currentItem = null;
+		descriptionLines = [];
+	}
+
+	function flushSection() {
+		flushItem();
+		if (currentSection) {
+			sections.push(currentSection);
+			currentSection = null;
+		}
+	}
+
+	for (const line of markdown.split(/\r?\n/)) {
+		const trimmed = line.trim();
+
+		if (trimmed.startsWith('# ')) {
+			flushSection();
+			currentSection = {
+				title: trimmed.slice(2).trim(),
+				items: [],
+			};
+			continue;
+		}
+
+		if (trimmed.startsWith('## ')) {
+			flushItem();
+			if (!currentSection) {
+				throw new Error('Menu item found before any menu section heading.');
+			}
+
+			currentItem = {
+				name: trimmed.slice(3).trim(),
+				description: '',
+			};
+			continue;
+		}
+
+		if (trimmed === '') {
+			continue;
+		}
+
+		if (!currentItem) {
+			throw new Error(`Unexpected menu content outside a menu item: "${trimmed}"`);
+		}
+
+		descriptionLines.push(trimmed);
+	}
+
+	flushSection();
+	return sections;
+}
+
+function renderMenuGrid() {
+	const menuMarkdown = readFileSync(menuContentPath, 'utf8');
+	const sections = parseMenuMarkdown(menuMarkdown);
+
+	const sectionMarkup = sections.map((section) => {
+		const slug = slugify(section.title);
+		const labelId = `menu-${slug}-label`;
+		const toggleId = `menu-${slug}-toggle`;
+		const listId = `menu-${slug}-list`;
+		const itemsMarkup = section.items.map((item) => {
+			const descriptionMarkup = item.description
+				? `\n\t\t\t\t\t\t\t\t<p>${escapeHtml(item.description)}</p>`
+				: '';
+
+			return [
+				'\t\t\t\t\t\t\t<article class="menu-item">',
+				`\t\t\t\t\t\t\t\t<h3>${escapeHtml(item.name)}</h3>${descriptionMarkup}`,
+				'\t\t\t\t\t\t\t</article>',
+			].join('\n');
+		}).join('\n');
+
+		return [
+			`\t\t\t\t\t<section class="menu-category" aria-labelledby="${labelId}">`,
+			`\t\t\t\t\t\t<button class="menu-category-toggle" id="${toggleId}" type="button" aria-expanded="false" aria-controls="${listId}">`,
+			`\t\t\t\t\t\t\t<span class="menu-category-label" id="${labelId}">${escapeHtml(section.title)}</span>`,
+			'\t\t\t\t\t\t\t<span class="menu-category-toggle-meta">',
+			'\t\t\t\t\t\t\t\t<span class="menu-category-toggle-text">Tap to reveal</span>',
+			'\t\t\t\t\t\t\t\t<span class="menu-category-toggle-icon" aria-hidden="true"></span>',
+			'\t\t\t\t\t\t\t</span>',
+			'\t\t\t\t\t\t</button>',
+			`\t\t\t\t\t\t<div class="menu-list" id="${listId}">`,
+			itemsMarkup,
+			'\t\t\t\t\t\t</div>',
+			'\t\t\t\t\t</section>',
+		].join('\n');
+	}).join('\n');
+
+	return [
+		'<div class="menu-grid" aria-label="Current seasonal menu">',
+		sectionMarkup,
+		'\t\t\t\t</div>',
+	].join('\n');
+}
+
+function renderPartial(partialName, currentPage) {
+	return readPartial(partialName)
+		.replace(/ \{\{aria-current:([^}]+)\}\}/g, (_, pageName) => (
+			pageName === currentPage ? ' aria-current="page"' : ''
+		));
+}
+
+function isPartialFile(filePath) {
+	const relativePath = relative(partialsRoot, resolve(filePath));
+	return relativePath !== '' && !relativePath.startsWith('..') && !relativePath.startsWith('.');
+}
+
+function isGeneratedContentFile(filePath) {
+	return resolve(filePath) === menuContentPath;
+}
+
+function renderInclude(includeName, currentPage) {
+	if (includeName === 'menu-grid') {
+		return renderMenuGrid();
+	}
+
+	return renderPartial(includeName, currentPage);
+}
+
+function partialIncludePlugin() {
+	return {
+		name: 'foragers-partial-include',
+		transformIndexHtml: {
+			order: 'pre',
+			handler(html, ctx) {
+				return html.replace(/<!-- @include:([a-z-]+) -->/g, (_, partialName) => (
+					renderInclude(partialName, getCurrentPage(ctx))
+				));
+			},
+		},
+		configureServer(server) {
+			server.watcher.add(partialsRoot);
+			server.watcher.add(menuContentPath);
+		},
+		handleHotUpdate(ctx) {
+			if (!isPartialFile(ctx.file) && !isGeneratedContentFile(ctx.file)) {
+				return;
+			}
+
+			ctx.server.ws.send({ type: 'full-reload' });
+			return [];
+		},
+	};
+}
+
+export default defineConfig({
+	appType: 'mpa',
+	root: srcRoot,
+	plugins: [partialIncludePlugin()],
+	build: {
+		outDir: resolve(projectRoot, 'dist'),
+		emptyOutDir: true,
+		rollupOptions: {
+			input: htmlEntries,
+		},
+	},
+});

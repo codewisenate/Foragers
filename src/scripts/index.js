@@ -1,3 +1,15 @@
+const WEATHER_ASSET_URLS = Object.fromEntries(
+	Object.entries(
+		import.meta.glob('../assets/weather/*.svg', {
+			eager: true,
+			import: 'default',
+		})
+	).map(([filePath, url]) => [
+		filePath.split('/').pop().replace('.svg', ''),
+		url,
+	])
+);
+
 // Navigation mobile toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.getElementById('nav-menu');
@@ -27,10 +39,65 @@ if (navToggle && navMenu) {
 	});
 }
 
+// Homepage mobile menu accordions
+const menuCategoryToggles = Array.from(document.querySelectorAll('.menu-category-toggle'));
+const menuAccordionMedia = window.matchMedia('(max-width: 920px)');
+
+function setMenuAccordionState(toggle, expanded) {
+	const listId = toggle.getAttribute('aria-controls');
+	if (!listId) return;
+
+	const list = document.getElementById(listId);
+	if (!list) return;
+
+	const toggleText = toggle.querySelector('.menu-category-toggle-text');
+	toggle.setAttribute('aria-expanded', String(expanded));
+	list.hidden = !expanded;
+
+	if (toggleText) {
+		toggleText.textContent = expanded ? 'Hide dishes' : 'Tap to reveal';
+	}
+}
+
+function syncMenuAccordions() {
+	if (!menuCategoryToggles.length) return;
+
+	for (const toggle of menuCategoryToggles) {
+		if (!menuAccordionMedia.matches) {
+			toggle.disabled = true;
+			setMenuAccordionState(toggle, true);
+			continue;
+		}
+
+		toggle.disabled = false;
+		const isExpanded = toggle.dataset.mobileExpanded === 'true';
+		setMenuAccordionState(toggle, isExpanded);
+	}
+}
+
+if (menuCategoryToggles.length) {
+	for (const toggle of menuCategoryToggles) {
+		toggle.addEventListener('click', () => {
+			if (!menuAccordionMedia.matches) return;
+
+			const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+			toggle.dataset.mobileExpanded = String(!isExpanded);
+			setMenuAccordionState(toggle, !isExpanded);
+		});
+	}
+
+	if (typeof menuAccordionMedia.addEventListener === 'function') {
+		menuAccordionMedia.addEventListener('change', syncMenuAccordions);
+	} else if (typeof menuAccordionMedia.addListener === 'function') {
+		menuAccordionMedia.addListener(syncMenuAccordions);
+	}
+
+	syncMenuAccordions();
+}
+
 // ---- Weather helpers ----
 
-const WEATHER_ICON_BASE = '/assets/weather';
-const DIRECTION_ICON_URL = `${WEATHER_ICON_BASE}/direction.svg`;
+const DIRECTION_ICON_URL = WEATHER_ASSET_URLS.direction ?? '';
 
 // Map Open-Meteo WMO codes → Meteocons filenames
 function getIcon(weatherCode, isDay) {
@@ -172,7 +239,7 @@ function buildWeatherSignature(w) {
 
 function buildWeatherMarkup(weather) {
 	const iconFile = getIcon(weather.weather_code, weather.is_day);
-	const iconUrl = `${WEATHER_ICON_BASE}/${iconFile}.svg`;
+	const iconUrl = WEATHER_ASSET_URLS[iconFile] ?? WEATHER_ASSET_URLS.cloudy ?? '';
 	const label = weatherLabelFromCode(weather.weather_code);
 
 	const rot = Number.isFinite(weather.wind_deg)
@@ -183,17 +250,15 @@ function buildWeatherMarkup(weather) {
 		<div class="weather-widget" style="display:flex;gap:.75rem;align-items:center; opacity: 1;">
 			<div>
 				<div>
-					<span>
-						<img
+					<span><img
 							src="${iconUrl}"
 							alt="${label}"
 							class="weather-icon ${iconFile}"
-						/> ${label} • <strong aria-hidden="true" style="letter-spacing: -1px">${weather.temp_c}</strong>ºC
-					</span>
+					/> ${label} • <strong aria-hidden="true" style="letter-spacing: -1px">${weather.temp_c}</strong>ºC</span>
 				</div>
 
 				<div>
-					Wind ${weather.wind_kph} <small>km/h</small>
+					<small>Wind ${weather.wind_kph} <small>km/h</small>
 					<img
 						src="${DIRECTION_ICON_URL}"
 						alt=""
@@ -207,29 +272,11 @@ function buildWeatherMarkup(weather) {
 							transform-origin: 50% 50%;
 						"
 					/>
-					<small>${weather.wind_dir}</small>
+					<small>${weather.wind_dir}</small></small>
 				</div>
 			</div>
 		</div>
 	`;
-}
-
-function readWeatherCache() {
-	try {
-		const raw = localStorage.getItem(WEATHER_CACHE_KEY);
-		if (!raw) return null;
-		return JSON.parse(raw);
-	} catch {
-		return null;
-	}
-}
-
-function writeWeatherCache(payload) {
-	try {
-		localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify(payload));
-	} catch {
-		// ignore quota/private mode issues
-	}
 }
 
 function readWeatherCache() {
