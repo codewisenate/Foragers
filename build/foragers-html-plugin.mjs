@@ -24,6 +24,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const partialsRoot = resolve(srcRoot, 'partials');
 	const contentRoot = resolve(srcRoot, 'content');
 	const menuContentPath = resolve(contentRoot, 'menu.md');
+	const hoursContentPath = resolve(contentRoot, 'hours.md');
 
 	function getCurrentPage(ctx) {
 		if (ctx.filename) {
@@ -58,6 +59,10 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			.replace(/[^\w\s-]/g, '')
 			.trim()
 			.replace(/\s+/g, '-');
+	}
+
+	function normalizeInlineText(lines) {
+		return lines.join(' ').replace(/\s+/g, ' ').trim();
 	}
 
 	function parseMenuMarkdown(markdown) {
@@ -170,6 +175,177 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		].join('\n');
 	}
 
+	function parseHoursMarkdown(markdown) {
+		const sections = [];
+		let currentSection = null;
+		let currentEntry = null;
+		let paragraphLines = [];
+
+		function flushParagraph() {
+			if (!currentSection || paragraphLines.length === 0) {
+				paragraphLines = [];
+				return;
+			}
+
+			currentSection.paragraphs.push(normalizeInlineText(paragraphLines));
+			paragraphLines = [];
+		}
+
+		function flushEntry() {
+			if (!currentSection || !currentEntry) {
+				return;
+			}
+
+			const lines = currentEntry.lines
+				.map((line) => line.trim())
+				.filter(Boolean);
+
+			if (lines.length === 0) {
+				throw new Error(`Hours entry "${currentEntry.label}" is missing its content.`);
+			}
+
+			currentSection.entries.push({
+				...currentEntry,
+				lines,
+			});
+			currentEntry = null;
+		}
+
+		function flushSection() {
+			flushEntry();
+			flushParagraph();
+
+			if (currentSection) {
+				if (currentSection.entries.length === 0 && currentSection.paragraphs.length === 0) {
+					throw new Error(`Hours section "${currentSection.title}" is empty.`);
+				}
+
+				sections.push(currentSection);
+				currentSection = null;
+			}
+		}
+
+		for (const line of markdown.split(/\r?\n/)) {
+			const trimmed = line.trim();
+
+			if (trimmed.startsWith('# ')) {
+				flushSection();
+				currentSection = {
+					title: trimmed.slice(2).trim(),
+					entries: [],
+					paragraphs: [],
+				};
+				continue;
+			}
+
+			if (trimmed.startsWith('## ')) {
+				if (!currentSection) {
+					throw new Error('Hours entry found before any hours section heading.');
+				}
+
+				flushEntry();
+				flushParagraph();
+				currentEntry = {
+					label: trimmed.slice(3).trim(),
+					lines: [],
+				};
+				continue;
+			}
+
+			if (trimmed === '') {
+				if (currentEntry?.lines.length) {
+					flushEntry();
+				} else {
+					flushParagraph();
+				}
+				continue;
+			}
+
+			if (!currentSection) {
+				throw new Error(`Unexpected hours content outside a section: "${trimmed}"`);
+			}
+
+			if (currentEntry) {
+				currentEntry.lines.push(trimmed);
+				continue;
+			}
+
+			paragraphLines.push(trimmed);
+		}
+
+		flushSection();
+		return sections;
+	}
+
+	function renderHoursGrid() {
+		const hoursMarkdown = readFileSync(hoursContentPath, 'utf8');
+		const sections = parseHoursMarkdown(hoursMarkdown);
+		const slugCounts = new Map();
+
+		function getSectionLabelId(title) {
+			const baseSlug = slugify(title) || 'section';
+			const currentCount = slugCounts.get(baseSlug) ?? 0;
+			slugCounts.set(baseSlug, currentCount + 1);
+			const suffix = currentCount === 0 ? '' : `-${currentCount + 1}`;
+			return `visit-hours-${baseSlug}${suffix}`;
+		}
+
+		function renderEntryLines(lines) {
+			if (lines.length === 1) {
+				return `\t\t\t\t\t\t\t\t\t<span class="visit-hours-time">${escapeHtml(lines[0])}</span>`;
+			}
+
+			const valueMarkup = lines.map((line) => (
+				`\t\t\t\t\t\t\t\t\t\t<span class="visit-hours-time">${escapeHtml(line)}</span>`
+			)).join('\n');
+
+			return [
+				'\t\t\t\t\t\t\t\t\t<div class="visit-hours-values">',
+				valueMarkup,
+				'\t\t\t\t\t\t\t\t\t</div>',
+			].join('\n');
+		}
+
+		const sectionMarkup = sections.map((section) => {
+			const labelId = getSectionLabelId(section.title);
+			const contentParts = [];
+
+			if (section.entries.length > 0) {
+				const entryMarkup = section.entries.map((entry) => [
+					'\t\t\t\t\t\t\t\t<li>',
+					`\t\t\t\t\t\t\t\t\t<span>${escapeHtml(entry.label)}</span>`,
+					renderEntryLines(entry.lines),
+					'\t\t\t\t\t\t\t\t</li>',
+				].join('\n')).join('\n');
+
+				contentParts.push([
+					'\t\t\t\t\t\t\t<ul class="visit-hours-list">',
+					entryMarkup,
+					'\t\t\t\t\t\t\t</ul>',
+				].join('\n'));
+			}
+
+			if (section.paragraphs.length > 0) {
+				contentParts.push(section.paragraphs.map((paragraph) => (
+					`\t\t\t\t\t\t\t<p>${escapeHtml(paragraph)}</p>`
+				)).join('\n'));
+			}
+
+			return [
+				`\t\t\t\t\t\t<section class="visit-hours-item" aria-labelledby="${labelId}">`,
+				`\t\t\t\t\t\t\t<h4 id="${labelId}">${escapeHtml(section.title)}</h4>`,
+				contentParts.join('\n'),
+				'\t\t\t\t\t\t</section>',
+			].join('\n');
+		}).join('\n');
+
+		return [
+			'<div class="visit-hours" aria-label="Current tasting room, dining room, and patio hours">',
+			sectionMarkup,
+			'\t\t\t\t\t</div>',
+		].join('\n');
+	}
+
 	function renderPartial(partialName, currentPage) {
 		return readPartial(partialName)
 			.replace(/ \{\{aria-current:([^}]+)\}\}/g, (_, pageName) => (
@@ -183,12 +359,17 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	}
 
 	function isGeneratedContentFile(filePath) {
-		return resolve(filePath) === menuContentPath;
+		const resolvedPath = resolve(filePath);
+		return resolvedPath === menuContentPath || resolvedPath === hoursContentPath;
 	}
 
 	function renderInclude(includeName, currentPage) {
 		if (includeName === 'menu-grid') {
 			return renderMenuGrid();
+		}
+
+		if (includeName === 'hours-grid') {
+			return renderHoursGrid();
 		}
 
 		return renderPartial(includeName, currentPage);
@@ -207,6 +388,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		configureServer(server) {
 			server.watcher.add(partialsRoot);
 			server.watcher.add(menuContentPath);
+			server.watcher.add(hoursContentPath);
 		},
 		handleHotUpdate(ctx) {
 			if (!isPartialFile(ctx.file) && !isGeneratedContentFile(ctx.file)) {

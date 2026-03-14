@@ -478,9 +478,16 @@ div[role="article"] {
 }
 
 .callout {
-	margin-inline: -3rem;
-	padding: 3rem;
+	margin-inline: 0;
+	padding-block: 2rem;
+	padding-inline: 2rem;
 	border-radius: 0.5rem;
+
+	@media (width > 650px) {
+		margin-inline: -3rem;
+		padding-inline: 3rem;
+	}
+
 	&.blue {
 		background-color: #f6f8fe;
 	}
@@ -493,6 +500,10 @@ div[role="article"] {
 }
 
 .auto-column {
+
+	> div {
+		display: contents;
+	}
 
 	@media (width > 780px) {
 		column-count: 2;
@@ -1867,7 +1878,7 @@ nav {
 		font-weight: 400;
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
 		font-family: "Roboto", sans-serif;
 	}
 
@@ -1877,6 +1888,81 @@ nav {
 		line-height: 1.65;
 		font-size: 0.95rem;
 	}
+}
+
+.visit-hours {
+	display: grid;
+	gap: 1rem;
+}
+
+.visit-hours-item {
+	h4 {
+		border-bottom: 1px solid rgb(21 47 62 / 0.12);
+		font-family: "Roboto", sans-serif;
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		line-height: 0.66;
+		margin: 0 0 0.5rem;
+		padding-bottom: 0.65rem;
+		text-transform: uppercase;
+	}
+
+	ul:has(+ p) {
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid rgb(21 47 62 / 0.12);
+	}
+
+	p {
+		font-size: 0.85rem;
+		margin-bottom: 0.25rem;
+	}
+}
+
+.visit-hours-list {
+	display: grid;
+	gap: 0.45rem;
+	list-style: none;
+	margin: 0 0 0.25rem;
+	padding: 0;
+
+	li {
+		display: grid;
+		gap: 0.15rem 1rem;
+		grid-template-columns: minmax(0, 1fr) auto;
+		line-height: 1.5;
+		font-size: 0.9rem;
+
+		@media (width <= 420px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	span {
+		color: rgb(21 47 62 / 0.72);
+	}
+
+	.visit-hours-time {
+		font-weight: 400;
+	}
+}
+
+.visit-hours-values {
+	display: grid;
+	gap: 0.15rem;
+	justify-items: start;
+}
+
+.visit-location-region {
+	color: rgb(21 47 62 / 0.72);
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+.visit-hours-note {
+	color: rgb(21 47 62 / 0.7);
+	font-size: 0.85rem;
+	margin-top: 1rem;
 }
 
 .guidelines-list {
