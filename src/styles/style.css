@@ -135,6 +135,10 @@ img {
 		max-width: 100%;
 	}
 
+.is-grid {
+	display: grid;
+}
+
 
 header {
 	box-sizing: border-box;
