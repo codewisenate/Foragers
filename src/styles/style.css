@@ -707,15 +707,6 @@ body.home {
 }
 
 #honey {
-	span[lang='it'] {
-		color: var(--blue);
-		display: inline;
-		font-family: "Bodoni Moda", serif;
-		font-style: italic;
-		font-weight: 300;
-		font-optical-sizing: none;
-	}
-
 	#honey-jar {
 		max-width: 280px;
 
@@ -723,6 +714,16 @@ body.home {
 			margin: 2rem auto 0;
 		}
 	}
+}
+
+span[lang='it'] {
+	color: var(--blue);
+	display: inline;
+	font-family: "Bodoni Moda", serif;
+	font-style: italic;
+	font-size: 105%;
+	font-weight: 300;
+	font-optical-sizing: none;
 }
 
 
@@ -2154,6 +2155,12 @@ nav {
 		object-position: 55% center;
 		height: 100%;
 	}
+}
+
+div[role='region']:has(.resos-booking-widget) {
+	border: 1px solid #eaeaea;
+	border-radius: 0.5rem;
+	overflow: clip;
 }
 
 .resos-booking-widget {

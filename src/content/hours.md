@@ -4,7 +4,7 @@
 
 11:30 – 17:00
 
-# Dining room
+# Dining lounge
 
 ## Wednesday and Thursday
 
@@ -20,4 +20,4 @@
 
 # Patio
 
-No reservations required. Same hours as the dining room.
+Operates with the same hours as the dining lounge. Reservations not required for patio seating.

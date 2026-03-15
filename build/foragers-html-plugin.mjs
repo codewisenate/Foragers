@@ -340,7 +340,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		}).join('\n');
 
 		return [
-			'<div class="visit-hours" aria-label="Current tasting room, dining room, and patio hours">',
+			'<div class="visit-hours" aria-label="Current tasting room, dining lounge, and patio hours">',
 			sectionMarkup,
 			'\t\t\t\t\t</div>',
 		].join('\n');
