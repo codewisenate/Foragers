@@ -2155,3 +2155,7 @@ nav {
 		height: 100%;
 	}
 }
+
+.resos-booking-widget {
+	min-height: 700px !important;
+}
