@@ -2144,9 +2144,11 @@ nav {
 	box-shadow: var(--card-shadow);
 	height: 300px;
 	margin-top: 2rem;
+	display: flex;
 
 	img {
 		border-radius: 0.5rem;
+		flex-grow: 1;
 		overflow: clip;
 		object-fit: cover;
 		object-position: 55% center;
