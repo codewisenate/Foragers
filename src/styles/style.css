@@ -309,6 +309,7 @@ footer {
 
 	#footer-content {
 		bottom: 4rem;
+		display: grid;
 		position: absolute;
 		margin-block: auto;
 		width: 100%;
@@ -371,9 +372,11 @@ footer {
 
 	#footer-copyright {
 
+		justify-self: end;
+
 		>div {
 			background-color: rgb(0 0 0 / 0.75);
-			border-radius: 0 0 0.5rem 0.5rem;
+			border-radius: 0 0 0 0.5rem;
 			color: white;
 			margin: auto;
 			
