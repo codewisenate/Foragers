@@ -372,7 +372,8 @@ footer {
 	#footer-copyright {
 
 		>div {
-			background-color: rgb(0 0 0 / 0.66);
+			background-color: rgb(0 0 0 / 0.75);
+			border-radius: 0 0 0.5rem 0.5rem;
 			color: white;
 			margin: auto;
 			
@@ -383,7 +384,7 @@ footer {
 			
 
 			width: fit-content;
-			font-size: 0.8rem;
+			font-size: 0.75rem;
 
 			a {
 				color: white;
