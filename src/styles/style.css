@@ -137,6 +137,11 @@ img {
 
 .is-grid {
 	display: grid;
+
+	&:has(iframe) {
+		box-shadow: var(--card-shadow);
+		border-radius: 0.5rem;
+	}
 }
 
 
