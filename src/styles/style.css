@@ -32,8 +32,9 @@
 body {
 	font-family: "Roboto", sans-serif;
   	font-optical-sizing: auto;
-  	font-weight: 200;
+	font-size: 0.95rem;
   	font-style: normal;
+  	font-weight: 200;
 	color: var(--darktext);
 	margin: 0;
 	padding: 0;
@@ -358,17 +359,18 @@ footer {
 					}
 
 					span {
-						font-size: 0.9rem;
+						font-size: 0.8rem;
 					}
 
 					span:first-of-type {
 						font-weight: 500;
-						font-size: 1rem;
+						font-size: 0.85rem;
 					}
 					
 					a {
 						color: var(--text);
 						text-underline-offset: 2px;
+						font-size: 0.8rem;
 					}
 				}
 			}
@@ -2050,10 +2052,11 @@ nav {
    ============================================================ */
 
 .btn {
+	border-radius: 0.25rem;
 	display: inline-block;
-	padding: 0.75rem 2rem;
+	padding: 0.5rem 1rem 0.35rem;;
 	font-family: "Roboto", sans-serif;
-	font-size: 0.72rem;
+	font-size: 0.65rem;
 	font-weight: 300;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
@@ -2067,7 +2070,8 @@ nav {
 	&:hover, &:focus-visible {
 		opacity: 0.85;
 		transform: translateY(-1px);
-		outline: none;
+		outline: 1px solid white;
+		outline-offset: 2px;
 		text-decoration: none;
 	}
 
