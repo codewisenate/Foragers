@@ -169,6 +169,55 @@ if (menuCategoryToggles.length) {
 	syncMenuAccordions();
 }
 
+const footerBackToTopButton = document.getElementById('footer-back-to-top');
+const footerBackToTopWrap = footerBackToTopButton?.closest('.footer-back-to-top-wrap');
+const siteFooter = document.querySelector('footer');
+
+if (footerBackToTopButton instanceof HTMLButtonElement) {
+	const setFooterBackToTopVisibility = (isVisible) => {
+		if (!(footerBackToTopWrap instanceof HTMLElement)) return;
+
+		footerBackToTopWrap.classList.toggle('is-visible', isVisible);
+
+		if (isVisible) {
+			footerBackToTopButton.removeAttribute('aria-hidden');
+			footerBackToTopButton.removeAttribute('tabindex');
+			return;
+		}
+
+		footerBackToTopButton.setAttribute('aria-hidden', 'true');
+		footerBackToTopButton.setAttribute('tabindex', '-1');
+	};
+
+	setFooterBackToTopVisibility(false);
+
+	if (
+		footerBackToTopWrap instanceof HTMLElement &&
+		siteFooter instanceof HTMLElement &&
+		'IntersectionObserver' in window
+	) {
+		const footerObserver = new IntersectionObserver(
+			([entry]) => {
+				setFooterBackToTopVisibility(entry?.isIntersecting ?? false);
+			},
+			{ threshold: 0.5 }
+		);
+
+		footerObserver.observe(siteFooter);
+	} else {
+		setFooterBackToTopVisibility(true);
+	}
+
+	footerBackToTopButton.addEventListener('click', () => {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		window.scrollTo({
+			top: 0,
+			behavior: prefersReducedMotion ? 'auto' : 'smooth',
+		});
+	});
+}
+
 // ---- Weather helpers ----
 
 const DIRECTION_ICON_URL = WEATHER_ASSET_URLS.direction ?? '';
