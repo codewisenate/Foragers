@@ -2,21 +2,21 @@
 
 ## Monday to Sunday
 
-11:30 – 17:00
+11:30AM – 5:00PM
 
 # Dining lounge
 
 ## Wednesday and Thursday
 
-16:00 – 20:00
+4:00PM – 8:00PM
 
 ## Friday and Saturday
 
-16:00 – 22:00
+4:00PM – 9:00PM
 
 ## Sunday
 
-16:00 – 20:00
+4:00PM – 8:00PM
 
 # Patio
 
