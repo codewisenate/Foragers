@@ -24,6 +24,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const partialsRoot = resolve(srcRoot, 'partials');
 	const contentRoot = resolve(srcRoot, 'content');
 	const menuContentPath = resolve(contentRoot, 'menu.md');
+	const cocktailsContentPath = resolve(contentRoot, 'cocktails.md');
 	const hoursContentPath = resolve(contentRoot, 'hours.md');
 
 	function getCurrentPage(ctx) {
@@ -131,15 +132,21 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return sections;
 	}
 
-	function renderMenuGrid() {
-		const menuMarkdown = readFileSync(menuContentPath, 'utf8');
+	function renderMenuGrid({
+		contentPath,
+		ariaLabel,
+		idPrefix,
+		expandedLabel = 'Hide dishes',
+		collapsedLabel = 'Tap to reveal',
+	}) {
+		const menuMarkdown = readFileSync(contentPath, 'utf8');
 		const sections = parseMenuMarkdown(menuMarkdown);
 
 		const sectionMarkup = sections.map((section) => {
 			const slug = slugify(section.title);
-			const labelId = `menu-${slug}-label`;
-			const toggleId = `menu-${slug}-toggle`;
-			const listId = `menu-${slug}-list`;
+			const labelId = `${idPrefix}-${slug}-label`;
+			const toggleId = `${idPrefix}-${slug}-toggle`;
+			const listId = `${idPrefix}-${slug}-list`;
 			const itemsMarkup = section.items.map((item) => {
 				const descriptionMarkup = item.description
 					? `\n\t\t\t\t\t\t\t\t<p>${escapeHtml(item.description)}</p>`
@@ -154,10 +161,10 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 			return [
 				`\t\t\t\t\t<section class="menu-category" aria-labelledby="${labelId}">`,
-				`\t\t\t\t\t\t<button class="menu-category-toggle" id="${toggleId}" type="button" aria-expanded="false" aria-controls="${listId}">`,
+				`\t\t\t\t\t\t<button class="menu-category-toggle" id="${toggleId}" type="button" aria-expanded="false" aria-controls="${listId}" data-expanded-label="${escapeHtml(expandedLabel)}" data-collapsed-label="${escapeHtml(collapsedLabel)}">`,
 				`\t\t\t\t\t\t\t<span class="menu-category-label" id="${labelId}">${escapeHtml(section.title)}</span>`,
 				'\t\t\t\t\t\t\t<span class="menu-category-toggle-meta">',
-				'\t\t\t\t\t\t\t\t<span class="menu-category-toggle-text">Tap to reveal</span>',
+				`\t\t\t\t\t\t\t\t<span class="menu-category-toggle-text">${escapeHtml(collapsedLabel)}</span>`,
 				'\t\t\t\t\t\t\t\t<span class="menu-category-toggle-icon" aria-hidden="true"></span>',
 				'\t\t\t\t\t\t\t</span>',
 				'\t\t\t\t\t\t</button>',
@@ -169,7 +176,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		}).join('\n');
 
 		return [
-			'<div class="menu-grid" aria-label="Current seasonal menu">',
+			`<div class="menu-grid" aria-label="${escapeHtml(ariaLabel)}">`,
 			sectionMarkup,
 			'\t\t\t\t</div>',
 		].join('\n');
@@ -360,12 +367,28 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function isGeneratedContentFile(filePath) {
 		const resolvedPath = resolve(filePath);
-		return resolvedPath === menuContentPath || resolvedPath === hoursContentPath;
+		return resolvedPath === menuContentPath
+			|| resolvedPath === cocktailsContentPath
+			|| resolvedPath === hoursContentPath;
 	}
 
 	function renderInclude(includeName, currentPage) {
 		if (includeName === 'menu-grid') {
-			return renderMenuGrid();
+			return renderMenuGrid({
+				contentPath: menuContentPath,
+				ariaLabel: 'Current seasonal menu',
+				idPrefix: 'menu',
+				expandedLabel: 'Hide dishes',
+			});
+		}
+
+		if (includeName === 'cocktails-grid') {
+			return renderMenuGrid({
+				contentPath: cocktailsContentPath,
+				ariaLabel: 'Current cocktails menu',
+				idPrefix: 'cocktails-menu',
+				expandedLabel: 'Hide cocktails',
+			});
 		}
 
 		if (includeName === 'hours-grid') {
@@ -388,6 +411,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		configureServer(server) {
 			server.watcher.add(partialsRoot);
 			server.watcher.add(menuContentPath);
+			server.watcher.add(cocktailsContentPath);
 			server.watcher.add(hoursContentPath);
 		},
 		handleHotUpdate(ctx) {

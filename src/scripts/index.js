@@ -113,7 +113,7 @@ if (navInner && navMenu && supportsNavAnchorEffects) {
 	window.addEventListener('resize', clearNavFadeLock);
 }
 
-// Homepage mobile menu accordions
+// Mobile menu accordions
 const menuCategoryToggles = Array.from(document.querySelectorAll('.menu-category-toggle'));
 const menuAccordionMedia = window.matchMedia('(max-width: 920px)');
 
@@ -125,11 +125,13 @@ function setMenuAccordionState(toggle, expanded) {
 	if (!list) return;
 
 	const toggleText = toggle.querySelector('.menu-category-toggle-text');
+	const expandedLabel = toggle.dataset.expandedLabel || 'Hide dishes';
+	const collapsedLabel = toggle.dataset.collapsedLabel || 'Tap to reveal';
 	toggle.setAttribute('aria-expanded', String(expanded));
 	list.hidden = !expanded;
 
 	if (toggleText) {
-		toggleText.textContent = expanded ? 'Hide dishes' : 'Tap to reveal';
+		toggleText.textContent = expanded ? expandedLabel : collapsedLabel;
 	}
 }
 
