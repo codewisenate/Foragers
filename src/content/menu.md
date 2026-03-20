@@ -1,6 +1,6 @@
 # Appetizers
 
-## Braised Beef Cheeks
+## Braised Beef Cheek
 
 Sunchoke & Vanilla Puree, Puffed Wild Rice, Brown Sugar & Molasses Glaze
 
