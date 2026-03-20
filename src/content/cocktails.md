@@ -1,3 +1,21 @@
+# Bright & Layered
+
+## Bees Knees Riff
+
+Beeswax Old Tom, Turmeric Orange, Flower Honey, Lemon
+
+## Milk and Honey
+
+K'neko, Mead Sherry, Lemon, Flower Honey, Ajonjolí
+
+## London Calling
+
+Gin, Spruce, Burnt Honey, Mead Sherry, Lemon
+
+## Sidecar Martini
+
+Joker Gin, Mead Vermouth, Celery, Apple
+
 # Deep & Slow
 
 ## Pechuga Butter Pop
@@ -16,24 +34,6 @@ Grape and Apple Ferment, Aperitivo, Gin, Lemon
 ## Thai Basil Highball
 
 Thai Basil Gin, Coconut, Yuzu Wine, Lime, Absinthe, Mezcal
-
-# Bright & Layered
-
-## Bees Knees Riff
-
-Beeswax Old Tom, Turmeric Orange, Flower Honey, Lemon
-
-## Milk and Honey
-
-K'neko, Mead Sherry, Lemon, Flower Honey, Ajonjolí
-
-## London Calling
-
-Gin, Spruce, Burnt Honey, Mead Sherry, Lemon
-
-## Sidecar Martini
-
-Joker Gin, Mead Vermouth, Celery, Apple
 
 # Light & Lively
 
