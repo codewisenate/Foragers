@@ -1410,16 +1410,19 @@ nav {
 			background-image: url('../assets/images/hero-03-bg.jpg'), url('../assets/images/hero-03-bg.jpg');
 		}
 		.page-hero-04 & {
-			background-image: url('../assets/images/hero-04-bg.jpg'), url('../assets/images/hero-04-bg.jpg');
+			background-image: url('../assets/images/hero-05-bg.jpg'), url('../assets/images/hero-04-bg.jpg');
 		}
 		.page-hero-05 & {
-			background-image: url('../assets/images/hero-05-bg.jpg'), url('../assets/images/hero-05-bg.jpg');
+			background-image: url('../assets/images/hero-03-bg.jpg'), url('../assets/images/hero-05-bg.jpg');
+			background-position: right, left;
 		}
 		.page-hero-06 & {
 			background-image: url('../assets/images/hero-06-bg.jpg'), url('../assets/images/hero-06-bg.jpg');
+			background-position: right, left;
 		}
 		.page-hero-07 & {
 			background-image: url('../assets/images/hero-07-bg.jpg'), url('../assets/images/hero-07-bg.jpg');
+			background-position: right, left;
 		}
 	}
 }
