@@ -886,6 +886,14 @@ span[lang='it'] {
 
 .orchard-banner {
 	background-image: url('../assets/images/orchard-banner-2.jpg');
+
+	&.banner-03 {
+		background-image: url('../assets/images/orchard-banner-3.jpg');
+	}
+
+	&.seasons {
+		background-image: url('../assets/images/seasons-banner.jpg');
+	}
 }
 
 .location-banner {
