@@ -20,6 +20,10 @@
 	--nav-shadow: 0 1px 0 rgb(255 255 255 / 0.05),
 		0 2px 8px rgb(0 0 0 / 0.3),
 		0 4px 16px rgb(0 0 0 / 0.18);
+	--focus-ring-shadow: 0 0 0 12px rgb(42 64 81 / 0.1);
+	--focus-ring-outline: 2px solid var(--darkblue);
+	--focus-ring-offset: 6px;
+	--focus-ring-radius: 0.25rem;
 	--bookmark-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(69 106 135 / 1)' viewBox='0 0 384 512'%3E%3Cpath d='M0 48C0 21.5 21.5 0 48 0L336 0c26.5 0 48 21.5 48 48l0 441.9c0 12.2-9.9 22.1-22.1 22.1c-4.4 0-8.6-1.3-12.3-3.7L192 403.2 34.4 508.3c-3.6 2.4-7.9 3.7-12.3 3.7C9.9 512 0 502.1 0 489.9L0 48zM48 32c-8.8 0-16 7.2-16 16l0 423.4L183.1 370.7c5.4-3.6 12.4-3.6 17.8 0L352 471.4 352 48c0-8.8-7.2-16-16-16L48 32z'/%3E%3C/svg%3E");
 	
 	font-size: 18px;
@@ -44,14 +48,98 @@ body {
 	overflow-y: auto;
 }
 
+#main-content {
+	scroll-margin-top: 4.5rem;
+}
+
+.skip-link {
+	position: fixed;
+	left: 50%;
+	top: 0.75rem;
+	z-index: 250;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(255 255 255 / 0.96);
+	border: 1px solid rgb(21 47 62 / 0.16);
+	border-radius: 0.25rem;
+	box-shadow:
+		0 10px 30px rgb(21 47 62 / 0.2),
+		0 2px 8px rgb(21 47 62 / 0.08);
+	color: var(--darktext);
+	font: inherit;
+	font-size: 0.66rem;
+	font-weight: 300;
+	letter-spacing: 0.1em;
+	line-height: 1;
+	padding: 0.5rem 0.66rem;
+	pointer-events: none;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-wrap: nowrap;
+	transform: translate(-50%, calc(-100% - 0.75rem));
+	opacity: 0;
+	transition:
+		background-color 180ms ease,
+		border-color 180ms ease,
+		color 180ms ease,
+		transform 180ms ease,
+		opacity 180ms ease;
+
+	&:focus,
+	&:focus-visible {
+		opacity: 1;
+		pointer-events: auto;
+		background-color: var(--headline);
+		border-color: var(--headline);
+		box-shadow:
+			0 0 0 6px rgb(21 47 62 / 0.55),
+			0 10px 30px rgb(21 47 62 / 0.2),
+			0 2px 8px rgb(21 47 62 / 0.08);
+		color: var(--light);
+		outline: 2px solid var(--light);
+		outline-offset: 3px;
+		transform: translate(-50%, 0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.skip-link {
+		transition:
+			background-color 1ms linear,
+			border-color 1ms linear,
+			color 1ms linear,
+			opacity 1ms linear;
+	}
+}
+
 a {
 	color: var(--blue);
 	text-underline-offset: 3px;
 	text-decoration-thickness: 0.5px;
+	transition:
+		text-decoration-thickness 180ms ease,
+		box-shadow 180ms ease,
+		outline-color 180ms ease;
 
 	&:hover, &:focus-visible {
 		text-decoration-thickness: 1px;
 	}
+}
+
+:where(
+	main :where(p, li, small) a:not(.btn),
+	header #banner-location a,
+	footer #footer-details :where(span, small) a,
+	footer #footer-copyright a
+):focus-visible {
+	border-radius: var(--focus-ring-radius);
+	box-shadow: var(--focus-ring-shadow);
+	outline: var(--focus-ring-outline);
+	outline-offset: var(--focus-ring-offset);
+	text-decoration-thickness: 1px;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 }
 
 h1, h2 {
@@ -207,6 +295,24 @@ header {
 	}
 
 	#banner-logo {
+		a {
+			border-radius: calc(var(--focus-ring-radius) + 0.1rem);
+			display: inline-flex;
+			line-height: 0;
+			margin: -0.2rem;
+			padding: 0.2rem;
+			text-decoration: none;
+			transition:
+				box-shadow 180ms ease,
+				outline-color 180ms ease;
+
+			&:focus-visible {
+				box-shadow: var(--focus-ring-shadow);
+				outline: var(--focus-ring-outline);
+				outline-offset: var(--focus-ring-offset);
+			}
+		}
+
 		img {
 			height: 100px;
 			width: 200px;
@@ -459,6 +565,24 @@ footer {
 					display: flex;
 					flex-direction: column;
 					max-width: calc(100% - 2rem);
+
+					&:first-of-type a {
+						border-radius: calc(var(--focus-ring-radius) + 0.1rem);
+						display: inline-flex;
+						line-height: 0;
+						margin: -0.2rem;
+						padding: 0.2rem;
+						text-decoration: none;
+						transition:
+							box-shadow 180ms ease,
+							outline-color 180ms ease;
+
+						&:focus-visible {
+							box-shadow: var(--focus-ring-shadow);
+							outline: var(--focus-ring-outline);
+							outline-offset: var(--focus-ring-offset);
+						}
+					}
 
 					img {
 						margin-block: 1rem;
@@ -732,8 +856,8 @@ body.home {
     	-webkit-mask-repeat: repeat-x;
 		-webkit-mask-mode: luminance;
 		
-		mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
 		-webkit-mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
+		mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
 		mask-position: center bottom;
 	
 		>div:first-child {
@@ -871,8 +995,8 @@ span[lang='it'] {
     	-webkit-mask-repeat: repeat;
 		-webkit-mask-mode: luminance;
 		
-		mask-image: url('../assets/masks/mask-horizontal-01.png');
 		-webkit-mask-image: url('../assets/masks/mask-horizontal-01.png');
+		mask-image: url('../assets/masks/mask-horizontal-01.png');
 		background-position: center;
 	}
 }
@@ -1380,24 +1504,24 @@ nav {
 		width: 100%;
 
 		&.hero-deco--left {
-			mask-image: url('../assets/masks/mask-left-03.png');
 			-webkit-mask-image: url('../assets/masks/mask-left-03.png');
+			mask-image: url('../assets/masks/mask-left-03.png');
 			background-position: 0% center;
 
 			&.mask-2 {
-				mask-image: url('../assets/masks/mask-left-03.png');
 				-webkit-mask-image: url('../assets/masks/mask-left-03.png');
+				mask-image: url('../assets/masks/mask-left-03.png');
 			}
 		}
 
 		&.hero-deco--right {
-			mask-image: url('../assets/masks/mask-right-03.png');
 			-webkit-mask-image: url('../assets/masks/mask-right-03.png');
+			mask-image: url('../assets/masks/mask-right-03.png');
 			background-position: 12% center;
 
 			&.mask-2 {
-				mask-image: url('../assets/masks/mask-right-03.png');
 				-webkit-mask-image: url('../assets/masks/mask-right-03.png');
+				mask-image: url('../assets/masks/mask-right-03.png');
 			}
 
 			body.where-it-begins & {
@@ -1479,16 +1603,16 @@ nav {
 			background-image: var(--hero-mobile-image);
 			background-size: cover;
 			background-position: var(--hero-mobile-position);
-			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-			mask-size: 150%;
-			mask-repeat: repeat-x;
-			mask-position: center bottom;
-			mask-mode: luminance;
 			-webkit-mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
 			-webkit-mask-size: 150%;
 			-webkit-mask-repeat: repeat-x;
 			-webkit-mask-position: center bottom;
 			-webkit-mask-mode: luminance;
+			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
+			mask-size: 150%;
+			mask-repeat: repeat-x;
+			mask-position: center bottom;
+			mask-mode: luminance;
 		}
 
 		.hero-deco {

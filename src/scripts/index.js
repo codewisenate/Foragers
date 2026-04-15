@@ -10,6 +10,17 @@ const WEATHER_ASSET_URLS = Object.fromEntries(
 	])
 );
 
+const skipLink = document.querySelector('.skip-link[href="#main-content"]');
+const mainContent = document.getElementById('main-content');
+
+if (skipLink instanceof HTMLAnchorElement && mainContent instanceof HTMLElement) {
+	skipLink.addEventListener('click', () => {
+		window.requestAnimationFrame(() => {
+			mainContent.focus();
+		});
+	});
+}
+
 // Navigation mobile toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.getElementById('nav-menu');
