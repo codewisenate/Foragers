@@ -1,5 +1,9 @@
 # Appetizers
 
+## Asparagus Salad
+
+House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb, Preserved Lemon Skin, Forager Honey Vinaigrette
+
 ## Elk Tartare
 
 Carrot Mole, Carrot Chips, Carrot Top Powder
@@ -15,10 +19,6 @@ Asparagus Veloute, Spanish Chorizo
 ## Charred Fiddleheads
 
 Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
-
-## Asparagus Salad
-
-House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb, Preserved Lemon Skin, Forager Honey Vinaigrette
 
 # Mains
 
