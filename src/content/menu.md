@@ -52,10 +52,10 @@ Espresso Cream, Little Spoon Honey Mead Ice Cream
 
 Forager Honey Crème Anglais
 
-## White Chocolate Panna Cotta
-
-Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
-
 ## Dark Chocolate Mousse
 
 Orange Caramel, Candied Walnut
+
+## White Chocolate Panna Cotta
+
+Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
