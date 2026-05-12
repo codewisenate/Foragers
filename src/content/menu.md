@@ -4,10 +4,6 @@
 
 Carrot Mole, Carrot Chips, Carrot Top Powder
 
-## Elk Tartare
-
-Carrot Mole, Carrot Chips, Carrot Top Powder
-
 ## Halibut Ceviche
 
 Leche De Tigre , Radish Carpaccio, Pickled Shallot
