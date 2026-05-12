@@ -28,7 +28,7 @@ Broccoli purée, charred broccolini, pickled shallot, burnt Forager honey jus
 
 ## Halibut
 
-Bruinwood Estate Vermouth & lemon sauce, creamy brandade, butter poached summer squash
+Bruinwood Estate vermouth & lemon sauce, creamy brandade, butter poached summer squash
 
 ## Seared Duck Breast
 

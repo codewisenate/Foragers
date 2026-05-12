@@ -2,53 +2,52 @@
 
 ## Bees Knees Riff
 
-Beeswax Old Tom, Turmeric Orange, Flower Honey, Lemon
+Beeswax Old Tom, turmeric orange, flower honey, lemon
 
 ## Milk and Honey
 
-K'neko, Mead Sherry, Lemon, Flower Honey, Ajonjolí
+K'Neko, mead sherry, lemon, flower honey, ajonjolí
 
 ## London Calling
 
-Gin, Spruce, Burnt Honey, Mead Sherry, Lemon
+Gin, spruce, burnt honey, mead sherry, lemon
 
 ## Sidecar Martini
 
-Joker Gin, Mead Vermouth, Celery, Apple
+Joker Gin, mead vermouth, celery, apple
 
 # Deep & Slow
 
 ## Pechuga Butter Pop
 
-Apple Honey Butter Washed Rye, Pechuga, Lemon, Maple, Spicy Butter
-Pop
+Apple honey butter washed rye, pechuga, lemon, maple, spicy butter pop
 
 ## Beeswax Old Fashioned
 
-Beeswax Apple Rye, Honey Amaro, Bitters
+Beeswax apple rye, honey amaro, bitters
 
 ## Banjo Enzoni
 
-Grape and Apple Ferment, Aperitivo, Gin, Lemon
+Grape and apple ferment, aperitivo, gin, lemon
 
 ## Thai Basil Highball
 
-Thai Basil Gin, Coconut, Yuzu Wine, Lime, Absinthe, Mezcal
+Thai basil gin, coconut, yuzu wine, lime, absinthe, mezcal
 
 # Light & Lively
 
 ## Z-Up Spritz
 
-Oleo Saccharum, Aperitivo, Sparkling Mead, Citrus, Rhubarb Pop Rocks
+Oleo saccharum, aperitivo, sparkling mead, citrus, rhubarb pop rocks
 
 ## Bison Sour
 
-Plains Vodka, Maple Honey, Lime, Egg, Cinnamon
+Plains Vodka, maple honey, lime, egg, cinnamon
 
 ## Sloe Gin & Soda
 
-Sloe, Tepache Vermouth, Pomegranate, Soda
+Sloe, tepache vermouth, pomegranate, soda
 
 ## Creamsicle
 
-Advocaat, Fluffy Orange, Soda, Peychaud's Bitters
+Advocaat, fluffy orange, soda, Peychaud's bitters
