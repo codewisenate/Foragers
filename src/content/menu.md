@@ -48,7 +48,7 @@ Chive Emulsion, Confit Maitake, Stuffed Morel
 
 Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
 
-## Apple & Rosemary Crumble (pfeffernusse)
+## Apple & Rosemary Crumble (pfeffernüsse)
 
 Forager Honey Crème Anglais
 
