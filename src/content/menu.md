@@ -44,18 +44,18 @@ Chive Emulsion, Confit Maitake, Stuffed Morel
 
 # Desserts
 
-## Lemon Tart
+## White Chocolate Panna Cotta
 
-Espresso Cream, Little Spoon Honey Mead Ice Cream
+Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
 
 ## Apple & Rosemary Crumble (pfeffernusse)
 
 Forager Honey Crème Anglais
 
+## Lemon Tart
+
+Espresso Cream, Little Spoon Honey Mead Ice Cream
+
 ## Dark Chocolate Mousse
 
 Orange Caramel, Candied Walnut
-
-## White Chocolate Panna Cotta
-
-Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
