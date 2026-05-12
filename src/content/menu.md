@@ -4,9 +4,9 @@
 
 House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb, Preserved Lemon Skin, Forager Honey Vinaigrette
 
-## Elk Tartare
+## Seared Scallops
 
-Carrot Mole, Carrot Chips, Carrot Top Powder
+Asparagus Veloute, Spanish Chorizo
 
 ## Charred Fiddleheads
 
@@ -16,9 +16,9 @@ Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
 
 Leche De Tigre , Radish Carpaccio, Pickled Shallot
 
-## Seared Scallops
+## Elk Tartare
 
-Asparagus Veloute, Spanish Chorizo
+Carrot Mole, Carrot Chips, Carrot Top Powder
 
 # Mains
 
