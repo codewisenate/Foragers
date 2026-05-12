@@ -1556,6 +1556,13 @@ nav {
 			background-image: url('../assets/images/hero-07-bg.jpg'), url('../assets/images/hero-07-bg.jpg');
 			background-position: right, left;
 		}
+
+		.page-hero-orchard &:first-child {
+			background-image: url('../assets/images/bee-hero-01-bg.jpg');
+			background-size: auto;
+			background-repeat: no-repeat;
+			background-position: left;
+		}
 	}
 }
 
