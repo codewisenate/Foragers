@@ -1559,9 +1559,16 @@ nav {
 
 		.page-hero-orchard &:first-child {
 			background-image: url('../assets/images/bee-hero-01-bg.jpg');
-			background-size: auto;
+			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: 15%;
+		}
+
+		.page-hero-orchard &:last-child {
+			background-image: url('../assets/images/orchard-hero-01-bg.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 85%;
 		}
 	}
 }
