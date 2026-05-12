@@ -1,44 +1,48 @@
 # Appetizers
 
-## Braised Beef Cheek
+## Elk Tartare
 
-Sunchoke & Vanilla Puree, Puffed Wild Rice, Brown Sugar & Molasses Glaze
+Carrot Mole, Carrot Chips, Carrot Top Powder
 
 ## Elk Tartare
 
 Carrot Mole, Carrot Chips, Carrot Top Powder
 
-## Tuna Crudo
+## Halibut Ceviche
 
-Huckleberry Gazpacho, Radish Carpaccio, Creme Fraiche
+Leche De Tigre , Radish Carpaccio, Pickled Shallot
 
-## Charred Scallops
+## Seared Scallops
 
-Hazelnut Espuma, Brown Butter, Lemon Gel
+Asparagus Veloute, Spanish Chorizo
 
-## Beetroot Salad
+## Charred Fiddleheads
 
-Ajo Blanco, Wildflower Honey Vinaigrette, Fresh Grapes
+Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
+
+## Asparagus Salad
+
+House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb, Preserved Lemon Skin, Forager Honey Vinaigrette
 
 # Mains
 
-## Roasted Beef Tenderloin
+## Elk Striploin
 
-Charred Onion Puree, Pickled Pearl Onion, Bone Marrow & Peppercorn Jus, Broccolini
+Broccoli Puree, Charred Broccolini, Pickled Shallot, Burnt Forager Honey Jus
 
-## Pan Seared Lingcod
+## Halibut
 
-Romesco, Crispy Leeks, Swiss Chard & Pine Nut Hache
+Bruinwood Vermouth & Lemon Sauce, Creamy Brandade, Butter Poached Summer Squash
 
-## Dry Aged Duck Breast
+## Seared Duck Breast
 
-Dark Chocolate Jus, Parsnip & White Chocolate Puree, Poached Pear, Confit Parsnip
+Salmon Berry Curd, Asparagus, Asparagus Condiment, Sweet Mead Jus
 
-## Poached Salmon
+## Spot Prawn Gnocchi
 
-Vermouth & Fermented Lemon Velouté, Dill Gribiche, Butter Poached Carrots
+Pea Ragout, Freeze Dried Snap Peas, Nasturtium
 
-## Mushroom Pain Perdu
+## Mushroom French Toast
 
 Chive Emulsion, Confit Maitake, Stuffed Morel
 
@@ -46,16 +50,16 @@ Chive Emulsion, Confit Maitake, Stuffed Morel
 
 ## Lemon Tart
 
-Espresso Anglaise, Tonka Bean Ice Cream
+Espresso Cream, Little Spoon Honey Mead Ice Cream
 
-## Hazelnut Semifreddo
+## Apple & Rosemary Crumble (pfeffernusse)
 
-Caramelized White Chocolate
+Forager Honey Crème Anglais
 
 ## White Chocolate Panna Cotta
 
-Wild Berry Consommé, Meringue
+Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
 
-## Chocolate Mousse
+## Dark Chocolate Mousse
 
-Orange Caramel
+Orange Caramel, Candied Walnut
