@@ -2,60 +2,60 @@
 
 ## Asparagus Salad
 
-House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb, Preserved Lemon Skin, Forager Honey Vinaigrette
+House made ricotta (fresh disc, cooked balls in rosé balsamic), braised rhubarb, preserved lemon skin, Forager honey vinaigrette
 
 ## Seared Scallops
 
-Asparagus Veloute, Spanish Chorizo
+Asparagus velouté, Spanish chorizo
 
 ## Charred Fiddleheads
 
-Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
+Miso dressing, wild mushrooms, confit duck, smoked walnuts
 
 ## Halibut Ceviche
 
-Leche De Tigre , Radish Carpaccio, Pickled Shallot
+Leche de tigre, radish carpaccio, pickled shallot
 
 ## Elk Tartare
 
-Carrot Mole, Carrot Chips, Carrot Top Powder
+Carrot mole, carrot chips, carrot top powder
 
 # Mains
 
 ## Elk Striploin
 
-Broccoli Puree, Charred Broccolini, Pickled Shallot, Burnt Forager Honey Jus
+Broccoli purée, charred broccolini, pickled shallot, burnt Forager honey jus
 
 ## Halibut
 
-Bruinwood Vermouth & Lemon Sauce, Creamy Brandade, Butter Poached Summer Squash
+Bruinwood Estate Vermouth & lemon sauce, creamy brandade, butter poached summer squash
 
 ## Seared Duck Breast
 
-Salmon Berry Curd, Asparagus, Asparagus Condiment, Sweet Mead Jus
+Salmon berry curd, asparagus, asparagus condiment, sweet mead jus
 
 ## Spot Prawn Gnocchi
 
-Pea Ragout, Freeze Dried Snap Peas, Nasturtium
+Pea ragout, freeze dried snap peas, nasturtium
 
 ## Mushroom French Toast
 
-Chive Emulsion, Confit Maitake, Stuffed Morel
+Chive emulsion, confit maitake, stuffed morel
 
 # Desserts
 
 ## White Chocolate Panna Cotta
 
-Salmon Berry Consommé, Salmon Berry Meringue, Caramelized White Chocolate
+Salmon berry consommé, salmon berry meringue, caramelized white chocolate
 
-## Apple & Rosemary Crumble (pfeffernüsse)
+## Apple & Rosemary Crumble (Pfeffernüsse)
 
-Forager Honey Crème Anglais
+Forager honey crème anglaise
 
 ## Lemon Tart
 
-Espresso Cream, Little Spoon Honey Mead Ice Cream
+Espresso cream, Little Spoon honey mead ice cream
 
 ## Dark Chocolate Mousse
 
-Orange Caramel, Candied Walnut
+Orange caramel, candied walnut
