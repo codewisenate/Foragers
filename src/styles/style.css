@@ -1570,6 +1570,20 @@ nav {
 			background-repeat: no-repeat;
 			background-position: 85%;
 		}
+
+		.page-hero-craft &:first-child {
+			background-image: url('../assets/images/bee-hero-02-bg.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 45%;
+		}
+
+		.page-hero-craft &:last-child {
+			background-image: url('../assets/images/craft-hero-01-bg.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 85%;
+		}
 	}
 }
 
