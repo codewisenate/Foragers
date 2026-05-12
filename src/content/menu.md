@@ -8,6 +8,10 @@ House Made Ricotta (fresh disc, cooked balls in rose balsamic), Braised Rhubarb,
 
 Carrot Mole, Carrot Chips, Carrot Top Powder
 
+## Charred Fiddleheads
+
+Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
+
 ## Halibut Ceviche
 
 Leche De Tigre , Radish Carpaccio, Pickled Shallot
@@ -15,10 +19,6 @@ Leche De Tigre , Radish Carpaccio, Pickled Shallot
 ## Seared Scallops
 
 Asparagus Veloute, Spanish Chorizo
-
-## Charred Fiddleheads
-
-Miso Dressing, Wild Mushrooms, Confit Duck, Smoked Walnuts
 
 # Mains
 
