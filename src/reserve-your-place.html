@@ -52,16 +52,15 @@
 
 		<section class="content-section light">
 			<div class='padding-top-small padding-bottom'>
-				<h3>Dining Reservations</h3>
+				<h3>Dining Lounge Reservations</h3>
 				<h2>An intimate indoor dining lounge and a covered patio overlooking the&nbsp;orchard</h2>
 				<div class="two-column">
-					<div class='is-grid'>
+					<div>
 						<div role="region" aria-label="Reservation booking system">
-							<h3 class='widget-heading'>Book your reservation</h3>
+							<h3 class='widget-heading'><a href='https://www.opentable.ca/r/foragers-meadery-reservations-roberts-creek?restref=1519801&lang=en-CA&ot_source=Restaurant%20website'>Book your reservation</a></h3>
 							<!-- Booking widget START -->
-							<div id="open-table"
-								style="display: grid; grid-template-columns:1fr; width: 100%; height: 100%; background-color:#fff; text-align:center;opacity:0.6;font-size:70%;margin-top:10px;">
-							<p class="resos-booking-widget">OpenTable widget to go here.</p>
+							<div class="booking-widget">
+								<script type='text/javascript' src='//www.opentable.ca/widget/reservation/loader?rid=1519801&type=standard&theme=tall&color=5&dark=false&iframe=true&domain=ca&lang=en-CA&newtab=false&ot_source=Restaurant%20website&cfe=true'></script>
 							</div>
 							
 								<!-- Booking widget END -->
@@ -73,30 +72,35 @@
 						<h3>Seating &amp; Timing</h3>
 						<p>To ensure a relaxed and enjoyable experience for all guests:</p>
 						<ul class="guidelines-list">
-							<li>Reservations are held for 15 minutes past the scheduled time.</li>
+							<li>Reservations are held for 15 minutes past the scheduled time — <a href="#running-late">if you are running late,</a> please contact us so we may accommodate you where possible.</li>
 							<li>Tables are allotted approximately 2 hours during peak service.</li>
 							<li>Walk-ins are welcome as space allows.</li>
+							<li>Larger groups or private events — such as full room or large party bookings — often can be <a href="#special-arrangements">accomodated with prior arrangement.</a></li>
 						</ul>
-						<p>If you are running late, please contact us so we may accommodate you where possible.</p>
-						<h3>For larger or special events</h3>
-						<p>Larger groups or private events — such as full room or large party bookings — often can be <a href="#special-arrangements">accomodated with prior arrangement.</a></p>
-						<h3>On the patio</h3>
-						<p>The outdoor covered patio is open during the same hours as the dining lounge. Walk-ins are welcome; reservations are not required, though larger groups may require special arrangements.</p>
-						<p>Guests with severe bee alergies, please be aware this is an active apiary.</p>
-						</ul>
+
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Marker -->
-		<div class="light marker">
-			<div class='marker-section'>Meals here are meant to linger</div>
-		</div>
-		
-		<section class="content-section light" id='special-arrangements'>
 
-			<div class='padding-top'>
+		<section class="content-section light">
+
+			<div id='patio'>
+				<div class="callout dark">
+					<h3>Outdoor Dining</h3>
+					<h2>Enjoy a meal on the patio</h2>
+					<div class="content-figure figure-bleed-right">
+						<div class="figure-body">
+							<p>Our covered outdoor patio is open during the same hours as the dining lounge. Settle in beside the stone fireplace and enjoy a relaxed meal with views of the orchard and apiary.</p>
+							<p>Reservations are not required, and seating is available on a walk-in basis. Larger groups may need to make special arrangements in advance.</p>
+							<p>While our bees typically go about their work without concern, Foragers is located on an active apiary. Guests with severe bee allergies who are dining on the patio should take appropriate precautions.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='padding-top' id='special-arrangements'>
 				<div class="callout dark">
 					<h3>Group Bookings</h3>
 					<h2>Private gatherings, celebratory dinners and larger&nbsp;parties</h2>
@@ -119,7 +123,7 @@
 				</div>
 			</div>
 
-			<div class='padding-block'>
+			<div class='padding-block' id='running-late'>
 				<h3>Planning Ahead</h3>
 				<h2>Modifications, cancellations and seasonal&nbsp;changes</h2>
 				<div class="two-column">

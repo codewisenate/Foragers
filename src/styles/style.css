@@ -2446,15 +2446,14 @@ nav {
 	}
 }
 
-div[role='region']:has(.resos-booking-widget) {
-	background-color: var(--dark);
+div[role='region']:has(.booking-widget) {
+	background-color: #eef1fc;
 	border: 1px solid #eaeaea;
 	border-radius: 0.5rem;
 	overflow: clip;
-
-	iframe {
-		filter: hue-rotate(315deg) grayscale(0.33);
-	}
+	display: grid;
+  	justify-content: center;
+	align-self: center;
 
 	.widget-heading {
 		display: flex;
