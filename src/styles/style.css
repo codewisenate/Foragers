@@ -2455,7 +2455,7 @@ div[role='region']:has(.booking-widget) {
   	justify-content: center;
 	align-self: center;
 
-	.widget-heading {
+	.widget-heading:last-of-type {
 		display: flex;
 		align-items: center;
 		justify-content: center;
