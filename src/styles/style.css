@@ -855,7 +855,7 @@ body.home {
 		background-size: cover;
 		
 		background-position: center top;
-		min-height: 45vh;
+		min-height: 50vh;
 		
 		@media (width > 720px) {
 			min-height: 60vh;
