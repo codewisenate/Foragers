@@ -11,6 +11,7 @@
 	--text: rgb(21 47 62 / 1);
 	--darktext: rgb(21 43 53 / 1);
 	--content-width: 1024px;
+	--header-width: 100%;
 	
 	--blue-filter: brightness(0) saturate(100%) invert(43%) sepia(10%) saturate(1758%) hue-rotate(164deg) brightness(85%) contrast(87%);
 
@@ -255,7 +256,7 @@ header {
 		line-height: 1.5;
 		padding-block: 1rem;
 		font-size: inherit;
-		padding-inline: 2rem;
+		padding-inline: 0;
 		min-width: 100%;
 
 		@media (width > 374px) {
@@ -267,13 +268,12 @@ header {
 			gap: 2rem;
 			flex-direction: row;
 			font-size: inherit;
-			padding-inline: 2rem;
-			width: var(--content-width);
+			width: var(--header-width);
 		}
 	}
 
 	margin: auto;
-	max-width: var(--content-width);
+	max-width: var(--header-width);
 	line-height: 1.5;
 
 	padding-block: 0;
@@ -285,8 +285,8 @@ header {
 		}
 	}
 
-				box-sizing: border-box;
-				min-width: 100%;
+	box-sizing: border-box;
+	min-width: 100%;
 
 	span {
 		display: block;
@@ -333,6 +333,23 @@ header {
 			width: fit-content;
 		}
 
+		
+		.quick-links {
+			background-color: var(--darkblue);
+			border-radius: 0.5rem;
+			padding: 0.5rem 1rem 0.75rem;
+			
+			span {
+				font-weight: 400;
+			}
+
+			* {
+				color: white;
+				line-height: 1.5;
+				font-weight: 300;
+			}
+		}
+
 		.banner-link-with-bookmark {
 			display: inline-flex;
 			align-items: center;
@@ -366,12 +383,18 @@ header {
 		@media (width > 900px) {
 			min-width: 300px;
 		}
+
+		.title {
+			font-weight: 400;
+		}
 		
 		.conditions {
 			opacity: 0; 
 			transition: opacity 120ms linear;
 			white-space: nowrap;
 			width: 100%;
+			position: relative;
+			top: -4px;
 			
 			.weather-widget {
 
@@ -406,7 +429,6 @@ header {
 	@media (width > 650px) {
 		flex-direction: row;
 		font-size: inherit;
-		padding-inline: 2rem;
 	}
 }
 
@@ -828,20 +850,18 @@ body.home {
 		position: relative;
 		padding-inline: 1rem;
 		
-		background-image: url('../assets/images/hero-bg.jpg');
+		background-image: url('../assets/images/hero-home-02-bg.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		
-		background-position: 40% top;
+		background-position: center bottom;
 		min-height: 45vh;
 		
 		@media (width > 720px) {
-			background-position: center top;
 			min-height: 60vh;
 		}
 
 		@media (width > 1200px) {
-			background-position: right top;
 			min-height: 70vh;
 		}
 
@@ -2062,7 +2082,10 @@ nav {
 .mead-card {
 	padding: 2rem;
 	border: 1px solid rgb(21 47 62 / 0.1);
-	border-radius: 0.5rem; 
+	border-radius: 0.5rem;
+	position: relative;
+	overflow: hidden;
+
 	box-shadow:
 		0 1px 2px rgb(21 47 62 / 0.06),
 		0 4px 12px rgb(21 47 62 / 0.07),
@@ -2098,8 +2121,35 @@ nav {
 				margin: auto;
 			}
 		}
+		
 	}
-	
+
+	&.coming::before {
+		content: "Coming soon";
+		box-shadow: 0 2px 8px rgba(6, 12, 78, 0.5);
+		position: absolute;
+		top: 1.25rem;
+		right: -2.8rem;
+		z-index: 2;
+
+		width: 12rem;
+		height: 1rem;
+		padding: 0.5rem 0 0.2rem;
+
+		transform: rotate(33deg);
+		transform-origin: center;
+
+		background-color: var(--blue);
+		color: #fff;
+		font-size: 0.75rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+
+		pointer-events: none;
+	}
 
 	h3 {
 		font-family: "winsome", sans-serif;

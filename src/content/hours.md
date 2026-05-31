@@ -8,15 +8,17 @@
 
 ## Wednesday and Thursday
 
-4:00PM – 8:00PM
+4:00PM – 9:00PM
 
 ## Friday and Saturday
 
-4:00PM – 9:00PM
+5:00PM – 10:00PM
 
 ## Sunday
 
-4:00PM – 8:00PM
+5:00PM – 9:00PM
+
+Please note that kitchen service ends a half hour prior to closing.
 
 # Patio
 
