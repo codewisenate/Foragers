@@ -854,7 +854,7 @@ body.home {
 		background-repeat: no-repeat;
 		background-size: cover;
 		
-		background-position: center bottom;
+		background-position: center top;
 		min-height: 45vh;
 		
 		@media (width > 720px) {
