@@ -1,53 +1,37 @@
-# Bright & Layered
+# Bright & Fresh
 
-## Bees Knees Riff
+## Rhubarb
 
-Beeswax Old Tom, turmeric orange, flower honey, lemon
+Oleo, Aperitivo, Sparkling Mead, Citrus, Rhubarb Pop Rocks
 
-## Milk and Honey
+## Celery
 
-K'Neko, mead sherry, lemon, flower honey, ajonjolí
+Joker Gin, Mead Vermouth, Celery, Apple
 
-## London Calling
+## Grape
 
-Gin, spruce, burnt honey, mead sherry, lemon
+Grape and Apple Ferment, Aperitivo, Gin, Lemon
 
-## Sidecar Martini
+# Rich & Spiced
 
-Joker Gin, mead vermouth, celery, apple
+## Beeswax
 
-# Deep & Slow
+Beeswax Apple Rye, Honey Amaro, Bitters
 
-## Pechuga Butter Pop
+## Pechuga
 
-Apple honey butter washed rye, pechuga, lemon, maple, spicy butter pop
+Apple Honey Butter Rye, Pechuga, Lemon, Maple, Spicy Butter Pop
 
-## Beeswax Old Fashioned
+## Bisongrass
 
-Beeswax apple rye, honey amaro, bitters
+Plains Vodka, Maple Honey, Lime, Egg, Cinnamon
 
-## Banjo Enzoni
+# Floral & Foraged
 
-Grape and apple ferment, aperitivo, gin, lemon
+## M&H
 
-## Thai Basil Highball
+K’neko, Mead Sherry, Lime, Elderflower Honey, Ajonjili
 
-Thai basil gin, coconut, yuzu wine, lime, absinthe, mezcal
+## Spruce
 
-# Light & Lively
-
-## Z-Up Spritz
-
-Oleo saccharum, aperitivo, sparkling mead, citrus, rhubarb pop rocks
-
-## Bison Sour
-
-Plains Vodka, maple honey, lime, egg, cinnamon
-
-## Sloe Gin & Soda
-
-Sloe, tepache vermouth, pomegranate, soda
-
-## Creamsicle
-
-Advocaat, fluffy orange, soda, Peychaud's bitters
+Gin, Spruce, Burnt Honey, Mead Sherry, Lemon, Pineapple
