@@ -1800,6 +1800,16 @@ nav {
 		gap: 4rem;
 	}
 
+	&.top {
+		justify-content: start;
+		align-items: start;
+
+		@media (width > 650px) {
+			gap: 2rem;
+		}
+	}
+
+
 	.figure-body {
 		p:last-of-type::after {
 			content: '';
@@ -1817,10 +1827,22 @@ nav {
 	.figure-media {
 		display: flex;
 		justify-content: center;
+		text-align: center;
 		width: 100%;
+
+		&.top {
+			justify-content: start;
+		}
 
 		img {
 			max-width: 100%;
+			display: block;
+			margin-bottom: 0;
+		}
+
+		br {
+			margin: 0.25rem;
+			height: 0;
 			display: block;
 		}
 
