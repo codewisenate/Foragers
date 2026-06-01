@@ -2291,7 +2291,8 @@ nav {
 		line-height: 1;
 		text-align: center;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		font-style: italic;
+		letter-spacing: 0.05rem;
 
 		pointer-events: none;
 	}
