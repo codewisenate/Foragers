@@ -457,7 +457,7 @@ header {
 
 footer {
 	background-image: url('../assets/images/footer-bg-4.jpg');
-	background-position: left top;
+	background-position: left bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
 	min-height: 800px;
