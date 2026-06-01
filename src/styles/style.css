@@ -2270,7 +2270,7 @@ nav {
 	}
 
 	&.coming::before {
-		content: "Bottling soon";
+		content: "Coming soon";
 		box-shadow: 0 2px 8px rgba(6, 12, 78, 0.5);
 		position: absolute;
 		top: 1.45rem;
@@ -2286,12 +2286,12 @@ nav {
 
 		background-color: var(--blue);
 		color: #fff;
-		font-size: 0.75rem;
+		font-family: "winsome", sans-serif;
+		font-size: 0.9rem;
 		font-weight: 700;
 		line-height: 1;
 		text-align: center;
-		text-transform: uppercase;
-		font-style: italic;
+		text-transform: capitalize;
 		letter-spacing: 0.05rem;
 
 		pointer-events: none;
