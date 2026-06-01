@@ -139,7 +139,6 @@ a {
 	outline: var(--focus-ring-outline);
 	outline-offset: var(--focus-ring-offset);
 	text-decoration-thickness: 1px;
-	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
 }
 
@@ -859,7 +858,13 @@ body.home {
 		
 		background-position: center top;
 		min-height: 50vh;
-		
+
+		mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
+		mask-size: cover;
+		mask-repeat: repeat-x;
+		mask-position: bottom;
+		mask-mode: luminance;
+
 		@media (width > 720px) {
 			min-height: 60vh;
 		}
@@ -871,17 +876,6 @@ body.home {
 		@media (width > 1800px) {
 			min-height: 80vh;
 		}
-
-		mask-size: 100%;
-		mask-repeat: repeat-x;
-		mask-mode: luminance;
-		-webkit-mask-size: cover;
-    	-webkit-mask-repeat: repeat-x;
-		-webkit-mask-mode: luminance;
-		
-		-webkit-mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-		mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-		mask-position: center bottom;
 	
 		>div:first-child {
 			margin: 2rem auto 0 0;
@@ -1012,13 +1006,9 @@ span[lang='it'] {
 
 	&.mask {
 		mask-size: contain;
-		mask-repeat: no-repeat;
+		mask-repeat: repeat-x;
 		mask-mode: luminance;
-		-webkit-mask-size: contain;
-    	-webkit-mask-repeat: repeat;
-		-webkit-mask-mode: luminance;
-		
-		-webkit-mask-image: url('../assets/masks/mask-horizontal-01.png');
+	
 		mask-image: url('../assets/masks/mask-horizontal-01.png');
 		background-position: center;
 	}
@@ -1027,7 +1017,6 @@ span[lang='it'] {
 @media (width < 1400px) {
 	.banner.mask {
 		mask-size: cover;
-		-webkit-mask-size: cover;
 	}	
 }
 
@@ -1495,7 +1484,7 @@ nav {
 }
 
 .page-hero--framed {
-	--hero-mobile-image: url('../assets/images/hero-bg.jpg'), url('../assets/images/hero-bg.jpg');
+	--hero-mobile-image: url('../assets/images/hero-bg.jpg');
 	--hero-mobile-position: 0% center;
 	padding: 0;
 	display: grid;
@@ -1516,39 +1505,28 @@ nav {
 	}
 
 	.hero-deco {
-		background-image: url('../assets/images/hero-bg.jpg'), url('../assets/images/hero-bg.jpg');
+		background-image: url('../assets/images/hero-bg.jpg');
 		background-size: cover;
 		mask-size: 100% 100%;
 		mask-repeat: no-repeat;
 		mask-mode: luminance;
-		-webkit-mask-size: 100% 100%;
-		-webkit-mask-repeat: no-repeat;
-		-webkit-mask-mode: luminance;
 		width: 100%;
 
 		&.hero-deco--left {
-			-webkit-mask-image: url('../assets/masks/mask-left-03.png');
 			mask-image: url('../assets/masks/mask-left-03.png');
 			background-position: 0% center;
 
 			&.mask-2 {
-				-webkit-mask-image: url('../assets/masks/mask-left-03.png');
 				mask-image: url('../assets/masks/mask-left-03.png');
 			}
 		}
 
 		&.hero-deco--right {
-			-webkit-mask-image: url('../assets/masks/mask-right-03.png');
 			mask-image: url('../assets/masks/mask-right-03.png');
 			background-position: 12% center;
 
 			&.mask-2 {
-				-webkit-mask-image: url('../assets/masks/mask-right-03.png');
 				mask-image: url('../assets/masks/mask-right-03.png');
-			}
-
-			body.where-it-begins & {
-				background-position: 40% center;
 			}
 		}
 
@@ -1570,7 +1548,7 @@ nav {
 			background-image: url('../assets/images/hero-in-the-glass-left.jpg');
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: left;
+			background-position: bottom left;
 		}
 
 		.page-hero-in-the-glass &:last-child {
@@ -1584,13 +1562,13 @@ nav {
 			background-image: url('../assets/images/hero-on-the-table-left.jpg');
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: left;
+			background-position: bottom left;
 		}
 		.page-hero-on-the-table &:last-child {
 			background-image: url('../assets/images/hero-on-the-table-right.jpg');
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: right;
+			background-position: right 40%;
 		}
 
 		.page-hero-orchard &:first-child {
@@ -1625,14 +1603,14 @@ nav {
 			background-image: url('../assets/images/hero-visit-foragers-left.jpg');
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: left;
+			background-position: left 65%;
 		}
 
 		.page-hero-visit-foragers &:last-child {
 			background-image: url('../assets/images/hero-visit-foragers-right.jpg');
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: right;
+			background-position: right 75%;
 		}
 
 		.page-hero-reserve-your-place &:first-child {
@@ -1651,28 +1629,32 @@ nav {
 	}
 }
 
-.page-hero--framed.page-hero-02 {
-	--hero-mobile-image: url('../assets/images/hero-02-bg.jpg'), url('../assets/images/hero-02-bg.jpg');
+.page-hero--framed.page-hero-where-it-begins {
+	--hero-mobile-image: url('../assets/images/hero-where-it-begins-left.jpg');
 }
 
-.page-hero--framed.page-hero-03 {
-	--hero-mobile-image: url('../assets/images/hero-03-bg.jpg'), url('../assets/images/hero-03-bg.jpg');
+.page-hero--framed.page-hero-in-the-glass {
+	--hero-mobile-image: url('../assets/images/hero-in-the-glass-left.jpg');
 }
 
-.page-hero--framed.page-hero-04 {
-	--hero-mobile-image: url('../assets/images/hero-04-bg.jpg'), url('../assets/images/hero-04-bg.jpg');
+.page-hero--framed.page-hero-on-the-table {
+	--hero-mobile-image: url('../assets/images/hero-on-the-table-right.jpg');
 }
 
-.page-hero--framed.page-hero-05 {
-	--hero-mobile-image: url('../assets/images/hero-05-bg.jpg'), url('../assets/images/hero-05-bg.jpg');
+.page-hero--framed.page-hero-orchard {
+	--hero-mobile-image: url('../assets/images/bee-hero-01-bg.jpg');
 }
 
-.page-hero--framed.page-hero-06 {
-	--hero-mobile-image: url('../assets/images/hero-06-bg.jpg'), url('../assets/images/hero-06-bg.jpg');
+.page-hero--framed.page-hero-craft {
+	--hero-mobile-image: url('../assets/images/craft-hero-01-bg.jpg');
 }
 
-.page-hero--framed.page-hero-07 {
-	--hero-mobile-image: url('../assets/images/hero-07-bg.jpg'), url('../assets/images/hero-07-bg.jpg');
+.page-hero--framed.page-hero-visit-foragers {
+	--hero-mobile-image: url('../assets/images/hero-visit-foragers-left.jpg');
+}
+
+.page-hero--framed.page-hero-reserve-your-place {
+	--hero-mobile-image: url('../assets/images/hero-reserve-your-place-left.jpg');
 }
 
 @media (width <= 600px) {
@@ -1695,11 +1677,6 @@ nav {
 			background-image: var(--hero-mobile-image);
 			background-size: cover;
 			background-position: var(--hero-mobile-position);
-			-webkit-mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-			-webkit-mask-size: 150%;
-			-webkit-mask-repeat: repeat-x;
-			-webkit-mask-position: center bottom;
-			-webkit-mask-mode: luminance;
 			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
 			mask-size: 150%;
 			mask-repeat: repeat-x;
