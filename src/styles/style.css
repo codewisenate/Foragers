@@ -1552,32 +1552,45 @@ nav {
 			}
 		}
 
-		.page-hero-02 & {
-			background-image: url('../assets/images/hero-02-bg.jpg'), url('../assets/images/hero-02-bg.jpg');
-			&.hero-deco--left {
-				background-position: 0% center;
-			}
-			&.hero-deco--right {
-				background-position: 12% center;
-			}
+		.page-hero-where-it-begins &:first-child {
+			background-image: url('../assets/images/hero-where-it-begins-left.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: left;
 		}
-		.page-hero-03 & {
-			background-image: url('../assets/images/hero-03-bg.jpg'), url('../assets/images/hero-03-bg.jpg');
+
+		.page-hero-where-it-begins &:last-child {
+			background-image: url('../assets/images/hero-where-it-begins-right.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: right;
 		}
-		.page-hero-04 & {
-			background-image: url('../assets/images/hero-05-bg.jpg'), url('../assets/images/hero-04-bg.jpg');
+
+		.page-hero-in-the-glass &:first-child {
+			background-image: url('../assets/images/hero-in-the-glass-left.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: left;
 		}
-		.page-hero-05 & {
-			background-image: url('../assets/images/hero-03-bg.jpg'), url('../assets/images/hero-05-bg.jpg');
-			background-position: right, left;
+
+		.page-hero-in-the-glass &:last-child {
+			background-image: url('../assets/images/hero-in-the-glass-right.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: right;
 		}
-		.page-hero-06 & {
-			background-image: url('../assets/images/hero-06-bg.jpg'), url('../assets/images/hero-06-bg.jpg');
-			background-position: right, left;
+
+		.page-hero-on-the-table &:first-child {
+			background-image: url('../assets/images/hero-on-the-table-left.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: left;
 		}
-		.page-hero-07 & {
-			background-image: url('../assets/images/hero-07-bg.jpg'), url('../assets/images/hero-07-bg.jpg');
-			background-position: right, left;
+		.page-hero-on-the-table &:last-child {
+			background-image: url('../assets/images/hero-on-the-table-right.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: right;
 		}
 
 		.page-hero-orchard &:first-child {
@@ -1606,6 +1619,34 @@ nav {
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: 85%;
+		}
+
+		.page-hero-visit-foragers &:first-child {
+			background-image: url('../assets/images/hero-visit-foragers-left.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: left;
+		}
+
+		.page-hero-visit-foragers &:last-child {
+			background-image: url('../assets/images/hero-visit-foragers-right.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: right;
+		}
+
+		.page-hero-reserve-your-place &:first-child {
+			background-image: url('../assets/images/hero-reserve-your-place-left.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: left;
+		}
+
+		.page-hero-reserve-your-place &:last-child {
+			background-image: url('../assets/images/hero-reserve-your-place-right.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: right;
 		}
 	}
 }
