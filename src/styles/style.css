@@ -352,8 +352,8 @@ header {
 				background-color: var(--darkblue);
 				border-radius: 999px;
 				border: 4px double white;
-				top: -0.85rem;
-				left: -0.85rem;
+				top: -0.9rem;
+				left: -1rem;
 			}
 			background-color: var(--darkblue);
 			border-radius: 0.66rem;
