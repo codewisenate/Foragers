@@ -278,7 +278,7 @@ header {
 	padding-block: 0;
 	padding-inline: 1rem;
 
-	@media (width > 700px) {
+	@media (width > 780px) {
 		a img {
 			scale: 1.1;
 		}
@@ -324,7 +324,7 @@ header {
 		align-items: center;
 		justify-content: end;
 		
-		@media (width > 900px) {
+		@media (width > 780px) {
 			min-width: 300px;
 		}
 
@@ -338,7 +338,10 @@ header {
 
 			&::before {
 				content: "";
-				display: inline-block;
+				display: none;
+				@media (width > 780px) {
+					display: inline-block;
+				}
 				width: 1rem;
 				height: 1rem;
 				flex: 0 0 auto;
@@ -865,7 +868,7 @@ body.home {
 		mask-position: bottom;
 		mask-mode: luminance;
 
-		@media (width > 720px) {
+		@media (width > 780px) {
 			min-height: 60vh;
 		}
 
@@ -1657,7 +1660,7 @@ nav {
 	--hero-mobile-image: url('../assets/images/hero-reserve-your-place-left.jpg');
 }
 
-@media (width <= 600px) {
+@media (width <= 780px) {
 	* {
 		overflow-x: clip;
 	}
