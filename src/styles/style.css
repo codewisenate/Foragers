@@ -962,13 +962,14 @@ body.home {
 			margin: 0 auto;
 			white-space-collapse: break-spaces;
 			position: relative;
-			top: -3rem;
+			top: -1.25rem;
 			z-index: 1;
 
 			@media (width > 375px) {
 				font-size: 1rem;
 			}
 			@media (width > 480px) {
+				top: -3rem;
 			}
 
 			@media (width > 720px) {
