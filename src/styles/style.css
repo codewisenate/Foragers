@@ -1090,7 +1090,7 @@ span[lang='it'] {
 	background-image: url('../assets/images/location-banner-2.jpg');
 
 	&.offset {
-		background-position: 300%;
+		background-position: 30vw;
 	}
 }
 
