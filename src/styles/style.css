@@ -904,12 +904,6 @@ body.home {
 
 			background-position: center top;
 			min-height: 50vh;
-
-			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-			mask-size: cover;
-			mask-repeat: repeat-x;
-			mask-position: bottom;
-			mask-mode: luminance;
 			z-index: 0;
 
 			@media (width > 780px) {
@@ -936,6 +930,16 @@ body.home {
 				@media (width > 1200px) {
 					margin: 2rem 12% auto auto;
 				}
+			}
+		}
+
+		@supports(mask-mode: luminance) {
+			#hero {
+				mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
+				mask-size: cover;
+				mask-repeat: repeat-x;
+				mask-position: bottom;
+				mask-mode: luminance;
 			}
 		}
 
@@ -1060,19 +1064,23 @@ span[lang='it'] {
 		background-size: auto;
 	}
 
-	&.mask {
-		mask-size: contain;
-		mask-repeat: repeat-x;
-		mask-mode: luminance;
+	@supports(mask-mode: luminance) {
+		&.mask {
+			mask-size: contain;
+			mask-repeat: repeat-x;
+			mask-mode: luminance;
 
-		mask-image: url('../assets/masks/mask-horizontal-01.png');
-		background-position: center;
+			mask-image: url('../assets/masks/mask-horizontal-01.png');
+			background-position: center;
+		}
 	}
 }
 
 @media (width < 1400px) {
-	.banner.mask {
-		mask-size: cover;
+	@supports(mask-mode: luminance) {
+		.banner.mask {
+			mask-size: cover;
+		}
 	}
 }
 
@@ -1682,30 +1690,20 @@ nav {
 		}
 	}
 
+	
+
 	.hero-deco {
 		background-image: url('../assets/images/hero-bg.jpg');
 		background-size: cover;
-		mask-size: 100% 100%;
-		mask-repeat: no-repeat;
-		mask-mode: luminance;
+		
 		width: 100%;
 
-
-		&.hero-deco--left {
-			mask-image: url('../assets/masks/mask-left-03.png');
-			background-position: 0% center;
-
-			&.mask-2 {
-				mask-image: url('../assets/masks/mask-left-03.png');
-			}
-		}
-
 		&.hero-deco--right {
-			mask-image: url('../assets/masks/mask-right-03.png');
+			mask-image: url('../assets/masks/mask-right-04.png');
 			background-position: 12% center;
 
 			&.mask-2 {
-				mask-image: url('../assets/masks/mask-right-03.png');
+				mask-image: url('../assets/masks/mask-right-04.png');
 			}
 		}
 
@@ -1807,6 +1805,23 @@ nav {
 			background-position: right;
 		}
 	}
+
+	@supports(mask-mode: luminance) {
+		.hero-deco {
+			mask-size: 100% 100%;
+			mask-repeat: no-repeat;
+			mask-mode: luminance;
+
+			&.hero-deco--left {
+				mask-image: url('../assets/masks/mask-left-04.png');
+				background-position: 0% center;
+
+				&.mask-2 {
+					mask-image: url('../assets/masks/mask-left-04.png');
+				}
+			}
+		}
+	}
 }
 
 .page-hero--framed.page-hero-where-it-begins {
@@ -1858,11 +1873,6 @@ nav {
 			background-image: var(--hero-mobile-image);
 			background-size: cover;
 			background-position: var(--hero-mobile-position);
-			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
-			mask-size: 150%;
-			mask-repeat: repeat-x;
-			mask-position: center bottom;
-			mask-mode: luminance;
 		}
 
 		.hero-deco {
@@ -1872,6 +1882,16 @@ nav {
 		>div:not(.hero-deco) {
 			padding-inline: 0;
 			padding-block: 2rem 5.5rem;
+		}
+	}
+
+	@supports(mask-mode: luminance) {
+		.page-hero--framed::before {
+			mask-image: url('../assets/masks/mask-horizontal-hero-01.png');
+			mask-size: 150%;
+			mask-repeat: repeat-x;
+			mask-position: center bottom;
+			mask-mode: luminance;
 		}
 	}
 }
