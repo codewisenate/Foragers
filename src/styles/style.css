@@ -2270,8 +2270,9 @@ nav {
 	}
 
 	&.coming::before {
+		border: 4px double white;
 		content: "Coming soon";
-		box-shadow: 0 2px 8px rgba(6, 12, 78, 0.5);
+		box-shadow: 0 0 6px rgba(6, 12, 78, 0.25);
 		position: absolute;
 		top: 1.45rem;
 		right: -2.5rem;
