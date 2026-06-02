@@ -1108,6 +1108,7 @@ nav {
 
 	.nav-inner {
 		display: flex;
+		gap: 1rem;
 		align-items: start;
 		justify-content: space-between;
 		max-width: var(--content-width);
@@ -1501,6 +1502,8 @@ nav {
 	
 	&:has(.nav-toggle[aria-expanded="true"]) {
 
+		
+
 		#nav-menu {
 			display: flex;
 		}
@@ -1517,35 +1520,14 @@ nav {
 			background-color: transparent;
 			margin-block-start: 7rem;
 
-			div {
-				width: calc(50% + 2rem);
-			}
 			.quick-links {
-				background-color: color-mix(in srgb, black 40%, transparent);
-				border-radius: 0 .66rem .66rem .66rem;
+				background-color: var(--darktext);
+				border-radius: 0.66rem;
 				border: 4px double color-mix(in srgb, white 40%, transparent);
 				margin-block-end: 1rem;
-				padding: 0 0.5rem;
+				padding: 0.25rem 0.75rem;
 				position: relative;
 				overflow: visible;
-
-				&::before {
-					background-color: #0c1c25;
-					border-top: 4px double color-mix(in srgb, white 40%, transparent);
-					border-right: 4px double color-mix(in srgb, white 40%, transparent);
-					border-left: 4px double color-mix(in srgb, white 40%, transparent);
-					border-radius: 0.3rem 0.3rem 0 0;
-					content: "Quick links";
-					color: white;
-					font-size: 0.66rem;
-					font-weight: 400;
-					padding-inline: 0.5rem;
-					position: absolute;
-					top: -25px;
-					left: -4px;
-					text-transform: uppercase;
-
-				}
 				
 				:is(br) { 
 					display: none;
