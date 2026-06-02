@@ -48,6 +48,30 @@ if (navToggle && navMenu) {
 			navToggle.focus();
 		}
 	});
+
+	const banner = document.querySelector('#banner-location');
+	const navMenu = document.querySelector('.nav-toggle');
+
+	if (banner && navMenu) {
+		const originalParent = banner.parentNode;
+		const originalNextSibling = banner.nextSibling;
+		const mediaQuery = window.matchMedia('(max-width: 780px)');
+
+		function moveBanner(event) {
+			if (event.matches) {
+				navMenu.after(banner);
+			} else {
+				if (originalNextSibling) {
+					originalParent.insertBefore(banner, originalNextSibling);
+				} else {
+					originalParent.appendChild(banner);
+				}
+			}
+		}
+
+		moveBanner(mediaQuery);
+		mediaQuery.addEventListener('change', moveBanner);
+	}
 }
 
 const navInner = document.querySelector('nav .nav-inner');

@@ -1,61 +1,61 @@
 # Appetizers
 
-## Asparagus Salad
+## Mushroom Risotto
 
-House made ricotta (fresh disc, cooked balls in rosé balsamic), braised rhubarb, preserved lemon skin, Forager honey vinaigrette
+Fiddleheads, Parmesan, Aliums
+
+## Bison Tartare
+
+Mole, Carrot, Carrot Top
 
 ## Seared Scallops
 
-Asparagus velouté, Spanish chorizo
-
-## Charred Fiddleheads
-
-Miso dressing, wild mushrooms, confit duck, smoked walnuts
+Asparagus, Crème Fraîche, Guajillo Chilli
 
 ## Halibut Ceviche
 
-Leche de tigre, radish carpaccio, pickled shallot
+Leche De Tigre , Radish, Shallot
 
-## Elk Tartare
+## Bison Tartare
 
-Carrot mole, carrot chips, carrot top powder
+Mole, Carrot, Carrot Top
 
 # Mains
 
-## Elk Striploin
+## Grilled Bison Striploin
 
-Broccoli purée, charred broccolini, pickled shallot, burnt Forager honey jus
+Brassica, Burnt Honey Jus, Shallot
 
-## Halibut
+## Confit Halibut
 
-Bruinwood Estate vermouth & lemon sauce, creamy brandade, butter poached summer squash
+Bruinwood Vermouth, Brandade, Summer Squash
 
 ## Seared Duck Breast
 
-Salmon berry curd, asparagus, asparagus condiment, sweet mead jus
+Beetroot, Chicory, Beetroot Jus
 
 ## Spot Prawn Gnocchi
 
-Pea ragout, freeze dried snap peas, nasturtium
+Bisque, Nasturtium, Aliums
 
-## Mushroom French Toast
+## Mushroom Brioche
 
-Chive emulsion, confit maitake, stuffed morel
+Ragout, Garlic Leaf, Soy & Honey
 
 # Desserts
 
-## White Chocolate Panna Cotta
-
-Salmon berry consommé, salmon berry meringue, caramelized white chocolate
-
-## Apple & Rosemary Crumble (Pfeffernüsse)
-
-Forager honey crème anglaise
-
 ## Lemon Tart
 
-Espresso cream, Little Spoon honey mead ice cream
+Espresso, Preserved Lemon
 
-## Dark Chocolate Mousse
+## Honey Spongecake
 
-Orange caramel, candied walnut
+Strawberry, Blackberry, Thyme
+
+## Fried Rice Pudding
+
+Dark Chocolate, Orange
+
+## Poached Apple
+
+Salted Caramel, Rosemary
