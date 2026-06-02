@@ -26,6 +26,7 @@ const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
 if (navToggle && navMenu) {
+	
 	navToggle.addEventListener('click', () => {
 		const isOpen = navMenu.classList.contains('open');
 		navMenu.classList.toggle('open');
