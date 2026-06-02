@@ -1666,7 +1666,7 @@ nav {
 	overflow: hidden;
 	background: var(--headline);
 	background: linear-gradient(180deg, var(--headline) 85%, var(--dark) 85%);
-
+	
 	&.light {
 		background: linear-gradient(180deg, var(--headline) 85%, white 85%);
 	}
@@ -1676,6 +1676,10 @@ nav {
 		padding-block: 6rem 12rem;
 		width: min(100%, 600px);
 		justify-self: center;
+
+		* {
+			padding-inline: 2rem;
+		}
 	}
 
 	.hero-deco {
@@ -1685,6 +1689,7 @@ nav {
 		mask-repeat: no-repeat;
 		mask-mode: luminance;
 		width: 100%;
+
 
 		&.hero-deco--left {
 			mask-image: url('../assets/masks/mask-left-03.png');
