@@ -182,6 +182,17 @@ p {
 	text-wrap: pretty;
 }
 
+.centred {
+	margin-block-start: 0;
+	display: grid;
+	justify-content: center;
+	text-align: center;
+	background-color: var(--darkblue);
+	border-top: 4px double white;
+	border-bottom: 4px double white;
+	* { color: white; }
+}
+
 div.separator {
 	display: flex;
 	justify-content: center;
