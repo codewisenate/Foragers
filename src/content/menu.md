@@ -1,24 +1,24 @@
 # Appetizers
 
-## Mushroom Risotto
-
-Fiddleheads, Parmesan, Aliums
-
 ## Bison Tartare
 
 Mole, Carrot, Carrot Top
-
-## Seared Scallops
-
-Asparagus, Crème Fraîche, Guajillo Chilli
 
 ## Halibut Ceviche
 
 Leche De Tigre , Radish, Shallot
 
-## Bison Tartare
+## Mushroom Risotto
 
-Mole, Carrot, Carrot Top
+Fiddleheads, Parmesan, Aliums
+
+## Rhubarb Salad
+
+Goats Cheese, Elderflower, Fennel
+
+## Seared Scallops
+
+Asparagus, Crème Fraîche, Guajillo Chilli
 
 # Mains
 
@@ -26,21 +26,21 @@ Mole, Carrot, Carrot Top
 
 Brassica, Burnt Honey Jus, Shallot
 
-## Confit Halibut
-
-Bruinwood Vermouth, Brandade, Summer Squash
-
 ## Seared Duck Breast
 
 Beetroot, Chicory, Beetroot Jus
 
-## Spot Prawn Gnocchi
+## Confit Halibut
 
-Bisque, Nasturtium, Aliums
+Bruinwood Vermouth, Brandade, Summer Squash
 
 ## Mushroom Brioche
 
 Ragout, Garlic Leaf, Soy & Honey
+
+## Spot Prawn Gnocchi
+
+Bisque, Nasturtium, Aliums
 
 # Desserts
 

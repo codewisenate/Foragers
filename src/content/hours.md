@@ -8,7 +8,7 @@
 
 ## Wednesday and Thursday
 
-4:00PM – 9:00PM
+5:00PM – 9:00PM
 
 ## Friday and Saturday
 
