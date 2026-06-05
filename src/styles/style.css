@@ -193,6 +193,10 @@ p {
 	* { color: white; font-size: 1rem; }
 }
 
+.hidden {
+	overflow: clip !important;
+}
+
 div.separator {
 	display: flex;
 	justify-content: center;
