@@ -6,7 +6,7 @@ Mole, Carrot, Carrot Top
 
 ## Halibut Ceviche
 
-Leche De Tigre , Radish, Shallots
+Leche De Tigre , Radish, Shallot
 
 ## Mushroom Risotto
 
@@ -16,7 +16,7 @@ Fiddleheads, Parmesan, Aliums
 
 Goats Cheese, Elderflower, Fennel
 
-## Seared Scallops
+## Charred Scallops
 
 Asparagus, Crème Fraîche, Guajillo Chilli
 
