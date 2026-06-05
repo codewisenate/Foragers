@@ -22,9 +22,9 @@ Beeswax Apple Rye, Honey Amaro, Bitters
 
 Apple Honey Butter Rye, Pechuga, Lemon, Maple, Spicy Butter Pop
 
-## Bisongrass
+## Bison Grass
 
-Plains Vodka, Maple Honey, Lime, Egg, Cinnamon
+Plains Vodka, Ginger Honey, Lime, Egg, Cinnamon
 
 # Floral & Foraged
 
@@ -32,6 +32,6 @@ Plains Vodka, Maple Honey, Lime, Egg, Cinnamon
 
 K’neko, Mead Sherry, Lime, Elderflower Honey, Ajonjili
 
-## Spruce
+## Pineapple
 
 Gin, Spruce, Burnt Honey, Mead Sherry, Lemon, Pineapple
