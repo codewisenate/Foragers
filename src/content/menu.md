@@ -2,11 +2,11 @@
 
 ## Bison Tartare
 
-Mole, Carrot, Carrot Top
+Mole, Carrot, Carrot Top 
 
 ## Halibut Ceviche
 
-Leche De Tigre , Radish, Shallot
+Leche De Tigre , Radish, Shallots
 
 ## Mushroom Risotto
 
