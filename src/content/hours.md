@@ -1,6 +1,6 @@
 # Tasting room
 
-## Monday to Sunday
+## Wednesday to Sunday
 
 11:30AM – 5:00PM
 
