@@ -10,29 +10,29 @@ Mole, Carrot, Carrot Top
 
 Leche De Tigre , Radish, Shallot
 
-32
+- 32
 
 ## Mushroom Risotto
 
 Fiddleheads, Parmesan, Aliums
 
-28
+- 28
 
 Add Duck Confit
 
-10
+- 10
 
 ## Rhubarb Salad
 
 Goats Cheese, Elderflower, Fennel
 
-26
+- 26
 
 ## Charred Scallops
 
 Asparagus, Crème Fraîche, Guajillo Chilli
 
-34
+- 34
 
 # Mains
 
@@ -40,31 +40,31 @@ Asparagus, Crème Fraîche, Guajillo Chilli
 
 Brassica, Burnt Honey Jus, Shallot
 
-70
+- 70
 
 ## Seared Duck Breast
 
 Beetroot, Chicory, Beetroot Jus
 
-65
+- 65
 
 ## Confit Halibut
 
 Bruinwood Vermouth, Brandade, Summer Squash
 
-60
+- 60
 
 ## Mushroom Brioche
 
 Ragout, Garlic Leaf, Soy & Honey
 
-48
+- 48
 
 ## Spot Prawn Gnocchi
 
 Bisque, Nasturtium, Aliums
 
-56
+- 56
 
 # Desserts
 
@@ -72,22 +72,22 @@ Bisque, Nasturtium, Aliums
 
 Espresso, Preserved Lemon
 
-14
+- 14
 
 ## Honey Spongecake
 
 Strawberry, Blackberry, Thyme
 
-12
+- 12
 
 ## Fried Rice Pudding
 
 Dark Chocolate, Orange
 
-12
+- 12
 
 ## Poached Apple
 
 Salted Caramel, Rosemary
 
-12
+- 12
