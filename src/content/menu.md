@@ -34,11 +34,7 @@ Asparagus, Crème Fraîche, Guajillo Chilli
 
 - 34
 
-## Rhubarb Salad
 
-Goats Cheese, Elderflower, Fennel
-
-- 26
 
 # Mains
 
