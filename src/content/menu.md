@@ -1,16 +1,10 @@
 # Appetizers
 
-## Bison Tartare
+## Artisanal Bread
 
-Mole, Carrot, Carrot Top 
+British Bloomer, Burnt Honey Butter
 
-- 32
-
-## Halibut Ceviche
-
-Leche De Tigre , Radish, Shallot
-
-- 32
+- 10
 
 ## Mushroom Risotto
 
@@ -21,12 +15,18 @@ Fiddleheads, Parmesan, Aliums
 Add Duck Confit
 
 - 10
+  
+## Elk Tartare*
 
-## Rhubarb Salad
+Mole, Carrot, Carrot Top 
 
-Goats Cheese, Elderflower, Fennel
+- 32
 
-- 26
+## Duck Rillette
+
+Walnut, Strawberry, Marigold
+
+- 30
 
 ## Charred Scallops
 
@@ -34,13 +34,25 @@ Asparagus, Crème Fraîche, Guajillo Chilli
 
 - 34
 
+## Rhubarb Salad
+
+Goats Cheese, Elderflower, Fennel
+
+- 26
+
 # Mains
 
-## Grilled Bison Striploin
+## Grilled Elk Striploin
 
 Brassica, Burnt Honey Jus, Shallot
 
 - 70
+  
+## Confit Halibut
+
+Bruinwood Vermouth, Brandade, Summer Squash
+
+- 60
 
 ## Seared Duck Breast
 
@@ -48,23 +60,19 @@ Beetroot, Chicory, Beetroot Jus
 
 - 65
 
-## Confit Halibut
+## Spot Prawn Gnocchi
 
-Bruinwood Vermouth, Brandade, Summer Squash
+Bisque, Nasturtium, Aliums
 
-- 60
-
+- 56
+  
 ## Mushroom Brioche
 
 Ragout, Garlic Leaf, Soy & Honey
 
 - 48
 
-## Spot Prawn Gnocchi
 
-Bisque, Nasturtium, Aliums
-
-- 56
 
 # Desserts
 
@@ -86,7 +94,7 @@ Dark Chocolate, Orange
 
 - 12
 
-## Poached Apple
+## Apple Mousse
 
 Salted Caramel, Rosemary
 
