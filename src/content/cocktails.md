@@ -12,9 +12,9 @@ Joker Gin, Mead Vermouth, Celery, Apple
 
 - 23
 
-## Grape
+## Apple
 
-Grape and Apple Ferment, Aperitivo, Gin, Lemon
+Apple Ferment, Aperitivo, Gin, Lemon
 
 - 18
 
@@ -40,13 +40,13 @@ Plains Vodka, Ginger Honey, Lime, Egg, Cinnamon
 
 # Floral & Foraged
 
-## M&H
+## Milk & Honey
 
-K’neko, Mead Sherry, Lime, Elderflower Honey, Ajonjili
+K’Neko, Mead Sherry, Lime, Elderflower Honey, Ajonjili
 
 - 22
 
-## Pineapple
+## Spruce
 
 Gin, Spruce, Burnt Honey, Mead Sherry, Lemon, Pineapple
 
