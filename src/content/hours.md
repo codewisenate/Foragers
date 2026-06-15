@@ -2,7 +2,7 @@
 
 ## Wednesday to Sunday
 
-Opens at noon
+Open at noon
 
 # Dining lounge
 
