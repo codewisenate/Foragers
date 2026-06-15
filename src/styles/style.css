@@ -2288,6 +2288,8 @@ nav {
 	border-top: 1px solid rgb(21 47 62 / 0.1);
 	padding-top: 1.25rem;
 	text-align: center;
+	text-wrap: balance;
+	text-wrap: pretty;
 
 	&:first-child {
 		border-top: 0;
