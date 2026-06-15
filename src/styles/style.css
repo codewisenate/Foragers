@@ -2287,6 +2287,7 @@ nav {
 .menu-item {
 	border-top: 1px solid rgb(21 47 62 / 0.1);
 	padding-top: 1.25rem;
+	text-align: center;
 
 	&:first-child {
 		border-top: 0;
@@ -2342,7 +2343,7 @@ nav {
 
 		.menu-category {
 			grid-template-rows: subgrid;
-			grid-row: 1 / span 6;
+			grid-row: 1 / span 10;
 
 			&+.menu-category {
 				border-top: 0;

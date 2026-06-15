@@ -66,6 +66,12 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return lines.join(' ').replace(/\s+/g, ' ').trim();
 	}
 
+	function normalizeMenuItemLine(line) {
+		const normalizedLine = line.replace(/\s+/g, ' ').trim();
+		const priceMatch = normalizedLine.match(/^\-\s+(\d+(?:\.\d{1,2})?)$/);
+		return priceMatch ? priceMatch[1] : normalizedLine;
+	}
+
 	function parseMenuMarkdown(markdown) {
 		const sections = [];
 		let currentSection = null;
@@ -78,7 +84,9 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 				return;
 			}
 
-			currentItem.description = descriptionLines.join(' ').replace(/\s+/g, ' ').trim();
+			currentItem.descriptionLines = descriptionLines
+				.map(normalizeMenuItemLine)
+				.filter(Boolean);
 			currentSection.items.push(currentItem);
 			currentItem = null;
 			descriptionLines = [];
@@ -112,7 +120,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 				currentItem = {
 					name: trimmed.slice(3).trim(),
-					description: '',
+					descriptionLines: [],
 				};
 				continue;
 			}
@@ -148,8 +156,8 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			const toggleId = `${idPrefix}-${slug}-toggle`;
 			const listId = `${idPrefix}-${slug}-list`;
 			const itemsMarkup = section.items.map((item) => {
-				const descriptionMarkup = item.description
-					? `\n\t\t\t\t\t\t\t\t<p>${escapeHtml(item.description)}</p>`
+				const descriptionMarkup = item.descriptionLines.length > 0
+					? `\n\t\t\t\t\t\t\t\t<p>${item.descriptionLines.map((line) => escapeHtml(line)).join('<br>')}</p>`
 					: '';
 
 				return [

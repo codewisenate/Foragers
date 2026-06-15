@@ -12,9 +12,7 @@ Fiddleheads, Parmesan, Aliums
 
 - 28
 
-Add Duck Confit
-
-- 10
+Add Duck Confit - 10
   
 ## Elk Tartare*
 
@@ -34,7 +32,11 @@ Asparagus, Crème Fraîche, Guajillo Chilli
 
 - 34
 
+## Rhubarb Salad
 
+Goats Cheese, Elderflower, Fennel
+
+- 26
 
 # Mains
 
