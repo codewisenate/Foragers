@@ -70,8 +70,6 @@ Ragout, Garlic Leaf, Soy & Honey
 
 - 48
 
-
-
 # Desserts
 
 ## Lemon Tart
