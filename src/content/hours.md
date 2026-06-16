@@ -2,7 +2,7 @@
 
 ## Wednesday to Sunday
 
-Open at noon
+12:00PM – 5:00PM
 
 # Dining lounge
 
