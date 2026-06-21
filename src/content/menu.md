@@ -28,7 +28,7 @@ Goats Cheese, Elderflower, Fennel
 
 # Mains
 
-## Grilled Elk Striploin
+## Grilled Bison Striploin
 
 Brassica, Burnt Honey Jus, Shallot
   
@@ -40,7 +40,7 @@ Bruinwood Vermouth, Brandade, Summer Squash
 
 Beetroot, Chicory, Beetroot Jus
 
-## Spot Prawn Gnocchi
+## Dungeness Crab Gnocchi
 
 Bisque, Nasturtium, Aliums
   
