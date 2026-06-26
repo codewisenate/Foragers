@@ -10,7 +10,7 @@ Fiddleheads, Parmesan, Aliums
 
 Add Duck Confit
   
-## Elk Tartare*
+## Bison Tartare*
 
 Mole, Carrot, Carrot Top 
 
@@ -58,9 +58,9 @@ Espresso, Preserved Lemon
 
 Strawberry, Blackberry, Thyme
 
-## Fried Rice Pudding
+## Chocolate Profiterole
 
-Dark Chocolate, Orange
+Cherry, Miso, Amaro
 
 ## Apple Mousse
 
