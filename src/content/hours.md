@@ -22,4 +22,4 @@ Please note that kitchen service ends a half hour prior to closing.
 
 # Patio
 
-Operates with the same hours as the dining lounge. Reservations not required for patio seating.
+Operates with the same hours as the tasting room. Reservations not required for patio seating.
