@@ -785,6 +785,14 @@ div[role="article"] {
 	}
 }
 
+.padding-top-medium {
+	padding-top: 2rem;
+
+	@media (width > 650px) {
+		padding-top: 4rem;
+	}
+}
+
 .padding-top-small {
 	padding-top: 1rem;
 
@@ -1058,6 +1066,25 @@ body.home {
 						width: 1.25rem;
 					}
 				}
+			}
+		}
+
+		#banner-home {
+			
+			padding-inline: 2rem;
+
+			& :is(h2) {
+				font-size: 1.335rem;
+				font-weight: 400;
+				margin: 0.5rem 0 0;
+				text-wrap: pretty;
+			}
+
+			& :is(p) {
+				margin-block: 0.25rem 1.25rem;
+				max-width: 120ch;
+				text-wrap: pretty;
+				font-weight: 100;
 			}
 		}
 
