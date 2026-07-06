@@ -885,6 +885,7 @@ div[role="article"] {
 
 .mouse-type {
 	font-size: 0.75rem;
+	padding-inline: 3rem;
 }
 
 .auto-column {
