@@ -761,6 +761,10 @@ div[role="article"] {
 	padding-inline: 2rem;
 }
 
+.no-margin-block.no-margin-block {
+	margin-block: 0;
+}
+
 .padding-block {
 	padding-block: 3rem;
 
@@ -774,6 +778,14 @@ div[role="article"] {
 
 	@media (width > 650px) {
 		padding-bottom: 6rem;
+	}
+}
+
+.padding-inline {
+	padding-inline: 3rem;
+
+	@media (width > 650px) {
+		padding-inline: 6rem;
 	}
 }
 
@@ -856,6 +868,23 @@ div[role="article"] {
 	&.dark {
 		background-color: var(--dark);
 	}
+}
+
+.asterisk {
+	position: relative;
+}
+.asterisk::before {
+	content: "*";
+	font-family: "Bodoni Moda", serif;
+	position: absolute;
+	left: -0.665rem;
+	top: -0.25rem;
+	height: 1rem;
+	width: 1rem;
+}
+
+.mouse-type {
+	font-size: 0.75rem;
 }
 
 .auto-column {
