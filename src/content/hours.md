@@ -1,4 +1,4 @@
-# Tasting room
+# Tasting room and patio
 
 ## Wednesday to Sunday
 
@@ -22,4 +22,4 @@ Please note that kitchen service ends a half hour prior to closing.
 
 # Patio
 
-Operates with the same hours as the tasting room. Reservations not required for patio seating.
+Relax on our patio with a glass of mead, accompanied by a curated selection of snacks. Patio seating is available without a reservation.
