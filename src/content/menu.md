@@ -14,15 +14,15 @@ Add Duck Confit
   
 ## Bison Tartare*
 
-Mole, Carrot, Carrot Top 
+English Peas, Panipuri, Fig Miso 
 
 ## Duck Rillette
 
-Walnut, Strawberry, Marigold
+Strawberry, Walnuts, Marigolds
 
-## Charred Scallops
+## Seared Scallops
 
-Asparagus, Crème Fraîche, Guajillo Chilli
+Almond, Cucumber, Nasturtium
 
 ## Rhubarb Salad
 
@@ -44,7 +44,7 @@ Bruinwood Vermouth, Brandade, Summer Squash
 
 Beetroot, Chicory, Beetroot Jus
 
-## Dungeness Crab Gnocchi
+## Crab Mafalda
 
 Bisque, Nasturtium, Aliums
   
@@ -60,9 +60,9 @@ Ragout, Garlic Leaf, Soy & Honey
 
 Espresso, Preserved Lemon
 
-## Honey Spongecake
+## Strawberry Semifreddo
 
-Strawberry, Blackberry, Thyme
+Honey, Basil, Mint
 
 ## Chocolate Profiterole
 
