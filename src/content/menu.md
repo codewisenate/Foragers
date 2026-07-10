@@ -1,5 +1,7 @@
 # Appetizers
 
+- 10-34
+
 ## Artisanal Bread
 
 British Bloomer, Burnt Honey Butter
@@ -28,6 +30,8 @@ Goats Cheese, Elderflower, Fennel
 
 # Mains
 
+- 48-70
+
 ## Grilled Bison Striploin
 
 Brassica, Burnt Honey Jus, Shallot
@@ -49,6 +53,8 @@ Bisque, Nasturtium, Aliums
 Ragout, Garlic Leaf, Soy & Honey
 
 # Desserts
+
+- 12-14
 
 ## Lemon Tart
 
