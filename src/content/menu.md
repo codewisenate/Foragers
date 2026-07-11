@@ -1,7 +1,5 @@
 # Appetizers
 
-- 10-34
-
 ## Artisanal Bread
 
 British Bloomer, Burnt Honey Butter
