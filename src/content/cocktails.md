@@ -1,41 +1,41 @@
 # Bright & Fresh
 
+## Mead-jito
+
+Sparkling Bloom, Lime, Mint
+
+## Pineapple
+
+Gin, Spruce, Burnt Honey, Mead Sherry, Lemon, Pineapple
+
 ## Rhubarb
 
-Oleo, Aperitivo, Sparkling Mead, Citrus
+Citrus, Aperitivo, Sparkling Mead, Citrus
 
-## Celery
+# Clean & Classic
 
-Joker Gin, Mead Vermouth, Celery, Apple
+## Negroni
 
-## Apple
+Sloe Gin, Aperitivo, Dry Vermouth
 
-Apple Ferment, Aperitivo, Gin, Lemon
+## Gin & Tonic
 
-# Rich & Spiced
+Gin, Lime, Tonic
 
-## Beeswax
+## Beeswax 
 
 Beeswax Apple Rye, Honey Amaro, Bitters
 
-## Pechuga
-
-Apple Honey Butter Rye, Pechuga, Lemon, Maple
-
-## Bison Grass
-
-Plains Vodka, Ginger Honey, Lime, Egg, Cinnamon
-
 # Floral & Foraged
+
+## Bramble
+
+Joker Gin, Raspberry, Lemon, Honey
 
 ## Milk & Honey
 
 K’Neko, Mead Sherry, Lime, Elderflower Honey, Ajonjili
 
-## Spruce
-
-Gin, Spruce, Burnt Honey, Mead Sherry, Lemon, Pineapple
-
 ## Creamsicle
 
-Advocaat, Fluffy Orange, Soda, Peychaud's Bitters
+Advocaat, Fluffy Orange, Soda
