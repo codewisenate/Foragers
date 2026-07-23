@@ -6,7 +6,7 @@ British Bloomer, Burnt Honey Butter
 
 ## Mushroom Risotto
 
-Fiddleheads, Parmesan, Aliums
+Wild rice, Parmesan, Aliums
 
 Add Duck Confit
   
