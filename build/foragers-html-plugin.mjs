@@ -24,6 +24,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const partialsRoot = resolve(srcRoot, 'partials');
 	const contentRoot = resolve(srcRoot, 'content');
 	const menuContentPath = resolve(contentRoot, 'menu.md');
+	const patioContentPath = resolve(contentRoot, 'patio.md');
 	const cocktailsContentPath = resolve(contentRoot, 'cocktails.md');
 	const hoursContentPath = resolve(contentRoot, 'hours.md');
 
@@ -376,6 +377,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	function isGeneratedContentFile(filePath) {
 		const resolvedPath = resolve(filePath);
 		return resolvedPath === menuContentPath
+			|| resolvedPath === patioContentPath
 			|| resolvedPath === cocktailsContentPath
 			|| resolvedPath === hoursContentPath;
 	}
@@ -386,6 +388,15 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 				contentPath: menuContentPath,
 				ariaLabel: 'Current seasonal menu',
 				idPrefix: 'menu',
+				expandedLabel: 'Hide dishes',
+			});
+		}
+
+		if (includeName === 'patio-grid') {
+			return renderMenuGrid({
+				contentPath: patioContentPath,
+				ariaLabel: 'Current patio menu',
+				idPrefix: 'patio-menu',
 				expandedLabel: 'Hide dishes',
 			});
 		}
