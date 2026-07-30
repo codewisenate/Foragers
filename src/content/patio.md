@@ -4,31 +4,31 @@
 
 Grilled British Bloomer, Whipped Butter, Burnt Honey
 
-## Salanova Lettuces
+## Ajo Blanco
 
-Herb & Buttermilk Dressing, Preserved Lemon, Fennel, Sesame Cracker
+Olive Oil, Strawberries, Cucumber, Parsley
 
 ## Bruschetta
 
 Goat’s Cheese Mousse, Pani Puri, Basil From The Garden
 
-## Ajo Blanco
+## Salanova Lettuces
 
-Olive Oil, Strawberries, Cucumber, Parsley
+Herb & Buttermilk Dressing, Preserved Lemon, Fennel, Sesame Cracker
 
 # Appetizers
 
 ## Ploughman’s Platter
 
 Charcuterie, Quebecois Cheese, Crackers, Preserves
-  
-## Roasted Bone Marrow
-
-Crispy Leeks, Grilled Bread
 
 ## Confit Duck Wings
 
 Satay Sauce, Roasted Peanuts, Chives
+  
+## Roasted Bone Marrow
+
+Crispy Leeks, Grilled Bread
 
 # Desserts
 

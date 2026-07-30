@@ -192,6 +192,7 @@ p {
 	border-bottom: 4px double white;
 	* { color: white; font-size: 1rem; }
 }
+:not(#hero) .centred * { color: white; font-size: unset; }
 
 .hidden {
 	overflow: clip !important;
@@ -1109,6 +1110,7 @@ body.home {
 			}
 
 			& :is(p) {
+				font-size: 1rem;
 				margin-block: 0.25rem 1.25rem;
 				max-width: 120ch;
 				text-wrap: pretty;
