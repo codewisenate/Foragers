@@ -1,4 +1,4 @@
-# 
+# LIGHTER FARE
 
 ## Ajo Blanco
 
@@ -8,7 +8,7 @@ Olive Oil, Strawberries, Cucumber, Parsley
 
 Goat’s Cheese Mousse, Pani Puri, Basil From The Garden
 
-# 
+# APPETIZERS
 
 ## Salanova Lettuces
 
@@ -18,7 +18,7 @@ Herb & Buttermilk Dressing, Preserved Lemon, Fennel, Sesame Cracker
 
 Charcuterie, Quebecois Cheese, Crackers, Preserves
 
-# 
+# SAVOURY
 
 ## Confit Duck Wings
 
