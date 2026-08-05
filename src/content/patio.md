@@ -1,4 +1,4 @@
-# LIGHTER FARE
+# LIGHTER FARE *$16–$18*
 
 ## Bruschetta
 
@@ -8,7 +8,7 @@ Goat’s Cheese Mousse, Pani Puri, Basil From The Garden
 
 Herb & Buttermilk Dressing, Preserved Lemon, Fennel, Sesame Cracker
 
-# APPETIZERS
+# APPETIZERS *$25–$45*
 
 ## Confit Duck Wings
 
@@ -18,7 +18,7 @@ Satay Sauce, Roasted Peanuts, Chives
 
 Charcuterie, Quebecois Cheese, Crackers, Preserves
 
-# SAVOURY
+# SAVOURY *$20*
 
 ## Ajo Blanco
 

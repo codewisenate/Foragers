@@ -1,4 +1,4 @@
-# Appetizers
+# Appetizers *$10–$34*
 
 ## Artisanal Bread
 
@@ -26,7 +26,7 @@ Almond, Cucumber, Nasturtium
 
 Goats Cheese, Elderflower, Fennel
 
-# Mains
+# Mains *$48–$70*
 
 ## Grilled Bison Striploin
 
@@ -48,7 +48,7 @@ Bisque, Nasturtium, Aliums
 
 Ragout, Garlic Leaf, Soy & Honey
 
-# Desserts
+# Desserts *$12–$14*
 
 ## Lemon Tart
 

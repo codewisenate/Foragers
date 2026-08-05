@@ -73,6 +73,29 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return priceMatch ? priceMatch[1] : normalizedLine;
 	}
 
+	function parseMenuSectionHeading(heading) {
+		const detailMatch = heading.match(/^(.*?)\s+\*([^*]+)\*\s*$/);
+
+		if (!detailMatch) {
+			return {
+				title: heading.trim(),
+				detail: null,
+			};
+		}
+
+		const title = detailMatch[1].trim();
+		const detail = detailMatch[2].trim();
+
+		if (!title || !detail) {
+			return {
+				title: heading.trim(),
+				detail: null,
+			};
+		}
+
+		return { title, detail };
+	}
+
 	function parseMenuMarkdown(markdown) {
 		const sections = [];
 		let currentSection = null;
@@ -106,8 +129,9 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 			if (trimmed.startsWith('# ')) {
 				flushSection();
+				const heading = parseMenuSectionHeading(trimmed.slice(2).trim());
 				currentSection = {
-					title: trimmed.slice(2).trim(),
+					...heading,
 					items: [],
 				};
 				continue;
@@ -156,6 +180,9 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			const labelId = `${idPrefix}-${slug}-label`;
 			const toggleId = `${idPrefix}-${slug}-toggle`;
 			const listId = `${idPrefix}-${slug}-list`;
+			const labelMarkup = section.detail
+				? `${escapeHtml(section.title)} <span class="menu-category-label-detail">${escapeHtml(section.detail)}</span>`
+				: escapeHtml(section.title);
 			const itemsMarkup = section.items.map((item) => {
 				const descriptionMarkup = item.descriptionLines.length > 0
 					? `\n\t\t\t\t\t\t\t\t<p>${item.descriptionLines.map((line) => escapeHtml(line)).join('<br>')}</p>`
@@ -171,7 +198,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			return [
 				`\t\t\t\t\t<section class="menu-category" aria-labelledby="${labelId}">`,
 				`\t\t\t\t\t\t<button class="menu-category-toggle" id="${toggleId}" type="button" aria-expanded="false" aria-controls="${listId}" data-expanded-label="${escapeHtml(expandedLabel)}" data-collapsed-label="${escapeHtml(collapsedLabel)}">`,
-				`\t\t\t\t\t\t\t<span class="menu-category-label" id="${labelId}">${escapeHtml(section.title)}</span>`,
+				`\t\t\t\t\t\t\t<span class="menu-category-label" id="${labelId}">${labelMarkup}</span>`,
 				'\t\t\t\t\t\t\t<span class="menu-category-toggle-meta">',
 				`\t\t\t\t\t\t\t\t<span class="menu-category-toggle-text">${escapeHtml(collapsedLabel)}</span>`,
 				'\t\t\t\t\t\t\t\t<span class="menu-category-toggle-icon" aria-hidden="true"></span>',
