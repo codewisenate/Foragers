@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { basename, extname, relative, resolve } from 'node:path';
 
 const PROJECT_PAGES = new Set([
@@ -11,6 +11,8 @@ const PROJECT_PAGES = new Set([
 	'visit-foragers.html',
 	'reserve-your-place.html',
 ]);
+
+const SITE_ORIGIN = 'https://foragersmead.ca';
 
 export function getHtmlEntries(srcRoot) {
 	return Object.fromEntries(
@@ -27,6 +29,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const patioContentPath = resolve(contentRoot, 'patio.md');
 	const cocktailsContentPath = resolve(contentRoot, 'cocktails.md');
 	const hoursContentPath = resolve(contentRoot, 'hours.md');
+	let outputDir = resolve(srcRoot, '..', 'dist');
 
 	function getCurrentPage(ctx) {
 		if (ctx.filename) {
@@ -65,6 +68,13 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function normalizeInlineText(lines) {
 		return lines.join(' ').replace(/\s+/g, ' ').trim();
+	}
+
+	function absolutizeSocialImageMeta(html) {
+		return html.replace(
+			/(<meta\s+(?:property="og:image"|name="twitter:image")\s+content=")(\/[^\"]+)(")/g,
+			(_, prefix, assetPath, suffix) => `${prefix}${SITE_ORIGIN}${assetPath}${suffix}`
+		);
 	}
 
 	function normalizeMenuItemLine(line) {
@@ -453,6 +463,24 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 					renderInclude(partialName, getCurrentPage(ctx))
 				));
 			},
+		},
+		configResolved(config) {
+			outputDir = resolve(config.root, config.build.outDir);
+		},
+		writeBundle() {
+			for (const fileName of readdirSync(outputDir)) {
+				if (extname(fileName) !== '.html') {
+					continue;
+				}
+
+				const filePath = resolve(outputDir, fileName);
+				const html = readFileSync(filePath, 'utf8');
+				const updatedHtml = absolutizeSocialImageMeta(html);
+
+				if (updatedHtml !== html) {
+					writeFileSync(filePath, updatedHtml);
+				}
+			}
 		},
 		configureServer(server) {
 			server.watcher.add(partialsRoot);
