@@ -2,11 +2,11 @@
 
 ## Artisanal Bread
 
-British Bloomer, Burnt Honey Butter
+British Bloomer, Country Loaf, Burnt Honey Butter
 
 ## Mushroom Risotto
 
-Wild rice, Parmesan, Aliums
+Parmesan, Alliums, Wild Rice
 
 Add Duck Confit
   
@@ -30,25 +30,25 @@ Goats Cheese, Elderflower, Fennel
 
 ## Grilled Bison Striploin
 
-Brassica, Burnt Honey Jus, Shallot
+Tomato, Romesco, Almond, Basil
   
 ## Confit Halibut
 
-Bruinwood Vermouth, Brandade, Summer Squash
+Vermouth, Brandade, Summer Squash
 
 ## Seared Duck Breast
 
-Beetroot, Chicory, Beetroot Jus
+Carrot, Wild Blackberry, Brown Butter
 
 ## Crab Mafalda
 
-Bisque, Nasturtium, Aliums
+Coffee, Nasturtium, Alliums
   
 ## Mushroom Brioche
 
-Ragout, Garlic Leaf, Soy & Honey
+Pâté, Chive, Soy & Honey
 
-# Desserts *$12–$14*
+# Desserts *$14–$16*
 
 ## Lemon Tart
 
@@ -56,7 +56,7 @@ Espresso, Preserved Lemon
 
 ## Strawberry Semifreddo
 
-Honey, Basil, Mint
+Honey, Geranium, Mint
 
 ## Chocolate Profiterole
 
