@@ -2,11 +2,11 @@
 
 ## Bruschetta
 
-Goat’s Cheese Mousse, Pani Puri, Basil From The Garden
+Goat’s Cheese Mousse, Panipuri, Basil From The Garden
 
-## Salanova Lettuces
+## Mushroom Parfait
 
-Herb & Buttermilk Dressing, Preserved Lemon, Fennel, Sesame Cracker
+Crimini Mushroom, Allium, Crackers
 
 # APPETIZERS *$25–$45*
 
@@ -18,8 +18,8 @@ Satay Sauce, Roasted Peanuts, Chives
 
 Charcuterie, Quebecois Cheese, Crackers, Preserves
 
-# SAVOURY *$20*
+# SWEET *$20*
 
 ## Ajo Blanco
 
-Olive Oil, Strawberries, Cucumber, Parsley
+Olive Oil, Nectarine, Cucumber, Parsley
