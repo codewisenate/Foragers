@@ -1,6 +1,12 @@
-# Tasting room and Patio
+# Tasting Room 
 
 ## Wednesday to Sunday
+
+12:00PM – 4:00PM
+
+# Patio
+
+## Thursday to Sunday
 
 12:00PM – 4:00PM
 
