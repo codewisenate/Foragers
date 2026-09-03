@@ -270,7 +270,6 @@ img {
 	}
 }
 
-
 header {
 	box-sizing: border-box;
 	display: flex;
@@ -474,6 +473,132 @@ header {
 	@media (width > 650px) {
 		flex-direction: row;
 		font-size: inherit;
+	}
+}
+
+.guest-reviews {
+	padding: 2rem;
+
+	.guest-reviews__inner {
+		display: grid;
+		gap: 1.5rem;
+		margin: auto;
+		max-width: var(--content-width);
+
+		@media (width > 920px) {
+			grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 2.1fr);
+			align-items: start;
+		}
+	}
+
+	.guest-reviews__intro {
+		padding: 2rem;
+		border: 1px solid rgb(21 47 62 / 0.1);
+		border-radius: 0.5rem;
+		position: relative;
+		overflow: hidden;
+
+		box-shadow:
+			0 1px 2px rgb(21 47 62 / 0.06),
+			0 4px 12px rgb(21 47 62 / 0.07),
+			0 12px 32px rgb(103 115 72 / 0.05);
+		display: grid;
+		gap: 0.75rem;
+		align-content: start;
+	}
+
+	.guest-reviews__eyebrow {
+		color: var(--darktext);
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.guest-reviews__title {
+		font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.75rem);
+		line-height: 1.1;
+		margin: 0;
+		text-align: left;
+	}
+
+	.guest-reviews__copy {
+		font-size: 0.92rem;
+		line-height: 1.6;
+		margin: 0;
+		max-width: 32ch;
+		text-wrap: pretty;
+	}
+
+	.guest-reviews__link {
+		color: var(--darktext);
+		font-size: 0.82rem;
+		font-weight: 500;
+		text-decoration-thickness: 0.08em;
+		text-underline-offset: 0.16em;
+		width: fit-content;
+	}
+
+	.guest-reviews__list {
+		display: grid;
+		gap: 1rem;
+
+		@media (width > 720px) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.guest-reviews__list--fallback {
+		@media (width > 720px) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	.guest-review {
+		background: linear-gradient(180deg, rgb(248 245 239 / 0.95) 0%, rgb(255 255 255 / 0.98) 100%);
+		border: 1px solid rgb(21 47 62 / 0.08);
+		border-radius: 0.5rem;
+		box-shadow: 0 14px 40px rgb(21 47 62 / 0.06);
+		display: grid;
+		gap: 0.9rem;
+		height: 100%;
+		padding: 1rem;
+	}
+
+	.guest-review--fallback {
+		align-items: center;
+		min-height: 100%;
+	}
+
+	.guest-review blockquote,
+	.guest-review p {
+		margin: 0;
+	}
+
+	.guest-review blockquote {
+		font-size: 0.92rem;
+		line-height: 1.7;
+		text-wrap: pretty;
+	}
+
+	.guest-review__stars {
+		color: #b58314;
+		font-size: 0.78rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+	}
+
+	.guest-review__meta {
+		color: rgb(21 47 62 / 0.78);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem 1rem;
+		font-size: 0.74rem;
+		line-height: 1.5;
+	}
+
+	.guest-review__author {
+		font-weight: 500;
 	}
 }
 

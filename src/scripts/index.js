@@ -256,6 +256,287 @@ if (footerBackToTopButton instanceof HTMLButtonElement) {
 	});
 }
 
+const GOOGLE_REVIEW_LIMIT = 3;
+const GOOGLE_REVIEW_MAX_LENGTH = 260;
+const GOOGLE_REVIEWS_CACHE_KEY = 'foragers-google-reviews';
+const GOOGLE_REVIEWS_CACHE_TTL_MS = 30 * 60 * 1000;
+const googleMapsApiKey =
+	import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+	|| import.meta.env.VITE_GOOGLE_PLACES_API_KEY
+	|| '';
+const footerReviewsSection = document.querySelector('[data-google-reviews]');
+const footerReviewsList = footerReviewsSection?.querySelector('[data-google-reviews-list]');
+const footerReviewsLink = footerReviewsSection?.querySelector('[data-google-reviews-link]');
+let googleMapsPlacesApiPromise = null;
+
+function normalizeReviewText(text) {
+	return text.replace(/\s+/g, ' ').trim();
+}
+
+function truncateReviewText(text, maxLength = GOOGLE_REVIEW_MAX_LENGTH) {
+	if (text.length <= maxLength) {
+		return text;
+	}
+
+	const truncatedText = text.slice(0, maxLength + 1);
+	const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+	const safeLength = lastSpaceIndex > Math.floor(maxLength * 0.6) ? lastSpaceIndex : maxLength;
+	return `${truncatedText.slice(0, safeLength).trimEnd()}...`;
+}
+
+function createFooterReviewMessage(message) {
+	const article = document.createElement('article');
+	article.className = 'guest-review guest-review--fallback';
+
+	const paragraph = document.createElement('p');
+	paragraph.textContent = message;
+	article.append(paragraph);
+
+	return article;
+}
+
+function createFooterReviewCard(review) {
+	const article = document.createElement('article');
+	article.className = 'guest-review';
+
+	const stars = document.createElement('p');
+	stars.className = 'guest-review__stars';
+	stars.setAttribute('aria-label', 'Five out of five stars');
+	stars.textContent = '★★★★★';
+
+	const blockquote = document.createElement('blockquote');
+	const reviewParagraph = document.createElement('p');
+	reviewParagraph.textContent = review.text;
+	blockquote.append(reviewParagraph);
+
+	const meta = document.createElement('p');
+	meta.className = 'guest-review__meta';
+
+	const author = document.createElement('span');
+	author.className = 'guest-review__author';
+	author.textContent = review.authorName;
+
+	const age = document.createElement('span');
+	age.className = 'guest-review__age';
+	age.textContent = review.relativeTimeDescription;
+
+	meta.append(author, age);
+	article.append(stars, blockquote, meta);
+
+	return article;
+}
+
+function setFooterReviewsLink(url) {
+	if (footerReviewsLink instanceof HTMLAnchorElement && typeof url === 'string' && url.trim() !== '') {
+		footerReviewsLink.href = url;
+	}
+}
+
+function renderFooterReviewFallback(message = 'Browse the latest guest feedback on Google Maps.') {
+	if (!(footerReviewsList instanceof HTMLElement)) return;
+
+	footerReviewsList.classList.add('guest-reviews__list--fallback');
+	footerReviewsList.replaceChildren(createFooterReviewMessage(message));
+}
+
+function renderFooterReviews(reviews) {
+	if (!(footerReviewsList instanceof HTMLElement)) return;
+
+	footerReviewsList.classList.remove('guest-reviews__list--fallback');
+	footerReviewsList.replaceChildren(...reviews.map(createFooterReviewCard));
+}
+
+function readFooterReviewsCache() {
+	try {
+		const cachedValue = window.sessionStorage.getItem(GOOGLE_REVIEWS_CACHE_KEY);
+
+		if (!cachedValue) {
+			return null;
+		}
+
+		const cachedReviews = JSON.parse(cachedValue);
+
+		if (!cachedReviews || !Array.isArray(cachedReviews.reviews) || typeof cachedReviews.fetchedAt !== 'number') {
+			return null;
+		}
+
+		if (Date.now() - cachedReviews.fetchedAt > GOOGLE_REVIEWS_CACHE_TTL_MS) {
+			return null;
+		}
+
+		return cachedReviews;
+	} catch {
+		return null;
+	}
+}
+
+function writeFooterReviewsCache(reviewsData) {
+	try {
+		window.sessionStorage.setItem(
+			GOOGLE_REVIEWS_CACHE_KEY,
+			JSON.stringify({
+				...reviewsData,
+				fetchedAt: Date.now(),
+			})
+		);
+	} catch {
+		// Ignore cache write failures and keep the live response.
+	}
+}
+
+function loadGoogleMapsPlacesApi(apiKey) {
+	if (window.google?.maps?.places) {
+		return Promise.resolve(window.google.maps.places);
+	}
+
+	if (googleMapsPlacesApiPromise) {
+		return googleMapsPlacesApiPromise;
+	}
+
+	googleMapsPlacesApiPromise = new Promise((resolve, reject) => {
+		const callbackName = '__foragersGoogleMapsPlacesReady';
+		const existingScript = document.getElementById('google-maps-places-api');
+
+		const cleanup = () => {
+			delete window[callbackName];
+		};
+
+		const handleError = () => {
+			cleanup();
+			googleMapsPlacesApiPromise = null;
+			reject(new Error('Google Maps Places API failed to load.'));
+		};
+
+		window[callbackName] = () => {
+			cleanup();
+			resolve(window.google.maps.places);
+		};
+
+		if (existingScript instanceof HTMLScriptElement) {
+			existingScript.addEventListener('error', handleError, { once: true });
+			return;
+		}
+
+		const script = document.createElement('script');
+		script.id = 'google-maps-places-api';
+		script.async = true;
+		script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&loading=async&callback=${callbackName}`;
+		script.addEventListener('error', handleError, { once: true });
+		document.head.append(script);
+	});
+
+	return googleMapsPlacesApiPromise;
+}
+
+function createPlacesService() {
+	return new window.google.maps.places.PlacesService(document.createElement('div'));
+}
+
+function findPlaceFromQuery(service, query) {
+	return new Promise((resolve, reject) => {
+		service.findPlaceFromQuery(
+			{
+				query,
+				fields: ['place_id', 'name'],
+			},
+			(results, status) => {
+				if (
+					status !== window.google.maps.places.PlacesServiceStatus.OK
+					|| !Array.isArray(results)
+					|| !results[0]?.place_id
+				) {
+					reject(new Error(`Place search returned ${status || 'no results'}`));
+					return;
+				}
+
+				resolve(results[0]);
+			}
+		);
+	});
+}
+
+function getPlaceDetails(service, placeId) {
+	return new Promise((resolve, reject) => {
+		const request = {
+			placeId,
+			fields: ['name', 'url', 'reviews'],
+		};
+
+		if (window.google.maps.places.ReviewsSort?.NEWEST) {
+			request.reviewsSort = window.google.maps.places.ReviewsSort.NEWEST;
+		}
+
+		service.getDetails(request, (place, status) => {
+			if (status !== window.google.maps.places.PlacesServiceStatus.OK || !place) {
+				reject(new Error(`Place details returned ${status || 'no result'}`));
+				return;
+			}
+
+			resolve(place);
+		});
+	});
+}
+
+async function loadFooterReviews() {
+	if (!(footerReviewsSection instanceof HTMLElement) || !(footerReviewsLink instanceof HTMLAnchorElement)) {
+		return;
+	}
+
+	const placeQuery = footerReviewsSection.dataset.googlePlaceQuery?.trim();
+	const fallbackUrl = footerReviewsLink.href;
+	const cachedReviews = readFooterReviewsCache();
+
+	if (cachedReviews?.reviews?.length) {
+		setFooterReviewsLink(cachedReviews.url || fallbackUrl);
+		renderFooterReviews(cachedReviews.reviews);
+		return;
+	}
+
+	if (!googleMapsApiKey || !placeQuery) {
+		renderFooterReviewFallback();
+		return;
+	}
+
+	try {
+		await loadGoogleMapsPlacesApi(googleMapsApiKey);
+
+		const placesService = createPlacesService();
+		const placeSearchResult = await findPlaceFromQuery(placesService, placeQuery);
+		const placeDetails = await getPlaceDetails(placesService, placeSearchResult.place_id);
+		const reviews = Array.isArray(placeDetails.reviews)
+			? placeDetails.reviews
+				.filter((review) => review.rating === 5 && typeof review.text === 'string' && review.text.trim() !== '')
+				.sort((left, right) => (right.time ?? 0) - (left.time ?? 0))
+				.slice(0, GOOGLE_REVIEW_LIMIT)
+				.map((review) => ({
+					authorName: review.author_name?.trim() || 'Google guest',
+					relativeTimeDescription: review.relative_time_description?.trim() || 'Recently posted',
+					text: truncateReviewText(normalizeReviewText(review.text)),
+				}))
+			: [];
+
+		setFooterReviewsLink(placeDetails.url || fallbackUrl);
+
+		if (!reviews.length) {
+			renderFooterReviewFallback();
+			return;
+		}
+
+		renderFooterReviews(reviews);
+		writeFooterReviewsCache({
+			reviews,
+			url: placeDetails.url || fallbackUrl,
+		});
+	} catch (error) {
+		console.warn('[foragers] Unable to load Google reviews:', error);
+		renderFooterReviewFallback();
+	}
+}
+
+if (footerReviewsSection instanceof HTMLElement) {
+	loadFooterReviews();
+}
+
 // ---- Weather helpers ----
 
 const DIRECTION_ICON_URL = WEATHER_ASSET_URLS.direction ?? '';

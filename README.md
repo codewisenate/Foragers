@@ -77,6 +77,17 @@ The built site is written to:
 
 `dist/`
 
+## Google Reviews In The Footer
+
+The footer can load the latest three five-star Google reviews for Foragers in the browser.
+
+Set one of these variables in a local `.env` file:
+
+- `VITE_GOOGLE_PLACES_API_KEY`
+- `VITE_GOOGLE_MAPS_API_KEY`
+
+These values are exposed client-side, so restrict the key to your allowed site domains. The key needs access to the Google Maps JavaScript API and Places API. If no key is present, the footer falls back to a static link to the Google Maps listing.
+
 ## Contributor Notes
 
 - Shared head, header, nav, and footer markup live in `src/partials/`
