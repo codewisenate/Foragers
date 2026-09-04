@@ -14,9 +14,9 @@ Add Duck Confit
 
 English Peas, Panipuri, Fig Miso 
 
-## Duck Rillette
+## Salmon Tartare
 
-Strawberry, Walnuts, Marigolds
+Baby Potato, Horseradish, Dill
 
 ## Seared Scallops
 
