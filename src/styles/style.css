@@ -478,6 +478,7 @@ header {
 
 .guest-reviews {
 	padding: 2rem;
+	display: none;
 
 	.guest-reviews__inner {
 		display: grid;
