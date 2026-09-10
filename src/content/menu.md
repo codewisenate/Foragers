@@ -32,11 +32,11 @@ Goats Cheese, Elderflower, Fennel
 
 Tomato, Romesco, Almond, Basil
   
-## Confit Halibut
+## Pan Seared Wild Salmon
 
-Vermouth, Brandade, Summer Squash
+Corn, Baby Potato, Parsley
 
-## Seared Duck Breast
+## Roasted Duck Breast
 
 Carrot, Wild Blackberry, Brown Butter
 
