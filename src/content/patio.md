@@ -1,4 +1,4 @@
-# LIGHTER FARE *$18*
+# LIGHTER FARE *$14*
 
 ## Mushroom Parfait
 
