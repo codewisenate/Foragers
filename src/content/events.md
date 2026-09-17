@@ -51,7 +51,6 @@ The Crawl is a free, self-guided tour you can take at your own pace, a perfect o
 @eyebrow: November 14–15, 2026 · 10am–4pm
 @where: Sunnycrest Mall
 @address: 900 Gibsons Way, Gibsons, BC
-@link: https://example.com/sunnycrest-christmas-market
 @active: 2026-11-14..2026-11-15
 
 Shop local this holiday season supporting 35+ Coastal artisans, makers, and small businesses with gifts made from the heart.
