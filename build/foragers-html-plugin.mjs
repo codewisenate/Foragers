@@ -29,7 +29,19 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const patioContentPath = resolve(contentRoot, 'patio.md');
 	const cocktailsContentPath = resolve(contentRoot, 'cocktails.md');
 	const hoursContentPath = resolve(contentRoot, 'hours.md');
+	const homeBannerContentPath = resolve(contentRoot, 'home-banner.md');
+	const eventsContentPath = resolve(contentRoot, 'events.md');
+	const evergreenEventsContentPath = resolve(contentRoot, 'evergreen-events.md');
 	let outputDir = resolve(srcRoot, '..', 'dist');
+	const WEEKDAY_NAMES = [
+		'sunday',
+		'monday',
+		'tuesday',
+		'wednesday',
+		'thursday',
+		'friday',
+		'saturday',
+	];
 
 	function getCurrentPage(ctx) {
 		if (ctx.filename) {
@@ -68,6 +80,21 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function normalizeInlineText(lines) {
 		return lines.join(' ').replace(/\s+/g, ' ').trim();
+	}
+
+	function renderMarkdownInline(text) {
+		const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+		let markup = '';
+		let lastIndex = 0;
+
+		for (const match of text.matchAll(linkPattern)) {
+			const [linkMarkdown, label, href] = match;
+			markup += escapeHtml(text.slice(lastIndex, match.index));
+			markup += `<a href="${escapeHtml(href.trim())}">${escapeHtml(label.trim())}</a>`;
+			lastIndex = match.index + linkMarkdown.length;
+		}
+
+		return `${markup}${escapeHtml(text.slice(lastIndex))}`;
 	}
 
 	function absolutizeSocialImageMeta(html) {
@@ -399,6 +426,490 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		].join('\n');
 	}
 
+	function expandHoursEntryDays(label) {
+		const normalizedLabel = label
+			.toLowerCase()
+			.replace(/[–—]/g, '-')
+			.replace(/&/g, ' and ')
+			.replace(/\s+/g, ' ')
+			.trim();
+
+		if (normalizedLabel === 'daily' || normalizedLabel === 'every day') {
+			return [...WEEKDAY_NAMES];
+		}
+
+		const rangeMatch = normalizedLabel.match(/^([a-z]+)\s*(?:to|-)\s*([a-z]+)$/);
+
+		if (rangeMatch) {
+			const startIndex = WEEKDAY_NAMES.indexOf(rangeMatch[1]);
+			const endIndex = WEEKDAY_NAMES.indexOf(rangeMatch[2]);
+
+			if (startIndex === -1 || endIndex === -1) {
+				return [];
+			}
+
+			const days = [];
+			let currentIndex = startIndex;
+
+			while (days.length < WEEKDAY_NAMES.length) {
+				days.push(WEEKDAY_NAMES[currentIndex]);
+
+				if (currentIndex === endIndex) {
+					break;
+				}
+
+				currentIndex = (currentIndex + 1) % WEEKDAY_NAMES.length;
+			}
+
+			return days;
+		}
+
+		return normalizedLabel
+			.split(/\s*(?:,|and)\s*/)
+			.map((token) => token.trim())
+			.filter((token) => WEEKDAY_NAMES.includes(token));
+	}
+
+	function buildHoursSchedule(sections) {
+		const days = Object.fromEntries(WEEKDAY_NAMES.map((day) => [day, []]));
+		let note = '';
+
+		for (const section of sections) {
+			if (!note) {
+				note = section.paragraphs.find((paragraph) => /kitchen service/i.test(paragraph)) || '';
+			}
+
+			for (const entry of section.entries) {
+				const entryDays = expandHoursEntryDays(entry.label);
+
+				if (!entryDays.length) {
+					continue;
+				}
+
+				const time = normalizeInlineText(entry.lines);
+
+				for (const day of entryDays) {
+					days[day].push({
+						service: section.title,
+						time,
+					});
+				}
+			}
+		}
+
+		return { days, note };
+	}
+
+	function renderHomeHoursCard() {
+		const hoursMarkdown = readFileSync(hoursContentPath, 'utf8');
+		const sections = parseHoursMarkdown(hoursMarkdown);
+		const hoursSchedule = buildHoursSchedule(sections);
+
+		return [
+			`<section class="visit-info-block light home-visit-card home-visit-card--hours" data-home-hours-card data-hours-schedule="${escapeHtml(JSON.stringify(hoursSchedule))}">`,
+			'\t\t\t\t\t<span class="visit-info-label">Today at Foragers</span>',
+			'\t\t\t\t\t<h3 class="home-visit-card__title">Current service on the Sunshine Coast</h3>',
+			'\t\t\t\t\t<div class="home-visit-card__service-panel">',
+			'\t\t\t\t\t\t<p class="home-visit-card__status" data-home-hours-status>Checking today\'s hours...</p>',
+			'\t\t\t\t\t\t<p class="home-visit-card__day" data-home-hours-day>Sunshine Coast time</p>',
+			'\t\t\t\t\t\t<div class="home-visit-card__hours" data-home-hours-content>',
+				'\t\t\t\t\t\t<p>See current dining lounge and tasting room hours.</p>',
+			'\t\t\t\t\t\t</div>',
+			'\t\t\t\t\t\t<p class="home-visit-card__note" data-home-hours-note hidden></p>',
+			'\t\t\t\t\t</div>',
+			'\t\t\t\t\t<a class="home-visit-card__link" href="visit-foragers.html#here-on-the-coast">View full hours and directions</a>',
+			'\t\t\t\t</section>',
+		].join('\n');
+	}
+
+	function parseEventActiveRange(value, eventTitle) {
+		if (!value) {
+			return null;
+		}
+
+		const rangeMatch = value.match(/^(\d{4}-\d{2}-\d{2})(?:\.\.(\d{4}-\d{2}-\d{2}))?$/);
+
+		if (!rangeMatch) {
+			throw new Error(`Homepage event "${eventTitle}" has an invalid @active range. Use YYYY-MM-DD or YYYY-MM-DD..YYYY-MM-DD.`);
+		}
+
+		return {
+			starts: rangeMatch[1],
+			ends: rangeMatch[2] ?? rangeMatch[1],
+		};
+	}
+
+	function parseEventDays(value, eventTitle) {
+		if (!value) {
+			return [];
+		}
+
+		const normalizedValue = value
+			.toLowerCase()
+			.replace(/\b(sundays|mondays|tuesdays|wednesdays|thursdays|fridays|saturdays)\b/g, (day) => day.slice(0, -1));
+		const days = expandHoursEntryDays(normalizedValue);
+
+		if (!days.length) {
+			throw new Error(`Homepage event "${eventTitle}" has an invalid @days decorator. Use weekday names like Saturday or Saturday, Sunday.`);
+		}
+
+		return days;
+	}
+
+	function renderEventMeta(event) {
+		if (!event.where && !event.address) {
+			return '';
+		}
+
+		const mapQuery = [event.where, event.address].filter(Boolean).join(', ');
+		const mapHref = event.address
+			? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`
+			: '';
+
+		return [
+			'\t\t\t\t\t\t\t<div class="home-event-card__location">',
+			'\t\t\t\t\t\t\t\t<span class="home-event-card__location-label">Where</span>',
+			event.where && event.address ? `\t\t\t\t\t\t\t\t<a class="home-event-card__venue" href="${escapeHtml(mapHref)}" target="_blank" rel="noopener" aria-label="View ${escapeHtml(mapQuery)} on Google Maps">${escapeHtml(event.where)}</a>` : '',
+			event.where && !event.address ? `\t\t\t\t\t\t\t\t<span class="home-event-card__venue">${escapeHtml(event.where)}</span>` : '',
+			!event.where && event.address ? `\t\t\t\t\t\t\t\t<a class="home-event-card__venue" href="${escapeHtml(mapHref)}" target="_blank" rel="noopener" aria-label="View ${escapeHtml(event.address)} on Google Maps">${escapeHtml(event.address)}</a>` : '',
+			'\t\t\t\t\t\t\t</div>',
+		].filter(Boolean).join('\n');
+	}
+
+	function renderEventDescription(event) {
+		if (!event.descriptionParagraphs.length) {
+			return '';
+		}
+
+		const paragraphMarkup = event.descriptionParagraphs
+			.map((paragraph) => {
+				const paragraphText = paragraph
+					.map((line) => escapeHtml(line))
+					.join('<br>');
+
+				return `\t\t\t\t\t\t\t<p class="home-event-card__copy">${paragraphText}</p>`;
+			})
+			.join('\n');
+
+		return [
+			'\t\t\t\t\t\t<div class="home-event-card__description">',
+			paragraphMarkup,
+			'\t\t\t\t\t\t</div>',
+		].join('\n');
+	}
+
+	function renderEventFooter(event) {
+		const eventMeta = renderEventMeta(event);
+		const eventLink = event.linkHref
+			? `\t\t\t\t\t\t\t<a class="home-event-card__link" href="${escapeHtml(event.linkHref)}" aria-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}">${escapeHtml(event.linkLabel)}</a>`
+			: '';
+
+		if (!eventMeta && !eventLink) {
+			return '';
+		}
+
+		return [
+			'\t\t\t\t\t\t<div class="home-event-card__footer">',
+			eventMeta,
+			eventLink,
+			'\t\t\t\t\t\t</div>',
+		].filter(Boolean).join('\n');
+	}
+
+	function getTodayDateString() {
+		const parts = new Intl.DateTimeFormat('en-CA', {
+			timeZone: 'America/Vancouver',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+		}).formatToParts(new Date());
+		const dateParts = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+
+		return `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+	}
+
+	function isEventActive(event, today) {
+		if (!event.active) {
+			return false;
+		}
+
+		return today <= event.active.ends;
+	}
+
+	function isEventToday(event, today, todayWeekday) {
+		if (!event.active) {
+			return false;
+		}
+
+		if (event.active.starts > today || today > event.active.ends) {
+			return false;
+		}
+
+		return !event.days.length || event.days.includes(todayWeekday);
+	}
+
+	function getWeekdayName(dateString) {
+		const [year, month, day] = dateString.split('-').map(Number);
+		const date = new Date(Date.UTC(year, month - 1, day));
+
+		return WEEKDAY_NAMES[date.getUTCDay()];
+	}
+
+	function parseEventsMarkdown(contentPath) {
+		const markdown = readFileSync(contentPath, 'utf8');
+		const events = [];
+		let currentEvent = null;
+		let descriptionLines = [];
+		let isInComment = false;
+
+		function parseEventDescriptionParagraphs(lines) {
+			const paragraphs = [];
+			let currentParagraph = [];
+
+			function flushParagraph() {
+				if (currentParagraph.length) {
+					paragraphs.push(currentParagraph);
+					currentParagraph = [];
+				}
+			}
+
+			for (const line of lines) {
+				const trimmedLine = line.trim();
+
+				if (!trimmedLine) {
+					flushParagraph();
+					continue;
+				}
+
+				currentParagraph.push(trimmedLine);
+			}
+
+			flushParagraph();
+
+			return paragraphs;
+		}
+
+		function flushEvent() {
+			if (!currentEvent) {
+				descriptionLines = [];
+				return;
+			}
+
+			events.push({
+				...currentEvent,
+				descriptionParagraphs: parseEventDescriptionParagraphs(descriptionLines),
+			});
+
+			currentEvent = null;
+			descriptionLines = [];
+		}
+
+		for (const line of markdown.split(/\r?\n/)) {
+			const trimmed = line.trim();
+
+			if (isInComment) {
+				if (trimmed.includes('-->')) {
+					isInComment = false;
+				}
+
+				continue;
+			}
+
+			if (trimmed.startsWith('<!--')) {
+				if (!trimmed.includes('-->')) {
+					isInComment = true;
+				}
+
+				continue;
+			}
+
+			if (trimmed === '') {
+				if (currentEvent) {
+					descriptionLines.push(line);
+				}
+
+				continue;
+			}
+
+			const headingMatch = trimmed.match(/^#{1,2}\s+(.+)$/);
+
+			if (headingMatch) {
+				flushEvent();
+				currentEvent = {
+					eyebrow: '',
+					title: headingMatch[1].trim(),
+					where: '',
+					address: '',
+					days: [],
+					linkHref: '',
+					linkLabel: 'Learn more',
+					active: null,
+				};
+
+				if (!currentEvent.title) {
+					throw new Error('Homepage event heading cannot be empty.');
+				}
+
+				continue;
+			}
+
+			if (!currentEvent) {
+				throw new Error(`Unexpected homepage event content before an event heading: "${trimmed}"`);
+			}
+
+			if (trimmed.startsWith('@')) {
+				const decoratorMatch = trimmed.match(/^@([a-z]+):\s*(.+)$/);
+
+				if (!decoratorMatch) {
+					throw new Error(`Invalid homepage event decorator: "${trimmed}"`);
+				}
+
+				const [, decorator, value] = decoratorMatch;
+
+				if (decorator === 'eyebrow') {
+					currentEvent.eyebrow = value.trim();
+					continue;
+				}
+
+				if (decorator === 'where') {
+					currentEvent.where = value.trim();
+					continue;
+				}
+
+				if (decorator === 'address') {
+					currentEvent.address = value.trim();
+					continue;
+				}
+
+				if (decorator === 'days') {
+					currentEvent.days = parseEventDays(value.trim(), currentEvent.title);
+					continue;
+				}
+
+				if (decorator === 'link') {
+					const [href, label = 'Learn more'] = value.split('|').map((part) => part.trim());
+
+					if (!href) {
+						throw new Error(`Homepage event "${currentEvent.title}" has an invalid @link decorator. Use href or href | label.`);
+					}
+
+					currentEvent.linkHref = href;
+					currentEvent.linkLabel = label;
+					continue;
+				}
+
+				if (decorator === 'active') {
+					currentEvent.active = parseEventActiveRange(value.trim(), currentEvent.title);
+					continue;
+				}
+
+				throw new Error(`Unknown homepage event decorator: "@${decorator}"`);
+			}
+
+			descriptionLines.push(trimmed);
+		}
+
+		flushEvent();
+		return events;
+	}
+
+	function parseEventsContent() {
+		const events = parseEventsMarkdown(eventsContentPath);
+		const evergreenEvents = parseEventsMarkdown(evergreenEventsContentPath);
+
+		const today = getTodayDateString();
+		const todayWeekday = getWeekdayName(today);
+		const activeEvents = events
+			.filter((event) => isEventActive(event, today))
+			.map((event) => ({
+				...event,
+				isToday: isEventToday(event, today, todayWeekday),
+			}));
+
+		if (activeEvents.length >= 3) {
+			return activeEvents;
+		}
+
+		return [
+			...activeEvents,
+			...evergreenEvents.slice(0, 3 - activeEvents.length).map((event) => ({
+				...event,
+				isToday: false,
+			})),
+		];
+	}
+
+	function renderHomeEventsGrid() {
+		const events = parseEventsContent();
+		const eventMarkup = events.map((event) => [
+			`\t\t\t\t\t<article class="home-event-card${event.isToday ? ' home-event-card--today' : ''}">`,
+			event.eyebrow ? `\t\t\t\t\t\t<span class="home-event-card__eyebrow">${escapeHtml(event.eyebrow)}</span>` : '',
+			`\t\t\t\t\t\t<h3 class="home-event-card__title">${escapeHtml(event.title)}</h3>`,
+			renderEventDescription(event),
+			renderEventFooter(event),
+			'\t\t\t\t\t</article>',
+		].filter(Boolean).join('\n')).join('\n');
+
+		return [
+			'<div class="home-events-grid" aria-label="Current featured experiences at Foragers">',
+			eventMarkup,
+			'\t\t\t\t</div>',
+		].join('\n');
+	}
+
+	function renderHomeBanner() {
+		const markdown = readFileSync(homeBannerContentPath, 'utf8');
+		const paragraphs = [];
+		let heading = '';
+		let paragraphLines = [];
+
+		function flushParagraph() {
+			const paragraphText = normalizeInlineText(paragraphLines);
+
+			if (paragraphText) {
+				paragraphs.push(paragraphText);
+			}
+
+			paragraphLines = [];
+		}
+
+		for (const line of markdown.split(/\r?\n/)) {
+			const trimmed = line.trim();
+
+			if (trimmed === '') {
+				flushParagraph();
+				continue;
+			}
+
+			const headingMatch = trimmed.match(/^#{1,2}\s+(.+)$/);
+
+			if (headingMatch && !heading) {
+				flushParagraph();
+				heading = headingMatch[1].trim();
+				continue;
+			}
+
+			paragraphLines.push(trimmed);
+		}
+
+		flushParagraph();
+
+		if (!heading) {
+			throw new Error('Home banner content must start with a Markdown heading.');
+		}
+
+		const paragraphMarkup = paragraphs
+			.map((paragraph) => `\t\t\t\t<p>${renderMarkdownInline(paragraph)}</p>`)
+			.join('\n');
+
+		return [
+			`<div id="banner-home" class='centred'><div>`,
+			`\t\t\t\t<h2>${renderMarkdownInline(heading)}</h2>`,
+			paragraphMarkup,
+			'\t\t\t</div></div>',
+		].filter(Boolean).join('\n');
+	}
+
 	function renderPartial(partialName, currentPage) {
 		return readPartial(partialName)
 			.replace(/ \{\{aria-current:([^}]+)\}\}/g, (_, pageName) => (
@@ -416,7 +927,10 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return resolvedPath === menuContentPath
 			|| resolvedPath === patioContentPath
 			|| resolvedPath === cocktailsContentPath
-			|| resolvedPath === hoursContentPath;
+			|| resolvedPath === hoursContentPath
+			|| resolvedPath === homeBannerContentPath
+			|| resolvedPath === eventsContentPath
+			|| resolvedPath === evergreenEventsContentPath;
 	}
 
 	function renderInclude(includeName, currentPage) {
@@ -449,6 +963,18 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 		if (includeName === 'hours-grid') {
 			return renderHoursGrid();
+		}
+
+		if (includeName === 'home-hours-card') {
+			return renderHomeHoursCard();
+		}
+
+		if (includeName === 'home-events-grid') {
+			return renderHomeEventsGrid();
+		}
+
+		if (includeName === 'home-banner') {
+			return renderHomeBanner();
 		}
 
 		return renderPartial(includeName, currentPage);
@@ -485,8 +1011,12 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		configureServer(server) {
 			server.watcher.add(partialsRoot);
 			server.watcher.add(menuContentPath);
+			server.watcher.add(patioContentPath);
 			server.watcher.add(cocktailsContentPath);
 			server.watcher.add(hoursContentPath);
+			server.watcher.add(homeBannerContentPath);
+			server.watcher.add(eventsContentPath);
+			server.watcher.add(evergreenEventsContentPath);
 		},
 		handleHotUpdate(ctx) {
 			if (!isPartialFile(ctx.file) && !isGeneratedContentFile(ctx.file)) {

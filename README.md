@@ -2,6 +2,16 @@
 
 This project is a Vite-built multi-page site. Most page content lives directly in `src/*.html`, with a few shared pieces rendered at build time from partials and content files.
 
+Shared generated content currently includes:
+
+- `src/content/menu.md` for the dining menu
+- `src/content/patio.md` for the patio menu
+- `src/content/cocktails.md` for cocktails
+- `src/content/home-banner.md` for the homepage announcement banner
+- `src/content/hours.md` for the Visit Foragers hours grid and homepage today-hours card
+- `src/content/events.md` for dated homepage events and listings
+- `src/content/evergreen-events.md` for fallback homepage events and gatherings cards
+
 ## Editing the Menu
 
 The dining menu on `On the Table` is generated from:
@@ -77,16 +87,58 @@ The built site is written to:
 
 `dist/`
 
-## Google Reviews In The Footer
+## Editing Homepage Events
 
-The footer can load the latest three five-star Google reviews for Foragers in the browser.
+The homepage `Events & Gatherings` cards are generated from two files:
+
+- `src/content/events.md` for dated listings
+- `src/content/evergreen-events.md` for evergreen fallback cards
+
+Each event starts with a `#` or `##` heading. Decorators under the heading set the card metadata, and the body text becomes the card description.
+
+```md
+## Harvest Long Table Dinner
+@eyebrow: October 18
+@where: Foragers
+@address: 801 Leek Road, Roberts Creek, BC
+@active: 2026-09-20..2026-10-18
+@days: Saturday
+@link: reserve-your-place.html#opentable | Reserve your place
+
+A one-night seasonal dinner shaped by orchard fruit, coastal ingredients, and Foragers mead pairings.
+```
+
+Event decorators:
+
+- `@eyebrow:` optional small label above the event title
+- `@where:` optional location or venue line
+- `@address:` optional address line used for the Google Maps link; it is not displayed when paired with `@where`
+- `@link:` optional link destination, optionally followed by a label separated by `|`
+- `@active:` optional event date or inclusive event date range, using `YYYY-MM-DD` or `YYYY-MM-DD..YYYY-MM-DD`
+- `@days:` optional weekday names within an `@active` range, such as `Saturday` or `Saturday, Sunday`
+
+Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes. If one or two dated events are active, the homepage fills the remaining card slots with cards from `src/content/evergreen-events.md` until there are three cards. If three or more dated events are active, the homepage shows all active events instead of the evergreen set. If no dated events are active, the evergreen events are shown.
+
+Blank lines in event descriptions create separate paragraphs. Line breaks inside a paragraph are preserved as line breaks in the event card.
+
+## Google Reviews On The Homepage
+
+The homepage loads the available five-star Google reviews from an internal JSON endpoint, links each card to Google Maps, and randomly displays three of them on each page load. The displayed set forces one review from the newest-sorted Google Maps/Places legacy response when a five-star text review is available, then fills the remaining cards from the combined review pool. The Show more reviews button reveals up to two additional batches of three reviews before hiding, for a maximum of nine visible reviews.
+
+- local Vite dev and preview: `/api/google-reviews.json` is served by a Vite middleware
+- Netlify production: `/api/google-reviews.json` is redirected to `/.netlify/functions/google-reviews`
 
 Set one of these variables in a local `.env` file:
 
 - `VITE_GOOGLE_PLACES_API_KEY`
 - `VITE_GOOGLE_MAPS_API_KEY`
 
-These values are exposed client-side, so restrict the key to your allowed site domains. The key needs access to the Google Maps JavaScript API and Places API. If no key is present, the footer falls back to a static link to the Google Maps listing.
+For Netlify, set one of these environment variables in the site settings:
+
+- `GOOGLE_PLACES_API_KEY`
+- `GOOGLE_MAPS_API_KEY`
+
+The key stays server-side in production. Google Places only exposes a limited review subset rather than the full review history. The endpoint combines relevance-sorted reviews from Places API New with newest-sorted reviews from the legacy Place Details endpoint, but each source can still return at most five reviews. The legacy newest response is filtered to five-star text reviews after Google returns it, so there may not always be a usable newest review. If the endpoint cannot load reviews, the homepage falls back to a static Google Maps link.
 
 ## Contributor Notes
 

@@ -59,53 +59,87 @@
 			<ul id='hero-tag' role='heading' aria-level='1' aria-label='Mead. Fine dining. Friends.'>
 				<li aria-hidden='true'>Mead</li><li class='hex' aria-hidden='true'></li><li aria-hidden='true'>Fine&#8201;dining</li><li class='hex' aria-hidden='true'></li><li aria-hidden='true'>Friends</li>
 			</ul>
-			<div id="banner-home" class='centred'><h2><div>
-				<h2>Our <a href="/on-the-table#patio">summer patio menu</a> is now available</h2> 
-				<p>Join us in the afternoon to relax on our patio with a glass of handcrafted mead and a curated selection of snacks, or settle into our dining lounge in the evening for a full dining experience. We look forward to welcoming you.</p>
-			</div></h2></div>
+			<!-- @include:home-banner -->
 		</div>
-		<section class="content-section dark">
-			<div class='padding-top-medium'>
-				<h2 class='h3'>Mead, the original white wine</h2>
-				<h3 class='h2' aria-label='Discover the flavour of the coast at Foragers'>Discover the flavour of the Sunshine Coast</h3>
-				<div class='two-column'>
-					<div>
-						<p>Tucked between moss-covered forests and the gentle tide of the Salish Sea, Foragers is a place to slow down, gather and savour the Sunshine&nbsp;Coast.</p>
-						<p>Our mead, or "honey wine," begins with our own hives and the fruit, flowers and botanicals that grow around&nbsp;us.</p> 
-						<p>Each batch is crafted with care, shaped by the character of the season and the abundance of our coastal&nbsp;environment.</p>
-					</div>
-					<div>
-						<p>Mead is one of the world’s oldest fermented drinks, crafted across cultures for thousands of years. Long before modern winemaking, people discovered that honey, water and time could become something expressive, celebratory and deeply rooted in the&nbsp;land.</p>
-						<p>At Foragers, we carry that ancient tradition forward in a way that belongs here. Mead is more than a drink. It’s a reflection of the land, the season and the story of this&nbsp;place.</p>
-					</div>
+		
+		<section class="content-section dark home-utility" aria-labelledby="home-utility-title">
+			<div class='padding-top'>
+				<h2 class='h3'>Plan Your Visit</h2>
+				<h3 class='h2' id='home-utility-title'>Everything you need before you arrive in Roberts Creek</h3>
+				<p class="home-section-intro">Come for an afternoon tasting on the patio, or settle in for dinner and make an evening of it. Find today’s hours, current menus, reservations, and everything else you need before heading to Foragers.</p>
+				<div class="visit-info-grid home-visit-grid">
+					<!-- @include:home-hours-card -->
+					<section class="visit-info-block light home-visit-card">
+						<span class="visit-info-label">Menus &amp; Reservations</span>
+						<h3 class="home-visit-card__title">Discover what's being served on the plate</h3>
+						<ul class="home-link-list" role="list">
+							<li><a href="on-the-table.html#current-menu"><span>Dining lounge</span><strong>Dinner service menu</strong></a></li>
+							<li><a href="on-the-table.html#patio"><span>Patio and tasting room</span><strong>Afternoon menu</strong></a></li>
+						</ul>
+						<p>Menus change with harvest and sourcing, so the experience is always seasonal and always current.</p>
+						<a class="home-visit-card__link" href="reserve-your-place.html#opentable">Reserve your place</a>
+					</section>
+					<section class="visit-info-block light home-visit-card home-gift-card">
+						<span class="visit-info-label">E-Gift Certificates</span>
+						<h3 class="home-visit-card__title">Give the gift of a Foragers experience</h3>
+						<p>Share a future table, a tasting above the orchard, or a quiet glass of mead with someone who would savour the experience.</p>
+						<p>E-gift certificates are delivered digitally through Square, ready to send now or tuck away for a thoughtful occasion.</p>
+						<a class="home-visit-card__link" href="https://app.squareup.com/gift/MLRVQC6EJ0E4Q/order" target="square" rel="noopener" aria-label="Buy a Foragers e-gift certificate through Square, link opens a new tab or window">Buy an e-gift certificate</a>
+					</section>
 				</div>
 			</div>
 		</section>
+	
+
 		<div class='dark-light separator'>
 			<img src='assets/images/foragers-split-bg-2.png' alt='An artist sketch of the Foragers building' loading="lazy" />
 		</div>
-		<section class="content-section light">
+
+		<section class="content-section light home-events padding-bottom" aria-labelledby="home-events-title">
 			<div class='padding-bottom'>
-				<h2 class='h3'>An experience like no&nbsp;other</h2>
-				<h3 class='h2'>Come for the mead.  <span>Stay for what’s shared around the table.</span></h3>
-				<div class='two-column'>
-					<div>
-						<p>Every pour at Foragers captures a fleeting moment in the seasons. From the first blossoms of spring to the deep gold of late harvest, no two batches are ever quite the same.</p>
-						<p>We don’t chase uniformity. We celebrate the expression of land, season and craft. Each glass carries a sense of where it began and the care that brought it to life.</p>
-					</div>
-					<div>
-						<p>That same philosophy extends to the plate.</p>
-						<p>Ingredients are chosen for character and flavour, then prepared with a deft touch that lets them speak for themselves.</p>
-						<p>Mead and food come together at the table, where thoughtful pairings and shared plates invite you to linger, enjoy good company and savour the moment.</p>
-					</div>
-				</div>
+				<h2 class='h3'>Events &amp; Gatherings</h2>
+				<h3 class='h2' id='home-events-title'>Places to meet, things to do and good company to share</h3>
+				<p class="home-section-intro">From regular markets to special gatherings, there are plenty of ways to connect with Foragers and our coastal community. See what’s happening at our place and where to find us around the Coast.</p>
+				<!-- @include:home-events-grid -->
 			</div>
 		</section>
+
 		<!-- ORCHARD BANNER: full-width atmospheric image break -->
 		<div class='light-dark'>
 			<div class='orchard-banner banner mask'></div>
 		</div>
-		<section class="content-section dark">
+
+		<!-- Marker -->
+		<div class="dark padding-block-medium marker">
+			<div class='marker-section'>The orchard is just the beginning</div>
+		</div>
+
+		<section class="guest-reviews padding-bottom" aria-labelledby="guest-reviews-title" data-google-reviews>
+			<div class="guest-reviews__inner">
+				<div class="guest-reviews__intro">
+					<span class="guest-reviews__eyebrow">Guest Reviews</span>
+					<h2 class="guest-reviews__title" id="guest-reviews-title">Recent reviews from our guests</h2>
+					<p class="guest-reviews__copy">A few kind words shared online</p>
+				</div>
+				<div class="guest-reviews__list guest-reviews__list--fallback" data-google-reviews-list aria-live="polite">
+					<article class="guest-review guest-review--fallback">
+						<p>Browse the latest guest feedback on Google Maps.</p>
+					</article>
+				</div>
+				<div class="guest-reviews__cta">
+					<button class="guest-reviews__show-more btn btn-light dark-outline" type="button" data-google-reviews-more hidden>Show a few more reviews</button>
+					<a class="guest-reviews__link btn btn-light dark-outline out" target="maps" aria-label="Read more guest reviews in Google Maps, link opens a new tab or window" data-google-reviews-link href="https://maps.app.goo.gl/MNqdr5MjNo6ozEzy6">Read more guest reviews</a>
+				</div>
+				<div class="guest-reviews__cta">
+					<a class="guest-reviews__link btn btn-light dark-outline instagram" target="instagram" aria-label="Follow us on Instagram, link opens a new tab or window" href="https://www.instagram.com/foragersmead/">Follow us on Instagram</a>
+					<a class="guest-reviews__link btn btn-light dark-outline facebook" target="facebook" aria-label="Follow us on Facebook, link opens a new tab or window" href="https://www.facebook.com/p/Foragers-Meadery-61577936399345/">Follow us on Facebook</a>
+					<a class="guest-reviews__link btn btn-light dark-outline tripadvisor" target="tripadvisor" aria-label="Read about Foragers on Tripadvisor, link opens a new tab or window" href="https://www.tripadvisor.ca/Restaurant_Review-g800378-d34440531-Reviews-Foragers_Meadery-Roberts_Creek_Sunshine_Coast_British_Columbia.html">Find us on Tripadvisor</a>
+					<a class="guest-reviews__link btn btn-light dark-outline opentable" target="opentable" aria-label="Reserve Foragers on OpenTable, link opens a new tab or window" href="https://www.opentable.ca/r/foragers-meadery-roberts-creek">Reserve on OpenTable</a>
+				</div>
+			</div>
+		</section>
+		
+		<!--section class="content-section dark">
 			<div class='padding-block'>
 				<h2 class='h3'>Where our story starts</h2>
 				<h3 class='h2'>The orchard</h3>
@@ -122,28 +156,9 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section-->
 
-		<!-- Marker -->
-		<div class="dark margin-bottom marker">
-			<div class='marker-section'>The orchard is just the beginning</div>
-		</div>
 
-		<section class="guest-reviews" aria-labelledby="guest-reviews-title" data-google-reviews data-google-place-query="Foragers Meadery Roberts Creek BC">
-				<div class="guest-reviews__inner">
-					<div class="guest-reviews__intro">
-						<span class="guest-reviews__eyebrow">Guest Reviews</span>
-						<h2 class="guest-reviews__title" id="guest-reviews-title">Recent reviews from our guests</h2>
-						<p class="guest-reviews__copy">A few kind words shared online</p>
-						<a class="guest-reviews__link" data-google-reviews-link href="https://maps.app.goo.gl/MNqdr5MjNo6ozEzy6">Read more reviews</a>
-					</div>
-					<div class="guest-reviews__list guest-reviews__list--fallback" data-google-reviews-list aria-live="polite">
-						<article class="footer-review footer-review--fallback">
-							<p>Browse the latest guest feedback on Google Maps.</p>
-						</article>
-					</div>
-				</div>
-			</section>
 
 		<!-- CTA -->
 		<section class="cta-section">
@@ -151,8 +166,8 @@
 				<h2>Come experience it for&nbsp;yourself</h2>
 				<p>Join us above the orchard for seasonal mead, small plates and an experience shaped entirely by this place.</p>
 				<div class="btn-group">
-					<a href="reserve-your-place#opentable" class="btn btn-ghost">Reserve a Table</a>
-					<a href="where-it-begins" class="btn btn-light next">Where it begins</a>
+					<a href="reserve-your-place.html#opentable" class="btn btn-ghost">Reserve a Table</a>
+					<a href="where-it-begins.html" class="btn btn-light next">Where it begins</a>
 				</div>
 			</div>
 		</section>
