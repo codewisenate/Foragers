@@ -601,7 +601,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	function renderEventFooter(event) {
 		const eventMeta = renderEventMeta(event);
 		const eventLink = event.linkHref
-			? `\t\t\t\t\t\t\t<a class="home-event-card__link" href="${escapeHtml(event.linkHref)}" aria-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}" title='Opens in a new tab or window' target='event'></a>`
+			? `\t\t\t\t\t\t\t<a class="home-event-card__link" href="${escapeHtml(event.linkHref)}" aria-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}" data-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}" title='Opens in a new tab or window' target='event'></a>`
 			: '';
 
 		if (!eventMeta && !eventLink) {
