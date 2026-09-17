@@ -628,6 +628,11 @@ header {
 		transition: color 180ms ease;
 	}
 
+	.guest-review--link:is(:hover, :focus-visible) {
+		outline: 1px solid #d49712;
+		outline-offset: 2px;
+	}
+
 
 	.guest-review--link:is(:hover, :focus-visible) .guest-review__stars {
 		color: #ffae00;
