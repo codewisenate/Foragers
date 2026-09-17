@@ -1752,7 +1752,7 @@ body.home {
 	.home-event-card__link {
 		width: fit-content;
 		margin-top: 0;
-		align-self: end;
+		justify-self: end;
 		margin-bottom: 4px;
 		color: var(--text);
 		font-size: 0.8rem;
