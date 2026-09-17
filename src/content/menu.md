@@ -26,19 +26,19 @@ Almond, Cucumber, Nasturtium
 
 Goats Cheese, Elderflower, Fennel
 
-# Mains *$48–$70*
+# Mains *$48–$72*
+
+## Roasted Venison Saddle
+
+Carrot, Wild Blackberry, Brown Butter
 
 ## Grilled Bison Striploin
 
 Tomato, Romesco, Almond, Basil
   
-## Confit Halibut
+## Pan Seared Wild Salmon
 
-Vermouth, Brandade, Summer Squash
-
-## Seared Duck Breast
-
-Carrot, Wild Blackberry, Brown Butter
+Corn, Baby Potato, Parsley
 
 ## Crab Mafalda
 
