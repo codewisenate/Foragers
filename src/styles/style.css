@@ -2861,6 +2861,7 @@ nav {
    ============================================================ */
 
 .menu-grid {
+	background: linear-gradient(180deg,var(--light) 0%,var(--tint) 100%);
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(600px, 100%), 1fr));
 	gap: 0;
