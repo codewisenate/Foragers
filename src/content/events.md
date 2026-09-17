@@ -5,7 +5,7 @@ Homepage dated events format:
 - @eyebrow: optional date/time label shown above the title.
 - @where: optional venue/location label.
 - @address: optional address used only for the Google Maps link on @where.
-- @link: optional destination, or destination | custom label. Defaults to "Learn more" when no label is provided.
+- @link: optional destination, or destination | custom label. Defaults to "Details" when no label is provided.
 - @active: event date or date range, using YYYY-MM-DD or YYYY-MM-DD..YYYY-MM-DD.
 - @days: optional weekday names within an @active range, such as Saturday or Saturday, Sunday. Use this for recurring weekly events.
 

@@ -742,7 +742,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 					address: '',
 					days: [],
 					linkHref: '',
-					linkLabel: 'Learn more',
+					linkLabel: 'Details',
 					active: null,
 				};
 
@@ -787,7 +787,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 				}
 
 				if (decorator === 'link') {
-					const [href, label = 'Learn more'] = value.split('|').map((part) => part.trim());
+					const [href, label = 'Details'] = value.split('|').map((part) => part.trim());
 
 					if (!href) {
 						throw new Error(`Homepage event "${currentEvent.title}" has an invalid @link decorator. Use href or href | label.`);

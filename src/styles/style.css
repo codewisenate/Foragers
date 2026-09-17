@@ -1734,7 +1734,7 @@ body.home {
 		display: inline-block;
 		width: 0.42em;
 		height: 0.42em;
-		margin-left: 0.38rem;
+		margin-left: 0;
 		border-top: 1.5px solid currentColor;
 		border-right: 1.5px solid currentColor;
 		transform: rotate(45deg) translateY(-0.08em);
