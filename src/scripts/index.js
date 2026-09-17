@@ -51,16 +51,16 @@ if (navToggle && navMenu) {
 	});
 
 	const banner = document.querySelector('#banner-location');
-	const navMenu = document.querySelector('.nav-toggle');
+	const navToggleButton = document.querySelector('.nav-toggle');
 
-	if (banner && navMenu) {
+	if (banner && navToggleButton) {
 		const originalParent = banner.parentNode;
 		const originalNextSibling = banner.nextSibling;
 		const mediaQuery = window.matchMedia('(max-width: 780px)');
 
 		function moveBanner(event) {
 			if (event.matches) {
-				navMenu.after(banner);
+				navToggleButton.after(banner);
 			} else {
 				if (originalNextSibling) {
 					originalParent.insertBefore(banner, originalNextSibling);
@@ -389,7 +389,7 @@ if (footerBackToTopButton instanceof HTMLButtonElement) {
 
 const GOOGLE_REVIEW_BATCH_SIZE = 3;
 const GOOGLE_REVIEW_MAX_VISIBLE = 9;
-const GOOGLE_REVIEWS_CACHE_KEY = 'foragers-google-reviews-v7';
+const GOOGLE_REVIEWS_CACHE_KEY = 'foragers-google-reviews-v8';
 const GOOGLE_REVIEWS_CACHE_TTL_MS = 30 * 60 * 1000;
 const GOOGLE_REVIEWS_ENDPOINT = '/api/google-reviews.json';
 const footerReviewsSection = document.querySelector('[data-google-reviews]');
@@ -583,7 +583,10 @@ function writeFooterReviewsCache(reviewsData) {
 }
 
 async function fetchGoogleReviews() {
-	const response = await fetch(GOOGLE_REVIEWS_ENDPOINT, {
+	const requestUrl = new URL(GOOGLE_REVIEWS_ENDPOINT, window.location.origin);
+	requestUrl.searchParams.set('v', '2');
+
+	const response = await fetch(requestUrl, {
 		headers: {
 			Accept: 'application/json',
 		},
