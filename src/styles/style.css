@@ -625,6 +625,7 @@ header {
 		letter-spacing: 0.18em;
 		line-height: 1;
 		text-transform: uppercase;
+		transition: color 180ms ease;
 	}
 
 
@@ -633,6 +634,30 @@ header {
 		text-decoration: underline;
 		text-decoration-thickness: 1.5px;
 		/* font-size: 1.25rem; */
+	}
+
+	.guest-review--link .guest-review__source::after {
+		background-image: var(--out-arrow-dark);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		content: "";
+		display: block;
+		width: .85rem;
+		height: .85rem;
+		position: absolute;
+		right: .42rem;
+		top: 50%;
+		transform: translate(-0.2rem, -50%) scale(0.85);
+		opacity: 0;
+		transition:
+			opacity 180ms ease,
+			transform 180ms ease;
+	}
+
+	.guest-review--link:is(:hover, :focus-visible) .guest-review__source::after {
+		opacity: .75;
+		transform: translate(0, -50%) scale(1.2);
 	}
 
 	.guest-review__meta {
@@ -658,7 +683,13 @@ header {
 		letter-spacing: 0.08em;
 		line-height: 1;
 		padding: 0.28rem 0.45rem;
+		position: relative;
 		text-transform: uppercase;
+		transition: padding-right 180ms ease;
+	}
+
+	.guest-review--link:is(:hover, :focus-visible) .guest-review__source {
+		padding-right: 1.55rem;
 	}
 }
 

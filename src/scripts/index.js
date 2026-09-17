@@ -466,8 +466,10 @@ function createFooterReviewCard(review) {
 
 	if (card instanceof HTMLAnchorElement) {
 		card.href = review.url;
+		card.target = '_blank';
+		card.rel = 'noopener';
 		card.classList.add('guest-review--link');
-		card.setAttribute('aria-label', `Read the Google review from ${review.authorName}`);
+		card.setAttribute('aria-label', `Read the Google review from ${review.authorName}, link opens a new tab or window`);
 	}
 
 	const stars = document.createElement('p');
