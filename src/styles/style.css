@@ -3363,8 +3363,7 @@ nav {
 .btn {
 	border-radius: 0.25rem;
 	display: inline-block;
-	padding: 0.5rem 1rem 0.35rem;
-	;
+	padding: 1rem 1rem 0.75rem;
 	font-family: "Roboto", sans-serif;
 	font-size: 0.65rem;
 	font-weight: 300;
@@ -3376,6 +3375,7 @@ nav {
 	transition:
 		opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
 		transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	text-box: cap;
 
 	&:hover,
 	&:focus-visible {
