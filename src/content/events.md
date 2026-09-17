@@ -16,7 +16,7 @@ Evergreen fallback cards live in evergreen-events.md.
 
 # Sechelt Farmers' & Artisans' Market
 @eyebrow: Every Saturday 9AM to 2PM
-@where: Cowrie St behind library
+@where: Cowrie Street behind the library
 @address: 5800 Cowrie St, Sechelt, BC V7Z 0V1
 @active: 2026-07-01..2026-10-17
 @days: Saturday
