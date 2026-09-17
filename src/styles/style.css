@@ -2569,7 +2569,7 @@ nav {
 }
 
 @media (width <=780px) {
-	* {
+	body {
 		overflow-x: clip;
 	}
 
