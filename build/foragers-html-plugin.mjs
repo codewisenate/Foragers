@@ -601,8 +601,10 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function renderEventFooter(event) {
 		const eventMeta = renderEventMeta(event);
+		const eventVisualLabel = event.linkLabel || `Details about ${event.title}`;
+		const eventAriaLabel = event.linkLabel ? `${event.linkLabel}. For ${event.title}.` : eventVisualLabel;
 		const eventLink = event.linkHref
-			? `\t\t\t\t\t\t\t<a class="home-event-card__link" href="${escapeHtml(event.linkHref)}" aria-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}" data-label="${escapeHtml(`${event.linkLabel} about ${event.title}`)}" title='Opens in a new tab or window' target='event'></a>`
+			? `\t\t\t\t\t\t\t<a class="home-event-card__link" href="${escapeHtml(event.linkHref)}" aria-label="${escapeHtml(eventAriaLabel)}" data-label="${escapeHtml(eventVisualLabel)}" title='Opens in a new tab or window' target='event'></a>`
 			: '';
 
 		if (!eventMeta && !eventLink) {
@@ -743,7 +745,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 					address: '',
 					days: [],
 					linkHref: '',
-					linkLabel: 'Details',
+					linkLabel: '',
 					active: null,
 				};
 
@@ -788,7 +790,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 				}
 
 				if (decorator === 'link') {
-					const [href, label = 'Details'] = value.split('|').map((part) => part.trim());
+					const [href, label = ''] = value.split('|').map((part) => part.trim());
 
 					if (!href) {
 						throw new Error(`Homepage event "${currentEvent.title}" has an invalid @link decorator. Use href or href | label.`);

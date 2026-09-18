@@ -114,7 +114,7 @@ Event decorators:
 - `@eyebrow:` optional small label above the event title
 - `@where:` optional location or venue line
 - `@address:` optional address line used for the Google Maps link; it is not displayed when paired with `@where`
-- `@link:` optional link destination, optionally followed by a label separated by `|`
+- `@link:` optional link destination, optionally followed by a label separated by `|`; a custom label fully replaces the default `Details about [event title]` label
 - `@active:` optional event date or inclusive event date range, using `YYYY-MM-DD` or `YYYY-MM-DD..YYYY-MM-DD`
 - `@days:` optional weekday names within an `@active` range, such as `Saturday` or `Saturday, Sunday`
 

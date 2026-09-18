@@ -1718,6 +1718,7 @@ body.home {
 
 	.home-event-card__location {
 		align-content: center;
+		color: var(--blue);
 		display: grid;
 		gap: 0.16rem;
 		margin: 0;
@@ -1748,12 +1749,13 @@ body.home {
 		font-weight: 500;
 		width: fit-content;
 		text-decoration-color: rgb(21 47 62 / 0.24);
-		text-decoration-thickness: 0.08em;
-		text-underline-offset: 0.18em;
+		text-decoration-thickness: 0.5px;
 	}
 
 	a.home-event-card__venue:is(:hover, :focus-visible) {
-		color: var(--green);
+		color: var(--darkblue);
+		text-decoration-thickness: 2px;
+		text-decoration-style: solid;
 	}
 
 	a.home-event-card__venue::before {
@@ -1768,26 +1770,40 @@ body.home {
 	}
 
 	.home-event-card__link {
+		display: inline-block;
+		width: fit-content;
+		margin-top: 0;
+		color: var(--text);
+		font-size: 0.8rem;
+		font-weight: 500;
+		line-height: 1.2;
+		padding: 1.13rem var(--event-card-padding);
+		transition:
+			color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.home-event-card__location + .home-event-card__link {
+		color: var(--blue);
 		display: inline-flex;
 		align-items: center;
 		justify-content: flex-end;
+		align-self: stretch;
+		justify-self: end;
 		gap: 0.4rem;
 		width: 3rem;
 		max-width: 90cqw;
 		min-width: 3rem;
 		overflow: hidden;
-		margin-top: 0;
 		padding: 0.82rem 0.95rem;
 		position: absolute;
 		inset-block: 0;
 		inset-inline-end: 0;
 		z-index: 2;
 		box-sizing: border-box;
-		color: var(--text);
-		font-size: 0.8rem;
-		font-weight: 500;
-		line-height: 1.2;
-		text-decoration: none;
+		border-inline-start: 0;
+		text-decoration: underline;
+		text-decoration-thickness: 0.5px;
 		transition:
 			color 180ms ease,
 			background-color 180ms ease,
@@ -1795,12 +1811,12 @@ body.home {
 			width 220ms ease;
 	}
 
-	.home-event-card__location + .home-event-card__link {
-		border-inline-start: 0;
-	}
-
 	.home-event-card__link::before {
 		content: attr(data-label);
+		color: var(--blue);
+	}
+
+	.home-event-card__location + .home-event-card__link::before {
 		max-width: 0;
 		min-width: 0;
 		overflow: hidden;
@@ -1814,7 +1830,7 @@ body.home {
 			transform 220ms ease;
 	}
 
-	.home-event-card__link::after {
+	.home-event-card__location + .home-event-card__link::after {
 		content: "";
 		flex: 0 0 auto;
 		width: 1rem;
@@ -1825,15 +1841,20 @@ body.home {
 	}
 
 	.home-event-card__link:is(:hover, :focus-visible) {
+		text-decoration-thickness: 1px;
+	}
+
+	.home-event-card__location + .home-event-card__link:is(:hover, :focus-visible) {
 		width: fit-content;
 		color: var(--darkblue);
 		background-color: rgb(250 245 232 / 0.96);
 		box-shadow:
 			-0.75rem 0 1.35rem rgb(21 47 62 / 0.12),
 			inset 0 0 0 1px rgb(103 115 72 / 0.24);
+		transform: none;
 	}
 
-	.home-event-card__link:is(:hover, :focus-visible)::before {
+	.home-event-card__location + .home-event-card__link:is(:hover, :focus-visible)::before {
 		max-width: calc(90cqw - 4rem);
 		opacity: 1;
 		transform: translateX(0);
