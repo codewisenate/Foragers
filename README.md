@@ -11,6 +11,7 @@ Shared generated content currently includes:
 - `src/content/hours.md` for the Visit Foragers hours grid and homepage today-hours card
 - `src/content/events.md` for dated homepage events and listings
 - `src/content/evergreen-events.md` for fallback homepage events and gatherings cards
+- `src/content/meads.md` for the editable Current Expressions mead cards
 
 ## Editing the Menu
 
@@ -120,6 +121,23 @@ Event decorators:
 Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes. If one or two dated events are active, the homepage fills the remaining card slots with cards from `src/content/evergreen-events.md` until there are three cards. If three or more dated events are active, the homepage shows all active events instead of the evergreen set. If no dated events are active, the evergreen events are shown.
 
 Blank lines in event descriptions create separate paragraphs. Line breaks inside a paragraph are preserved as line breaks in the event card.
+
+## Editing Current Expressions
+
+The editable mead cards on `In the Glass` are generated from `src/content/meads.md`. The first logo card and final building-sketch card remain static in `src/in-the-glass.html`.
+
+Each mead starts with a heading. Use `@available: false` to add the `.coming` class.
+
+```md
+# Elemental
+@tag: Light, floral, effortless
+@type: Mead
+@style: White
+@abv: 13.5
+@available: true
+
+Bright and wonderfully drinkable, with a refined, light honey character.
+```
 
 ## Google Reviews On The Homepage
 

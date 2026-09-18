@@ -32,6 +32,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 	const homeBannerContentPath = resolve(contentRoot, 'home-banner.md');
 	const eventsContentPath = resolve(contentRoot, 'events.md');
 	const evergreenEventsContentPath = resolve(contentRoot, 'evergreen-events.md');
+	const meadsContentPath = resolve(contentRoot, 'meads.md');
 	let outputDir = resolve(srcRoot, '..', 'dist');
 	const WEEKDAY_NAMES = [
 		'sunday',
@@ -839,6 +840,195 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		];
 	}
 
+	function parseBooleanDecorator(value, decoratorName, itemTitle) {
+		const normalizedValue = value.trim().toLowerCase();
+
+		if (normalizedValue === 'true') {
+			return true;
+		}
+
+		if (normalizedValue === 'false') {
+			return false;
+		}
+
+		throw new Error(`Mead "${itemTitle}" has an invalid @${decoratorName} decorator. Use true or false.`);
+	}
+
+	function parseMeadDescriptionParagraphs(lines) {
+		const paragraphs = [];
+		let paragraphLines = [];
+
+		function flushParagraph() {
+			const paragraphText = normalizeInlineText(paragraphLines);
+
+			if (paragraphText) {
+				paragraphs.push(paragraphText);
+			}
+
+			paragraphLines = [];
+		}
+
+		for (const line of lines) {
+			if (line.trim() === '') {
+				flushParagraph();
+				continue;
+			}
+
+			paragraphLines.push(line.trim());
+		}
+
+		flushParagraph();
+		return paragraphs;
+	}
+
+	function parseMeadsMarkdown(contentPath) {
+		const markdown = readFileSync(contentPath, 'utf8');
+		const meads = [];
+		let currentMead = null;
+		let descriptionLines = [];
+		let isInComment = false;
+
+		function flushMead() {
+			if (!currentMead) {
+				descriptionLines = [];
+				return;
+			}
+
+			if (!currentMead.tag) {
+				throw new Error(`Mead "${currentMead.title}" is missing @tag.`);
+			}
+
+			if (!currentMead.type) {
+				throw new Error(`Mead "${currentMead.title}" is missing @type.`);
+			}
+
+			if (!currentMead.style) {
+				throw new Error(`Mead "${currentMead.title}" is missing @style.`);
+			}
+
+			if (!currentMead.abv) {
+				throw new Error(`Mead "${currentMead.title}" is missing @abv.`);
+			}
+
+			currentMead.descriptionParagraphs = parseMeadDescriptionParagraphs(descriptionLines);
+			meads.push(currentMead);
+			currentMead = null;
+			descriptionLines = [];
+		}
+
+		for (const line of markdown.split(/\r?\n/)) {
+			const trimmed = line.trim();
+
+			if (isInComment) {
+				if (trimmed.includes('-->')) {
+					isInComment = false;
+				}
+
+				continue;
+			}
+
+			if (trimmed.startsWith('<!--')) {
+				if (!trimmed.includes('-->')) {
+					isInComment = true;
+				}
+
+				continue;
+			}
+
+			if (trimmed === '') {
+				if (currentMead) {
+					descriptionLines.push(line);
+				}
+
+				continue;
+			}
+
+			const headingMatch = trimmed.match(/^#{1,2}\s+(.+)$/);
+
+			if (headingMatch) {
+				flushMead();
+				currentMead = {
+					title: headingMatch[1].trim(),
+					tag: '',
+					type: '',
+					style: '',
+					abv: '',
+					available: true,
+					descriptionParagraphs: [],
+				};
+
+				if (!currentMead.title) {
+					throw new Error('Mead heading cannot be empty.');
+				}
+
+				continue;
+			}
+
+			if (!currentMead) {
+				throw new Error(`Unexpected mead content before a heading: "${trimmed}"`);
+			}
+
+			if (trimmed.startsWith('@')) {
+				const decoratorMatch = trimmed.match(/^@([a-z]+):\s*(.+)$/);
+
+				if (!decoratorMatch) {
+					throw new Error(`Invalid mead decorator: "${trimmed}"`);
+				}
+
+				const [, decorator, value] = decoratorMatch;
+
+				if (decorator === 'tag') {
+					currentMead.tag = value.trim();
+					continue;
+				}
+
+				if (decorator === 'type') {
+					currentMead.type = value.trim();
+					continue;
+				}
+
+				if (decorator === 'style') {
+					currentMead.style = value.trim();
+					continue;
+				}
+
+				if (decorator === 'abv') {
+					currentMead.abv = value.trim();
+					continue;
+				}
+
+				if (decorator === 'available') {
+					currentMead.available = parseBooleanDecorator(value, decorator, currentMead.title);
+					continue;
+				}
+
+				throw new Error(`Unknown mead decorator: "@${decorator}"`);
+			}
+
+			descriptionLines.push(trimmed);
+		}
+
+		flushMead();
+		return meads;
+	}
+
+	function renderMeadDetails(mead) {
+		return [mead.type, mead.style, `${mead.abv}% abv`]
+			.map((detail) => renderMarkdownInline(detail))
+			.join(' · ');
+	}
+
+	function renderMeadCards() {
+		return parseMeadsMarkdown(meadsContentPath).map((mead) => [
+			`\t\t\t\t\t<article class="mead-card light${mead.available ? '' : ' coming'}">`,
+			`\t\t\t\t\t\t<h4>${escapeHtml(mead.title)}</h4>`,
+			`\t\t\t\t\t\t<span class="mead-type-tag">${escapeHtml(mead.tag)}</span>`,
+			`\t\t\t\t\t\t<span class="mead-abv">${renderMeadDetails(mead)}</span>`,
+			...mead.descriptionParagraphs.map((paragraph) => `\t\t\t\t\t\t<p>${renderMarkdownInline(paragraph)}</p>`),
+			'\t\t\t\t\t</article>',
+		].join('\n')).join('\n');
+	}
+
 	function renderHomeEventsGrid() {
 		const events = parseEventsContent();
 		const eventMarkup = events.map((event) => [
@@ -930,7 +1120,8 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			|| resolvedPath === hoursContentPath
 			|| resolvedPath === homeBannerContentPath
 			|| resolvedPath === eventsContentPath
-			|| resolvedPath === evergreenEventsContentPath;
+			|| resolvedPath === evergreenEventsContentPath
+			|| resolvedPath === meadsContentPath;
 	}
 
 	function renderInclude(includeName, currentPage) {
@@ -977,6 +1168,10 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			return renderHomeBanner();
 		}
 
+		if (includeName === 'mead-cards') {
+			return renderMeadCards();
+		}
+
 		return renderPartial(includeName, currentPage);
 	}
 
@@ -1017,6 +1212,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			server.watcher.add(homeBannerContentPath);
 			server.watcher.add(eventsContentPath);
 			server.watcher.add(evergreenEventsContentPath);
+			server.watcher.add(meadsContentPath);
 		},
 		handleHotUpdate(ctx) {
 			if (!isPartialFile(ctx.file) && !isGeneratedContentFile(ctx.file)) {
