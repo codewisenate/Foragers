@@ -1206,6 +1206,7 @@ body.home {
 		#hero {
 			--hero-band-height: clamp(3.5rem, 4.2vw, 4.8rem);
 
+			box-sizing: border-box;
 			display: grid;
 			align-items: center;
 			position: relative;
@@ -1249,10 +1250,13 @@ body.home {
 			}
 
 			@media (width <= 760px) {
+				--hero-band-height: clamp(3.1rem, 12vw, 4rem);
+
 				align-items: end;
-				min-height: 35.7rem;
-				padding-block-start: 9rem;
-				background-position: 64% center;
+				height: min(31rem, 100svh);
+				min-height: 0;
+				padding-block: clamp(1rem, 4vw, 1.4rem) calc(var(--hero-band-height) + 1rem);
+				background-position: 75% center;
 			}
 		}
 
@@ -1299,11 +1303,14 @@ body.home {
 
 			@media (width <= 760px) {
 				margin-inline: auto;
-				padding-block: 2rem 2.35rem;
+				margin-block: 0;
+				overflow: clip;
+				padding-block: 1.55rem 1.9rem;
+				width: min(calc(100% - 2rem), 22rem);
 
 				&::after {
 					opacity: 0.62;
-					width: 12rem;
+					width: 9rem;
 				}
 			}
 		}
