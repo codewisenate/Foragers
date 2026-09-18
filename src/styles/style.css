@@ -1465,6 +1465,7 @@ body.home {
 				font-weight: 400;
 				margin: 1rem 0 0;
 				text-wrap: pretty;
+				line-height: 1.35;
 			}
 
 			& :is(p) {
@@ -1473,6 +1474,7 @@ body.home {
 				max-width: 120ch;
 				text-wrap: pretty;
 				font-weight: 100;
+				line-height: 1.5;
 			}
 		}
 
