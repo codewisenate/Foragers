@@ -1216,7 +1216,7 @@ body.home {
 			background-image: url('../assets/images/hero-home-03-bg-web.jpg');
 			background-repeat: no-repeat;
 			background-size: cover;
-			background-position: center center;
+			background-position: center bottom;
 			overflow: hidden;
 			z-index: 0;
 			isolation: isolate;
