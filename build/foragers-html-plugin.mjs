@@ -631,9 +631,15 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
 	}
 
-	function isEventActive(event, today) {
+	function isEventActive(event, today, todayWeekday) {
 		if (!event.active) {
 			return false;
+		}
+
+		if (event.days.length) {
+			return event.active.starts <= today
+				&& today <= event.active.ends
+				&& event.days.includes(todayWeekday);
 		}
 
 		return today <= event.active.ends;
@@ -823,7 +829,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		const today = getTodayDateString();
 		const todayWeekday = getWeekdayName(today);
 		const activeEvents = events
-			.filter((event) => isEventActive(event, today))
+			.filter((event) => isEventActive(event, today, todayWeekday))
 			.map((event) => ({
 				...event,
 				isToday: isEventToday(event, today, todayWeekday),

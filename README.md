@@ -116,7 +116,7 @@ Event decorators:
 - `@address:` optional address line used for the Google Maps link; it is not displayed when paired with `@where`
 - `@link:` optional link destination, optionally followed by a label separated by `|`; a custom label fully replaces the default `Details about [event title]` label
 - `@active:` optional event date or inclusive event date range, using `YYYY-MM-DD` or `YYYY-MM-DD..YYYY-MM-DD`
-- `@days:` optional weekday names within an `@active` range, such as `Saturday` or `Saturday, Sunday`
+- `@days:` optional weekday names within an `@active` range, such as `Saturday` or `Saturday, Sunday`; recurring cards only show on matching weekdays within the active range
 
 Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes. If one or two dated events are active, the homepage fills the remaining card slots with cards from `src/content/evergreen-events.md` until there are three cards. If three or more dated events are active, the homepage shows all active events instead of the evergreen set. If no dated events are active, the evergreen events are shown.
 
