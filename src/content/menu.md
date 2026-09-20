@@ -31,6 +31,10 @@ Goats Cheese, Elderflower, Fennel
 ## Grilled Elk Striploin
 
 Tomato, Romesco, Almond, Basil
+
+## Roasted Duck Breast
+
+Carrot, Wild Blackberry, Brown Butter
   
 ## Pan Seared Wild Salmon
 
