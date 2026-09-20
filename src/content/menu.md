@@ -28,11 +28,7 @@ Goats Cheese, Elderflower, Fennel
 
 # Mains *$48–$72*
 
-## Roasted Venison Saddle
-
-Carrot, Wild Blackberry, Brown Butter
-
-## Grilled Bison Striploin
+## Grilled Elk Striploin
 
 Tomato, Romesco, Almond, Basil
   
@@ -50,9 +46,9 @@ Pâté, Chive, Soy & Honey
 
 # Desserts *$14–$16*
 
-## Lemon Tart
+## Pumpkin Cheesecake
 
-Espresso, Preserved Lemon
+Cinnamon, Espresso, Ground Cherries
 
 ## Strawberry Semifreddo
 
