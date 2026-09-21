@@ -389,13 +389,14 @@ if (footerBackToTopButton instanceof HTMLButtonElement) {
 
 const GOOGLE_REVIEW_BATCH_SIZE = 3;
 const GOOGLE_REVIEW_MAX_VISIBLE = 9;
-const GOOGLE_REVIEWS_CACHE_KEY = 'foragers-google-reviews-v8';
+const GOOGLE_REVIEWS_CACHE_KEY = 'foragers-google-reviews-v9';
 const GOOGLE_REVIEWS_CACHE_TTL_MS = 30 * 60 * 1000;
 const GOOGLE_REVIEWS_ENDPOINT = '/api/google-reviews.json';
 const footerReviewsSection = document.querySelector('[data-google-reviews]');
 const footerReviewsList = footerReviewsSection?.querySelector('[data-google-reviews-list]');
 const footerReviewsLink = footerReviewsSection?.querySelector('[data-google-reviews-link]');
 const footerReviewsMoreButton = footerReviewsSection?.querySelector('[data-google-reviews-more]');
+const footerReviewsMosaic = footerReviewsSection?.querySelector('[data-google-review-mosaic]');
 const footerReviewsState = {
 	reviews: [],
 	visibleCount: GOOGLE_REVIEW_BATCH_SIZE,
@@ -503,6 +504,129 @@ function createFooterReviewCard(review) {
 	return card;
 }
 
+function getPhotoAttributionKey(attribution) {
+	return `${attribution.displayName || ''}\n${attribution.uri || ''}\n${attribution.photoUri || ''}`;
+}
+
+function getUniquePhotoAttributions(photos) {
+	const attributions = new Map();
+
+	for (const photo of photos) {
+		if (!Array.isArray(photo?.attributions)) continue;
+
+		for (const attribution of photo.attributions) {
+			const attributionKey = getPhotoAttributionKey(attribution);
+
+			if (attributionKey.trim()) {
+				attributions.set(attributionKey, attribution);
+			}
+		}
+	}
+
+	return [...attributions.values()];
+}
+
+function createPhotoAttributionElement(attribution) {
+	const label = attribution.displayName || attribution.uri || attribution.photoUri || 'Google contributor';
+	const href = attribution.uri || attribution.photoUri || '';
+
+	if (!href) {
+		return document.createTextNode(label);
+	}
+
+	const link = document.createElement('a');
+	link.href = href;
+	link.target = '_blank';
+	link.rel = 'noopener';
+	link.textContent = label;
+	return link;
+}
+
+function syncReviewMosaicLayout(mosaic) {
+	const photoCount = mosaic.querySelectorAll('.guest-review-mosaic__item').length;
+
+	if (!photoCount) {
+		const mosaicParent = mosaic.parentElement;
+		mosaic.remove();
+
+		if (mosaicParent instanceof HTMLElement) {
+			mosaicParent.hidden = true;
+		}
+
+		return;
+	}
+
+	mosaic.className = `guest-review-mosaic guest-review-mosaic--count-${photoCount}`;
+	mosaic.querySelectorAll('.guest-review-mosaic__item').forEach((item, index) => {
+		for (let photoIndex = 1; photoIndex <= 10; photoIndex += 1) {
+			item.classList.remove(`guest-review-mosaic__item--${photoIndex}`);
+		}
+
+		item.classList.add(`guest-review-mosaic__item--${index + 1}`);
+	});
+}
+
+function createReviewMosaicPhoto(photo, index, mosaic) {
+	const figure = document.createElement('figure');
+	figure.className = 'guest-review-mosaic__item';
+
+	const image = document.createElement('img');
+	image.className = 'guest-review-mosaic__image';
+	image.src = photo.src;
+	image.alt = '';
+	image.decoding = 'async';
+	image.loading = index === 0 ? 'eager' : 'lazy';
+	image.addEventListener('error', () => {
+		figure.remove();
+		syncReviewMosaicLayout(mosaic);
+	}, { once: true });
+
+	figure.append(image);
+	return figure;
+}
+
+function renderFooterReviewMosaic(photos) {
+	if (!(footerReviewsMosaic instanceof HTMLElement)) return;
+
+	const usablePhotos = Array.isArray(photos)
+		? photos.filter((photo) => typeof photo?.src === 'string' && photo.src.trim() !== '').slice(0, 10)
+		: [];
+
+	if (!usablePhotos.length) {
+		footerReviewsMosaic.replaceChildren();
+		footerReviewsMosaic.hidden = true;
+		return;
+	}
+
+	const mosaic = document.createElement('div');
+	mosaic.className = `guest-review-mosaic guest-review-mosaic--count-${usablePhotos.length}`;
+
+	mosaic.append(...usablePhotos.map((photo, index) => createReviewMosaicPhoto(photo, index, mosaic)));
+	syncReviewMosaicLayout(mosaic);
+
+	const attributions = getUniquePhotoAttributions(usablePhotos);
+
+	if (attributions.length) {
+		const attribution = document.createElement('p');
+		attribution.className = 'guest-review-mosaic__attribution';
+		attribution.append('Photos: ');
+
+		attributions.forEach((photoAttribution, index) => {
+			if (index > 0) {
+				attribution.append(document.createTextNode(', '));
+			}
+
+			attribution.append(createPhotoAttributionElement(photoAttribution));
+		});
+
+		attribution.append(document.createTextNode(' via Google.'));
+		mosaic.append(attribution);
+	}
+
+	footerReviewsMosaic.replaceChildren(mosaic);
+	footerReviewsMosaic.hidden = false;
+}
+
 function setFooterReviewsLink(url) {
 	if (footerReviewsLink instanceof HTMLAnchorElement && typeof url === 'string' && url.trim() !== '') {
 		footerReviewsLink.href = url;
@@ -511,6 +635,10 @@ function setFooterReviewsLink(url) {
 
 function renderFooterReviewFallback(message = 'Browse the latest guest feedback on Google Maps.') {
 	if (!(footerReviewsList instanceof HTMLElement)) return;
+
+	footerReviewsList.hidden = false;
+	footerReviewsState.visibleCount = 0;
+	footerReviewsState.reviews = [];
 
 	if (footerReviewsMoreButton instanceof HTMLButtonElement) {
 		footerReviewsMoreButton.hidden = true;
@@ -523,6 +651,7 @@ function renderFooterReviewFallback(message = 'Browse the latest guest feedback 
 function renderFooterReviews(reviews) {
 	if (!(footerReviewsList instanceof HTMLElement)) return;
 
+	footerReviewsList.hidden = false;
 	footerReviewsList.classList.remove('guest-reviews__list--fallback');
 	footerReviewsList.replaceChildren(...reviews.map(createFooterReviewCard));
 }
@@ -586,7 +715,7 @@ function writeFooterReviewsCache(reviewsData) {
 
 async function fetchGoogleReviews() {
 	const requestUrl = new URL(GOOGLE_REVIEWS_ENDPOINT, window.location.origin);
-	requestUrl.searchParams.set('v', '2');
+	requestUrl.searchParams.set('v', '3');
 
 	const response = await fetch(requestUrl, {
 		headers: {
@@ -611,6 +740,7 @@ async function loadFooterReviews() {
 
 	if (cachedReviews?.reviews?.length) {
 		setFooterReviewsLink(cachedReviews.url || fallbackUrl);
+		renderFooterReviewMosaic(cachedReviews.photos);
 		setFooterReviews(cachedReviews.reviews, cachedReviews.newestReviews);
 		return;
 	}
@@ -623,11 +753,21 @@ async function loadFooterReviews() {
 		const newestReviews = Array.isArray(reviewsPayload?.newestReviews)
 			? reviewsPayload.newestReviews
 			: [];
+		const photos = Array.isArray(reviewsPayload?.photos)
+			? reviewsPayload.photos
+			: [];
 
 		setFooterReviewsLink(reviewsPayload?.url || fallbackUrl);
+		renderFooterReviewMosaic(photos);
 
 		if (!reviews.length) {
 			renderFooterReviewFallback();
+			writeFooterReviewsCache({
+				reviews,
+				newestReviews,
+				photos,
+				url: reviewsPayload?.url || fallbackUrl,
+			});
 			return;
 		}
 
@@ -635,6 +775,7 @@ async function loadFooterReviews() {
 		writeFooterReviewsCache({
 			reviews,
 			newestReviews,
+			photos,
 			url: reviewsPayload?.url || fallbackUrl,
 		});
 	} catch (error) {

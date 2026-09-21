@@ -1,7 +1,9 @@
 export const FORAGERS_GOOGLE_PLACE_ID = 'ChIJtXXnHQA_hlQRgJzPNb7TSrM';
-const GOOGLE_PLACE_FIELDS = 'googleMapsUri,reviews';
+const GOOGLE_PLACE_FIELDS = 'googleMapsUri,reviews,photos';
 const GOOGLE_LEGACY_PLACE_FIELDS = 'url,reviews';
 const GOOGLE_REVIEW_MAX_LENGTH = 260;
+const GOOGLE_PHOTO_MAX_COUNT = 10;
+const GOOGLE_PHOTO_MAX_DIMENSION = 960;
 
 function normalizeReviewText(text) {
 	return text.replace(/\s+/g, ' ').trim();
@@ -74,6 +76,76 @@ function dedupeReviews(reviews) {
 	return [...dedupedReviews.values()];
 }
 
+function normalizePhotoAttributions(attributions) {
+	return Array.isArray(attributions)
+		? attributions
+			.map((attribution) => ({
+				displayName: attribution?.displayName?.trim() || '',
+				uri: attribution?.uri?.trim() || '',
+				photoUri: attribution?.photoUri?.trim() || '',
+			}))
+			.filter((attribution) => attribution.displayName || attribution.uri || attribution.photoUri)
+		: [];
+}
+
+function getBoundedPhotoDimension(value) {
+	return typeof value === 'number' && Number.isFinite(value) && value > 0
+		? Math.min(Math.round(value), GOOGLE_PHOTO_MAX_DIMENSION)
+		: GOOGLE_PHOTO_MAX_DIMENSION;
+}
+
+export function normalizeGooglePlacePhotos(photos, { limit = GOOGLE_PHOTO_MAX_COUNT } = {}) {
+	if (!Array.isArray(photos)) {
+		return [];
+	}
+
+	return photos
+		.map((photo) => ({
+			name: typeof photo?.name === 'string' ? photo.name.trim() : '',
+			widthPx: typeof photo?.widthPx === 'number' ? photo.widthPx : 0,
+			heightPx: typeof photo?.heightPx === 'number' ? photo.heightPx : 0,
+			attributions: normalizePhotoAttributions(photo?.authorAttributions),
+		}))
+		.filter((photo) => photo.name)
+		.slice(0, Math.max(0, limit));
+}
+
+async function resolveGooglePhotoMedia({ apiKey, photo, fetchImpl }) {
+	const requestUrl = new URL(`https://places.googleapis.com/v1/${photo.name}/media`);
+	requestUrl.searchParams.set('maxWidthPx', String(getBoundedPhotoDimension(photo.widthPx)));
+	requestUrl.searchParams.set('maxHeightPx', String(getBoundedPhotoDimension(photo.heightPx)));
+	requestUrl.searchParams.set('skipHttpRedirect', 'true');
+	requestUrl.searchParams.set('key', apiKey);
+
+	const response = await fetchImpl(requestUrl.toString());
+
+	if (!response.ok) {
+		throw new Error(`Place photo request failed with ${response.status}`);
+	}
+
+	const payload = await response.json();
+	const src = typeof payload?.photoUri === 'string' ? payload.photoUri.trim() : '';
+
+	if (!src) {
+		throw new Error('Place photo response did not include photoUri.');
+	}
+
+	return {
+		...photo,
+		src,
+	};
+}
+
+async function resolveGooglePhotoMediaCollection({ apiKey, photos, fetchImpl }) {
+	const mediaResults = await Promise.allSettled(
+		photos.map((photo) => resolveGooglePhotoMedia({ apiKey, photo, fetchImpl }))
+	);
+
+	return mediaResults
+		.filter((result) => result.status === 'fulfilled')
+		.map((result) => result.value);
+}
+
 async function fetchPlacesReviews({ apiKey, placeId, fetchImpl }) {
 	const response = await fetchImpl(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`, {
 		headers: {
@@ -93,10 +165,16 @@ async function fetchPlacesReviews({ apiKey, placeId, fetchImpl }) {
 			.filter(isUsableFiveStarReview)
 			.map((review) => normalizeReview(review, { source: 'places', fallbackUrl }))
 		: [];
+	const photos = await resolveGooglePhotoMediaCollection({
+		apiKey,
+		fetchImpl,
+		photos: normalizeGooglePlacePhotos(place.photos),
+	});
 
 	return {
 		url: fallbackUrl,
 		reviews,
+		photos,
 	};
 }
 
@@ -164,7 +242,7 @@ export async function fetchForagersGoogleReviews({
 		throw placesResult.reason;
 	}
 
-	const placesPayload = placesResult.status === 'fulfilled' ? placesResult.value : { reviews: [], url: '' };
+	const placesPayload = placesResult.status === 'fulfilled' ? placesResult.value : { reviews: [], photos: [], url: '' };
 	const newestPayload = newestResult.status === 'fulfilled' ? newestResult.value : { reviews: [], url: '' };
 	const reviews = dedupeReviews([
 		...newestPayload.reviews,
@@ -175,5 +253,6 @@ export async function fetchForagersGoogleReviews({
 		url: placesPayload.url || newestPayload.url || '',
 		reviews,
 		newestReviews: reviews.filter((review) => review.source === 'newest'),
+		photos: placesPayload.photos,
 	};
 }

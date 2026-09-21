@@ -141,7 +141,7 @@ Bright and wonderfully drinkable, with a refined, light honey character.
 
 ## Google Reviews On The Homepage
 
-The homepage loads the available five-star Google reviews from an internal JSON endpoint, links each card to Google Maps, and randomly displays three of them on each page load. The displayed set forces one review from the newest-sorted Google Maps/Places legacy response when a five-star text review is available, then fills the remaining cards from the combined review pool. The Show more reviews button reveals up to two additional batches of three reviews before hiding, for a maximum of nine visible reviews.
+The homepage loads the available five-star Google reviews and place photos from an internal JSON endpoint, links each review card to Google Maps, and randomly displays three reviews on each page load. The displayed review set forces one review from the newest-sorted Google Maps/Places legacy response when a five-star text review is available, then fills the remaining cards from the combined review pool. The Show more reviews button reveals up to two additional batches of three reviews before hiding, for a maximum of nine visible reviews. Place photos are rendered independently as a bento mosaic above the review cards; they are associated with the place, not with individual reviews.
 
 - local Vite dev and preview: `/api/google-reviews.json` is served by a Vite middleware
 - Netlify production: `/api/google-reviews.json` is redirected to `/.netlify/functions/google-reviews`
@@ -156,7 +156,7 @@ For Netlify, set one of these environment variables in the site settings:
 - `GOOGLE_PLACES_API_KEY`
 - `GOOGLE_MAPS_API_KEY`
 
-The key stays server-side in production. Google Places only exposes a limited review subset rather than the full review history. The endpoint combines relevance-sorted reviews from Places API New with newest-sorted reviews from the legacy Place Details endpoint, but each source can still return at most five reviews. The legacy newest response is filtered to five-star text reviews after Google returns it, so there may not always be a usable newest review. If the endpoint cannot load reviews, the homepage falls back to a static Google Maps link.
+The key stays server-side in production. Google Places only exposes a limited review subset rather than the full review history. The endpoint combines relevance-sorted reviews and place photos from Places API New with newest-sorted reviews from the legacy Place Details endpoint, but each review source can still return at most five reviews. The legacy newest response is filtered to five-star text reviews after Google returns it, so there may not always be a usable newest review. If the endpoint cannot load reviews, the homepage falls back to a static Google Maps link. If no usable photos are available, the photo mosaic is omitted.
 
 ## Contributor Notes
 
