@@ -636,12 +636,6 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			return false;
 		}
 
-		if (event.days.length) {
-			return event.active.starts <= today
-				&& today <= event.active.ends
-				&& event.days.includes(todayWeekday);
-		}
-
 		return today <= event.active.ends;
 	}
 

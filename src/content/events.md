@@ -7,7 +7,7 @@ Homepage dated events format:
 - @address: optional address used only for the Google Maps link on @where.
 - @link: optional destination, or destination | custom label. Defaults to "Details about [event title]" when no label is provided. A custom label fully replaces the default.
 - @active: event date or date range, using YYYY-MM-DD or YYYY-MM-DD..YYYY-MM-DD.
-- @days: optional weekday names within an @active range, such as Saturday or Saturday, Sunday. Use this for recurring weekly events; the card only shows on matching weekdays within the active range.
+- @days: optional weekday names within an @active range, such as Saturday or Saturday, Sunday. Use this for recurring weekly events; the card still follows the @active range and only marks today when the weekday matches.
 
 Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes.
 Blank lines in descriptions create separate paragraphs; line breaks inside a paragraph are preserved.
