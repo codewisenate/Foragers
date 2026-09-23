@@ -509,7 +509,7 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 		return [
 			`<section class="visit-info-block light home-visit-card home-visit-card--hours" data-home-hours-card data-hours-schedule="${escapeHtml(JSON.stringify(hoursSchedule))}">`,
 			'\t\t\t\t\t<span class="visit-info-label">Today at Foragers</span>',
-			'\t\t\t\t\t<h3 class="home-visit-card__title">Current service on the Sunshine Coast</h3>',
+			'\t\t\t\t\t<h3 class="home-visit-card__title">Find your moment to visit Roberts Creek</h3>',
 			'\t\t\t\t\t<div class="home-visit-card__service-panel">',
 			'\t\t\t\t\t\t<p class="home-visit-card__status" data-home-hours-status>Checking today\'s hours...</p>',
 			'\t\t\t\t\t\t<p class="home-visit-card__day" data-home-hours-day>Sunshine Coast time</p>',
