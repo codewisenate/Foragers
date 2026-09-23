@@ -260,7 +260,7 @@ div.separator {
 }
 
 div.marker+div.separator {
-	padding-top: 0;
+	padding-block: 0;
 }
 
 .dark {
