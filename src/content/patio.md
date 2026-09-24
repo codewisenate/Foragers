@@ -4,14 +4,14 @@
 
 Crimini Mushroom, Allium, Crackers
 
-# LIGHTER FARE *$18*
+# WARMTH & COMFORT *$18*
 
 ## Squash Miso Soup
 
 Sweet Pepper, Chilli Oil (optional), Bread
 
-# LIGHTER FARE *$22*
+# SAVOUR & SHARE *$22*
 
-## Mushroom Parfait
+## Cheese Board
 
 Cheese, Preserves, Crackers
