@@ -32,9 +32,9 @@ Goats Cheese, Elderflower, Fennel
 
 Tomato, Romesco, Almond, Basil
 
-## Roasted Duck Breast
+## Roasted Lamb Shortloin
 
-Carrot, Wild Blackberry, Brown Butter
+Hazelnut, Carrot, Wild Blackberry
   
 ## Pan Seared Wild Salmon
 
