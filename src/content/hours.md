@@ -1,20 +1,12 @@
 # Tasting Room 
 
-## Wednesday to Sunday
+## Thursday to Sunday
 
 12:00PM – 4:00PM
 
 # Dining lounge
 
-## Wednesday and Thursday
-
-5:00PM – 9:00PM
-
-## Friday and Saturday
-
-5:00PM – 10:00PM
-
-## Sunday
+## Thursday to Sunday
 
 5:00PM – 9:00PM
 
