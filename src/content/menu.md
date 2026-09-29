@@ -4,7 +4,7 @@
 
 British Bloomer, Country Loaf, Burnt Honey Butter
 
-## Mushroom Risotto
+## Mushroom Risotto GF
 
 Parmesan, Alliums, Wild Rice
 
@@ -18,21 +18,21 @@ English Peas, Panipuri, Fig Miso
 
 Baby Potato, Horseradish, Dill
 
-## Seared Scallops
+## Seared Scallops GF
 
 Almond, Cucumber, Nasturtium
 
-## Rhubarb Salad
+## Rhubarb Salad GF
 
 Goats Cheese, Elderflower, Fennel
 
 # Mains *$48–$72*
 
-## Grilled Elk Striploin
+## Grilled Bison Striploin GF
 
 Tomato, Romesco, Almond, Basil
 
-## Roasted Lamb Shortloin
+## Roasted Lamb Shortloin GF
 
 Hazelnut, Carrot, Wild Blackberry
   
@@ -54,7 +54,7 @@ Pâté, Chive, Soy & Honey
 
 Cinnamon, Espresso, Ground Cherries
 
-## Strawberry Semifreddo
+## Strawberry Semifreddo GF
 
 Honey, Geranium, Mint
 
@@ -62,6 +62,6 @@ Honey, Geranium, Mint
 
 Cherry, Miso, Amaro
 
-## Apple Mousse
+## Apple Mousse GF
 
 Salted Caramel, Rosemary
