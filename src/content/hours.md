@@ -1,8 +1,9 @@
-# Tasting Room 
+# Patio & Tasting Room 
 
 ## Thursday to Sunday
 
 12:00PM – 4:00PM
+Food is served until 3pm.
 
 # Dining lounge
 
