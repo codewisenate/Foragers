@@ -4,7 +4,7 @@
 
 12:00PM – 4:00PM
 
-No reservation needed for groups up to eight.
+No reservation needed for groups up to eight. Food is served until 3PM.
 
 # Dining lounge
 

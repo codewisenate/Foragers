@@ -6,7 +6,7 @@ British Bloomer, Country Loaf, Burnt Honey Butter
 
 ## Mushroom Risotto
 
-Parmesan, Alliums, Wild Rice
+Parmesan, Alliums, Wild Rice (GF)
 
 Add Duck Confit
   
@@ -20,21 +20,21 @@ Baby Potato, Horseradish, Dill
 
 ## Seared Scallops
 
-Almond, Cucumber, Nasturtium
+Almond, Cucumber, Nasturtium (GF)
 
 ## Rhubarb Salad
 
-Goats Cheese, Elderflower, Fennel
+Goats Cheese, Elderflower, Fennel (GF)
 
 # Mains *$48–$72*
 
-## Grilled Elk Striploin
+## Grilled Bison Striploin
 
-Tomato, Romesco, Almond, Basil
+Tomato, Romesco, Almond, Basil (GF)
 
 ## Roasted Lamb Shortloin
 
-Hazelnut, Carrot, Wild Blackberry
+Hazelnut, Carrot, Wild Blackberry (GF)
   
 ## Pan Seared Wild Salmon
 
@@ -56,7 +56,7 @@ Cinnamon, Espresso, Ground Cherries
 
 ## Strawberry Semifreddo
 
-Honey, Geranium, Mint
+Honey, Geranium, Mint (GF)
 
 ## Chocolate Profiterole
 
@@ -64,4 +64,4 @@ Cherry, Miso, Amaro
 
 ## Apple Mousse
 
-Salted Caramel, Rosemary
+Salted Caramel, Rosemary (GF)
