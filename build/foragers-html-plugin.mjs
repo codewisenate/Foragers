@@ -391,25 +391,25 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 			const labelId = getSectionLabelId(section.title);
 			const contentParts = [];
 
-			if (section.entries.length > 0) {
+			if (section.entries.length > 0 || section.paragraphs.length > 0) {
 				const entryMarkup = section.entries.map((entry) => [
-					'\t\t\t\t\t\t\t\t<li>',
+					'\t\t\t\t\t\t\t\t<li class="visit-hours-entry">',
 					`\t\t\t\t\t\t\t\t\t<span>${escapeHtml(entry.label)}</span>`,
 					renderEntryLines(entry.lines),
+					'\t\t\t\t\t\t\t\t</li>',
+				].join('\n')).join('\n');
+				const paragraphMarkup = section.paragraphs.map((paragraph) => [
+					'\t\t\t\t\t\t\t\t<li>',
+					`\t\t\t\t\t\t\t\t\t<span>${escapeHtml(paragraph)}</span>`,
 					'\t\t\t\t\t\t\t\t</li>',
 				].join('\n')).join('\n');
 
 				contentParts.push([
 					'\t\t\t\t\t\t\t<ul class="visit-hours-list">',
 					entryMarkup,
+					paragraphMarkup,
 					'\t\t\t\t\t\t\t</ul>',
-				].join('\n'));
-			}
-
-			if (section.paragraphs.length > 0) {
-				contentParts.push(section.paragraphs.map((paragraph) => (
-					`\t\t\t\t\t\t\t<p>${escapeHtml(paragraph)}</p>`
-				)).join('\n'));
+				].filter(Boolean).join('\n'));
 			}
 
 			return [
@@ -473,13 +473,8 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function buildHoursSchedule(sections) {
 		const days = Object.fromEntries(WEEKDAY_NAMES.map((day) => [day, []]));
-		let note = '';
 
 		for (const section of sections) {
-			if (!note) {
-				note = section.paragraphs.find((paragraph) => /kitchen service/i.test(paragraph)) || '';
-			}
-
 			for (const entry of section.entries) {
 				const entryDays = expandHoursEntryDays(entry.label);
 
@@ -493,12 +488,13 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 					days[day].push({
 						service: section.title,
 						time,
+						notes: section.paragraphs,
 					});
 				}
 			}
 		}
 
-		return { days, note };
+		return { days };
 	}
 
 	function renderHomeHoursCard() {
@@ -1033,14 +1029,23 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function renderHomeEventsGrid() {
 		const events = parseEventsContent();
-		const eventMarkup = events.map((event) => [
-			`\t\t\t\t\t<article class="home-event-card${event.isToday ? ' home-event-card--today' : ''}">`,
-			event.eyebrow ? `\t\t\t\t\t\t<span class="home-event-card__eyebrow">${escapeHtml(event.eyebrow)}</span>` : '',
-			`\t\t\t\t\t\t<h3 class="home-event-card__title">${escapeHtml(event.title)}</h3>`,
-			renderEventDescription(event),
-			renderEventFooter(event),
-			'\t\t\t\t\t</article>',
-		].filter(Boolean).join('\n')).join('\n');
+		const eventMarkup = events.map((event) => {
+			const eventAttributes = [
+				'data-home-event-card',
+				event.active ? `data-event-start="${escapeHtml(event.active.starts)}"` : '',
+				event.active ? `data-event-end="${escapeHtml(event.active.ends)}"` : '',
+				event.days.length ? `data-event-days="${escapeHtml(event.days.join(','))}"` : '',
+			].filter(Boolean).join(' ');
+
+			return [
+				`\t\t\t\t\t<article class="home-event-card${event.isToday ? ' home-event-card--today' : ''}" ${eventAttributes}>`,
+				event.eyebrow ? `\t\t\t\t\t\t<span class="home-event-card__eyebrow">${escapeHtml(event.eyebrow)}</span>` : '',
+				`\t\t\t\t\t\t<h3 class="home-event-card__title">${escapeHtml(event.title)}</h3>`,
+				renderEventDescription(event),
+				renderEventFooter(event),
+				'\t\t\t\t\t</article>',
+			].filter(Boolean).join('\n');
+		}).join('\n');
 
 		return [
 			'<div class="home-events-grid" aria-label="Current featured experiences at Foragers">',

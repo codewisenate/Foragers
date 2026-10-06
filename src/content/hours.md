@@ -1,8 +1,10 @@
-# Tasting Room 
+# Patio and Tasting Room 
 
 ## Thursday to Sunday
 
 12:00PM – 4:00PM
+
+No reservation needed for groups up to eight.
 
 # Dining lounge
 
@@ -10,7 +12,7 @@
 
 5:00PM – 9:00PM
 
-Please note that kitchen service ends a half hour prior to closing.
+Reservations recommended. Seating groups up to four people. Please note that kitchen service ends a half hour prior to closing.
 
 # On the Patio
 

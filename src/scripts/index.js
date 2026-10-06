@@ -232,6 +232,58 @@ function getForagersWeekdayLabel() {
 	}
 }
 
+function getForagersTodayInfo() {
+	const options = {
+		timeZone: FORAGERS_TIME_ZONE,
+		weekday: 'long',
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+	};
+
+	try {
+		const parts = new Intl.DateTimeFormat('en-CA', options).formatToParts(new Date());
+		const dateParts = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+
+		return {
+			date: `${dateParts.year}-${dateParts.month}-${dateParts.day}`,
+			weekday: dateParts.weekday.toLowerCase(),
+		};
+	} catch {
+		const now = new Date();
+		const weekday = new Intl.DateTimeFormat('en-CA', { weekday: 'long' })
+			.format(now)
+			.toLowerCase();
+
+		return {
+			date: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`,
+			weekday,
+		};
+	}
+}
+
+function updateHomeEventTodayStates() {
+	const eventCards = document.querySelectorAll('[data-home-event-card]');
+
+	if (!eventCards.length) return;
+
+	const today = getForagersTodayInfo();
+
+	for (const card of eventCards) {
+		if (!(card instanceof HTMLElement)) continue;
+
+		const { eventStart, eventEnd, eventDays = '' } = card.dataset;
+		const eventWeekdays = eventDays
+			.split(',')
+			.map((day) => day.trim().toLowerCase())
+			.filter(Boolean);
+		const isInDateRange = Boolean(eventStart && eventEnd && eventStart <= today.date && today.date <= eventEnd);
+		const isOnScheduledDay = eventWeekdays.length === 0 || eventWeekdays.includes(today.weekday);
+
+		card.classList.toggle('home-event-card--today', isInDateRange && isOnScheduledDay);
+	}
+}
+
 function createHomeHoursMessage(message) {
 	const paragraph = document.createElement('p');
 	paragraph.textContent = message;
@@ -251,6 +303,18 @@ function createHomeHoursRow(entry) {
 	time.textContent = entry.time;
 
 	row.append(service, time);
+
+	const notes = Array.isArray(entry.notes)
+		? entry.notes.map((note) => String(note).trim()).filter(Boolean)
+		: [];
+
+	for (const note of notes) {
+		const noteElement = document.createElement('span');
+		noteElement.className = 'home-hours-row__note';
+		noteElement.textContent = note;
+		row.append(noteElement);
+	}
+
 	return row;
 }
 
@@ -295,7 +359,6 @@ function renderHomeHoursCard() {
 		const dayLabel = getForagersWeekdayLabel();
 		const dayKey = dayLabel.toLowerCase();
 		const entries = Array.isArray(schedule?.days?.[dayKey]) ? schedule.days[dayKey] : [];
-		const note = typeof schedule?.note === 'string' ? schedule.note.trim() : '';
 
 		dayElement.textContent = dayLabel;
 		statusElement.classList.toggle('is-open', entries.length > 0);
@@ -320,14 +383,8 @@ function renderHomeHoursCard() {
 				return;
 			}
 
-			if (!note) {
-				noteElement.hidden = true;
-				noteElement.textContent = '';
-				return;
-			}
-
-			noteElement.hidden = false;
-			noteElement.textContent = note;
+			noteElement.hidden = true;
+			noteElement.textContent = '';
 		}
 	} catch (error) {
 		console.warn('[foragers] Unable to render homepage hours:', error);
@@ -337,6 +394,8 @@ function renderHomeHoursCard() {
 if (homeHoursCard instanceof HTMLElement) {
 	renderHomeHoursCard();
 }
+
+updateHomeEventTodayStates();
 
 const footerBackToTopButton = document.getElementById('footer-back-to-top');
 const footerBackToTopWrap = footerBackToTopButton?.closest('.footer-back-to-top-wrap');
