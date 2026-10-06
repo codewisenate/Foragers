@@ -2070,7 +2070,7 @@ body.home {
 		}
 
 		a:is(:hover,:focus-visible) {
-			background: var(--lightblue) !important;
+			background: hsl(from var(--lightblue) h s l / 20%) !important;
 			outline: none;
 			box-shadow: none;
 		}
