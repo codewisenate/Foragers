@@ -32,9 +32,9 @@ Goats Cheese, Elderflower, Fennel (GF)
 
 Tomato, Romesco, Almond, Basil (GF)
 
-## Roasted Lamb Shortloin (GF)
+## Roasted Lamb Shortloin
 
-Hazelnut, Carrot, Wild Blackberry
+Hazelnut, Carrot, Wild Blackberry (GF)
   
 ## Pan Seared Wild Salmon
 
