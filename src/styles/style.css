@@ -2069,14 +2069,10 @@ body.home {
 			text-transform: uppercase;
 		}
 
-		a:hover,
-		a:focus-visible {
-			background: rgb(255 255 255 / 0.72);
+		a:is(:hover,:focus-visible) {
+			background: var(--lightblue) !important;
 			outline: none;
-		}
-
-		a:focus-visible {
-			box-shadow: var(--focus-ring-shadow);
+			box-shadow: none;
 		}
 
 		a span {
