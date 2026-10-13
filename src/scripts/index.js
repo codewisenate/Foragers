@@ -262,7 +262,7 @@ function getForagersTodayInfo() {
 	}
 }
 
-function updateHomeEventTodayStates() {
+function updateHomeEventStates() {
 	const eventCards = document.querySelectorAll('[data-home-event-card]');
 
 	if (!eventCards.length) return;
@@ -273,6 +273,7 @@ function updateHomeEventTodayStates() {
 		if (!(card instanceof HTMLElement)) continue;
 
 		const { eventStart, eventEnd, eventDays = '' } = card.dataset;
+		const isPastEvent = Boolean(eventEnd && today.date > eventEnd);
 		const eventWeekdays = eventDays
 			.split(',')
 			.map((day) => day.trim().toLowerCase())
@@ -280,7 +281,8 @@ function updateHomeEventTodayStates() {
 		const isInDateRange = Boolean(eventStart && eventEnd && eventStart <= today.date && today.date <= eventEnd);
 		const isOnScheduledDay = eventWeekdays.length === 0 || eventWeekdays.includes(today.weekday);
 
-		card.classList.toggle('home-event-card--today', isInDateRange && isOnScheduledDay);
+		card.hidden = isPastEvent;
+		card.classList.toggle('home-event-card--today', !isPastEvent && isInDateRange && isOnScheduledDay);
 	}
 }
 
@@ -395,7 +397,7 @@ if (homeHoursCard instanceof HTMLElement) {
 	renderHomeHoursCard();
 }
 
-updateHomeEventTodayStates();
+updateHomeEventStates();
 
 const footerBackToTopButton = document.getElementById('footer-back-to-top');
 const footerBackToTopWrap = footerBackToTopButton?.closest('.footer-back-to-top-wrap');
