@@ -6,9 +6,9 @@ Crimini Mushroom, Allium, Crackers
 
 # WARMTH & COMFORT *$18*
 
-## Squash Miso Soup
+## Carrot Ginger
 
-Sweet Pepper, Chilli Oil (optional), Bread
+Carrot, Ginger, Herb Oil (optional), Chilli Oil (optional), Bread
 
 # SAVOUR & SHARE *$22*
 
