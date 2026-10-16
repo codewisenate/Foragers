@@ -56,7 +56,7 @@ Cinnamon, Espresso, Ground Cherries
 
 ## Strawberry Semifreddo
 
-Honey, Geranium, Mint (GF)
+Honey, Geranium, Winsome, Mint (GF)
 
 ## Chocolate Profiterole
 
