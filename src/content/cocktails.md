@@ -1,45 +1,37 @@
 # Bright & Fresh
 
-## Mead-jito
-
-Bloom, Lime, Mint
-
-## Peach Sangria
-
-Elemental, Rum, Basil, Lime
-
-## Raspberry Buzzz
-
-Winsome, Raspberry Liqueur
-
-# Clean & Classic
-
-## Negroni
-
-Sloe Gin, Aperitivo, Dry Vermouth
-
-## B, G & T
-
-Gin, Lime, Tonic
-
-## New Fashion 
-
-Rye Whisky, Amaro, Honey, Bitters
-
-# Floral & Foraged
-
-## Bramble
-
-Joker Gin, Raspberry, Lemon, Honey
-
 ## Earl Grey Tea-ser
 
 Earl Grey Gin, Lemon, Honey
 
-## Creamsicle
+## Bramble
 
-Advocaat, Fluffy Orange, Soda
+Joker Gin, Raspberry Liqueur, Lemon, Honey
 
 ## Mountain Bike Thief
 
-Akvavit, Aperitivo, Grapefruit, Honey, Lemon 
+Akvavit, Aperitivo, Grapefruit, Honey, Lemon
+
+# Clean & Classic
+
+## Bruinwood Negroni
+
+Sloe Gin, Aperitivo, Dry Vermouth
+
+## Salted Honey Espresso Martini 
+
+Vodka, Espresso, Honey, Mocha Liqueur
+
+# Warm & Spicey
+
+## Spiced Apple Spritz
+
+Spiced Apple Liqueur, Lemon, Honey
+
+## Smoked Cinnamon Old Fashion 
+
+Rye Whisky, Honey Amaro, Orange Bitters
+
+## Foragers Hot Toddy
+
+Whisky, Lemon, Honey
