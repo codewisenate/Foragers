@@ -2,21 +2,21 @@
 
 ## Artisanal Bread
 
-British Bloomer, Country Loaf, Burnt Honey Butter
+British Bloomer, Honey Seed Bread, Burnt Honey Butter
 
 ## Mushroom Risotto
 
-Parmesan, Alliums, Wild Rice (GF)
+Wild Rice, Parmesan, Alliums (GF)
 
 Add Duck Confit
   
 ## Bison Tartare*
 
-English Peas, Panipuri, Fig Miso 
+Mushroom, Blue Cheese, Hazelnut 
 
-## Salmon Tartare
+## Albacore Tuna Crudo
 
-Baby Potato, Horseradish, Dill
+Beetroot, Fennel, Dill
 
 ## Seared Scallops
 
@@ -30,19 +30,19 @@ Goats Cheese, Elderflower, Fennel (GF)
 
 ## Grilled Bison Striploin
 
-Tomato, Romesco, Almond, Basil (GF)
+Lobster Mushroom, Almond, Bone Marrow (GF)
 
 ## Roasted Lamb Shortloin
 
 Hazelnut, Carrot, Wild Blackberry (GF)
   
-## Pan Seared Wild Salmon
+## Seared Sablefish
 
-Corn, Baby Potato, Parsley
+Corn, Baby Potato, Lime
 
 ## Crab Mafalda
 
-Coffee, Nasturtium, Alliums
+Bisque, Nasturtium, Coffee
   
 ## Mushroom Brioche
 
@@ -60,7 +60,7 @@ Honey, Geranium, Winsome, Mint (GF)
 
 ## Chocolate Profiterole
 
-Cherry, Miso, Amaro
+Plum, Miso, Amaro
 
 ## Apple Mousse
 
