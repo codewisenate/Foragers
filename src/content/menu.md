@@ -4,9 +4,9 @@
 
 British Bloomer, Honey Seed Bread, Burnt Honey Butter
 
-## Mushroom Risotto
+## Duck Raviolo
 
-Wild Rice, Parmesan, Alliums (GF)
+Pine Mushroom, Miso, Walnut Sage
 
 Add Duck Confit
   
@@ -22,9 +22,9 @@ Beetroot, Fennel, Dill
 
 Almond, Cucumber, Nasturtium (GF)
 
-## Rhubarb Salad
+## Delicata Squash Salad
 
-Goats Cheese, Elderflower, Fennel (GF)
+Goats Cheese, Radish, Honey, Pumpkin
 
 # Mains *$48–$72*
 
@@ -54,9 +54,9 @@ Pâté, Chive, Soy & Honey
 
 Cinnamon, Espresso, Ground Cherries
 
-## Strawberry Semifreddo
+## Poached Pear
 
-Honey, Geranium, Winsome, Mint (GF)
+Almond, Honey, Mead
 
 ## Chocolate Profiterole
 
