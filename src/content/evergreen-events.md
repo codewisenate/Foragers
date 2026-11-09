@@ -10,17 +10,17 @@ Evergreen homepage events format:
 - Body text becomes the card description. Blank lines create separate paragraphs.
 -->
 
-# Private gatherings and celebratory dinners
-@eyebrow: Groups of 5+
+# Sunday Roasts for the whole family
+@eyebrow: Groups of up to 6 people
 @link: reserve-your-place.html#special-arrangements | Ask about group bookings
 
-We can often accommodate larger parties with advance planning, depending on the season and availability in the dining lounge.
+Reserve your table for our Sunday Roast fixed menu. 
 
-# Patio afternoons beside the orchard
-@eyebrow: Walk-In Afternoons
+# Tastings beside the apiary
+@eyebrow: Walk-In Tastings
 @link: on-the-table.html#patio | See the patio menu
 
-Drop in for afternoon patio service, curated snacks, and a glass of mead. Patio seating is available without a reservation.
+Drop by the tasting room to try our meads, honey wines made right here. Sample a flight, find a favourite, and take a bottle home. No reservation needed.
 
 # Dinner service shaped by harvest
 @eyebrow: Seasonal Dining
