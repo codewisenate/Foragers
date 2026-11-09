@@ -12,6 +12,8 @@
 
 Reservations recommended. Seating groups up to 4 (four) people. Please note that kitchen service ends a half hour prior to closing.
 
-# On the Patio
+# Sunday Roast
 
-Relax on our patio with a glass of mead. Patio seating is available without a reservation.
+4:00PM – 8:00PM
+
+Reservations recommended. Seating groups up to 6 (six) people. Please note: Sunday Roasts are a fixed menu. 
