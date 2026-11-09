@@ -12,13 +12,12 @@ Evergreen homepage events format:
 
 # Sunday Roasts for the whole family
 @eyebrow: Groups of up to 6 people
-@link: reserve-your-place.html#special-arrangements | Ask about group bookings
+@link: on-the-table#patio | Browse the Sunday Roast menu
 
 Reserve your table for our Sunday Roast fixed menu. 
 
 # Tastings beside the apiary
 @eyebrow: Walk-In Tastings
-@link: on-the-table.html#patio | See the patio menu
 
 Drop by the tasting room to try our meads, honey wines made right here. Sample a flight, find a favourite, and take a bottle home. No reservation needed.
 
