@@ -1,10 +1,8 @@
-# Patio and Tasting Room 
+# Tasting Room 
 
 ## Thursday to Sunday
 
 12:00PM – 4:00PM
-
-No reservation needed for groups up to eight. Food is served until 3PM.
 
 # Dining lounge
 
@@ -12,8 +10,8 @@ No reservation needed for groups up to eight. Food is served until 3PM.
 
 5:00PM – 9:00PM
 
-Reservations recommended. Seating groups up to four people. Please note that kitchen service ends a half hour prior to closing.
+Reservations recommended. Seating groups up to 4 (four) people. Please note that kitchen service ends a half hour prior to closing.
 
 # On the Patio
 
-Relax on our patio with a glass of mead, accompanied by a curated selection of snacks. Patio seating is available without a reservation.
+Relax on our patio with a glass of mead. Patio seating is available without a reservation.
