@@ -22,7 +22,7 @@ Sloe Gin, Aperitivo, Dry Vermouth
 
 Vodka, Espresso, Honey, Mocha Liqueur
 
-# Warm & Spicey
+# Warm & Spicy
 
 ## Spiced Apple Spritz
 
