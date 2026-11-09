@@ -18,6 +18,7 @@ Reserve your table for our Sunday Roast fixed menu.
 
 # Tastings beside the apiary
 @eyebrow: Walk-In Tastings
+@link: in-the-glass.html#current-expressions | Our current mead expressions
 
 Drop by the tasting room to try our meads, honey wines made right here. Sample a flight, find a favourite, and take a bottle home. No reservation needed.
 
