@@ -14,7 +14,7 @@ Add Duck Confit
 
 Mushroom, Blue Cheese, Hazelnut 
 
-## Albacore Tuna Crudo
+## Albacore Tuna Crudo (GF)
 
 Beetroot, Fennel, Dill
 
