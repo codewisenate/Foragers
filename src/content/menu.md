@@ -18,23 +18,23 @@ Mushroom, Blue Cheese, Hazelnut
 
 Beetroot, Fennel, Dill
 
-## Seared Scallops
+## Seared Scallops (GF)
 
-Almond, Cucumber, Nasturtium (GF)
+Almond, Cucumber, Nasturtium
 
-## Delicata Squash Salad
+## Delicata Squash Salad (GF)
 
 Goats Cheese, Radish, Honey, Pumpkin
 
 # Mains *$48–$72*
 
-## Grilled Bison Striploin
+## Grilled Bison Striploin (GF)
 
-Lobster Mushroom, Almond, Bone Marrow (GF)
+Lobster Mushroom, Almond, Bone Marrow
 
-## Roasted Lamb Shortloin
+## Roasted Lamb Shortloin (GF)
 
-Hazelnut, Carrot, Wild Blackberry (GF)
+Hazelnut, Carrot, Wild Blackberry
   
 ## Seared Sablefish
 
@@ -54,7 +54,7 @@ Pâté, Chive, Soy & Honey
 
 Cinnamon, Espresso, Ground Cherries
 
-## Poached Pear
+## Poached Pear (GF)
 
 Almond, Honey, Mead
 
@@ -62,6 +62,6 @@ Almond, Honey, Mead
 
 Plum, Miso, Amaro
 
-## Apple Mousse
+## Apple Mousse (GF)
 
-Salted Caramel, Rosemary (GF)
+Salted Caramel, Rosemary
