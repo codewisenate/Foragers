@@ -268,9 +268,16 @@ function updateHomeEventStates() {
 	if (!eventCards.length) return;
 
 	const today = getForagersTodayInfo();
+	const fallbackCards = [];
+	let visibleDatedEventCount = 0;
 
 	for (const card of eventCards) {
 		if (!(card instanceof HTMLElement)) continue;
+
+		if (card.hasAttribute('data-home-event-fallback')) {
+			fallbackCards.push(card);
+			continue;
+		}
 
 		const { eventStart, eventEnd, eventDays = '' } = card.dataset;
 		const isPastEvent = Boolean(eventEnd && today.date > eventEnd);
@@ -282,8 +289,17 @@ function updateHomeEventStates() {
 		const isOnScheduledDay = eventWeekdays.length === 0 || eventWeekdays.includes(today.weekday);
 
 		card.hidden = isPastEvent;
+		if (!isPastEvent) {
+			visibleDatedEventCount += 1;
+		}
 		card.classList.toggle('home-event-card--today', !isPastEvent && isInDateRange && isOnScheduledDay);
 	}
+
+	const fallbackSlots = Math.max(0, 3 - visibleDatedEventCount);
+
+	fallbackCards.forEach((card, index) => {
+		card.hidden = index >= fallbackSlots;
+	});
 }
 
 function createHomeHoursMessage(message) {

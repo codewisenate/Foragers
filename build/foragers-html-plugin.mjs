@@ -825,14 +825,11 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 				isToday: isEventToday(event, today, todayWeekday),
 			}));
 
-		if (activeEvents.length >= 3) {
-			return activeEvents;
-		}
-
 		return [
 			...activeEvents,
-			...evergreenEvents.slice(0, 3 - activeEvents.length).map((event) => ({
+			...evergreenEvents.slice(0, 3).map((event) => ({
 				...event,
+				isFallback: true,
 				isToday: false,
 			})),
 		];
@@ -1029,12 +1026,23 @@ export function createForagersHtmlPlugin({ srcRoot }) {
 
 	function renderHomeEventsGrid() {
 		const events = parseEventsContent();
+		const datedEventCount = events.filter((event) => !event.isFallback).length;
+		let fallbackIndex = 0;
 		const eventMarkup = events.map((event) => {
+			const isFallback = Boolean(event.isFallback);
+			const shouldShowFallback = isFallback && fallbackIndex < Math.max(0, 3 - datedEventCount);
+
+			if (isFallback) {
+				fallbackIndex += 1;
+			}
+
 			const eventAttributes = [
 				'data-home-event-card',
+				isFallback ? 'data-home-event-fallback' : '',
 				event.active ? `data-event-start="${escapeHtml(event.active.starts)}"` : '',
 				event.active ? `data-event-end="${escapeHtml(event.active.ends)}"` : '',
 				event.days.length ? `data-event-days="${escapeHtml(event.days.join(','))}"` : '',
+				isFallback && !shouldShowFallback ? 'hidden' : '',
 			].filter(Boolean).join(' ');
 
 			return [

@@ -118,7 +118,7 @@ Event decorators:
 - `@active:` optional event date or inclusive event date range, using `YYYY-MM-DD` or `YYYY-MM-DD..YYYY-MM-DD`
 - `@days:` optional weekday names within an `@active` range, such as `Saturday` or `Saturday, Sunday`; recurring cards still show according to the active date range and only mark today when the weekday matches
 
-Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes. If one or two dated events are active, the homepage fills the remaining card slots with cards from `src/content/evergreen-events.md` until there are three cards. If three or more dated events are active, the homepage shows all active events instead of the evergreen set. If no dated events are active, the evergreen events are shown.
+Dated events are shown while they are upcoming or currently happening, then hidden after their end date passes. The homepage fills the remaining card slots with cards from `src/content/evergreen-events.md` until there are three cards. The evergreen cards remain available in the generated markup, even when three or more dated events are active, so an old build can reveal them when dated cards later expire.
 
 Blank lines in event descriptions create separate paragraphs. Line breaks inside a paragraph are preserved as line breaks in the event card.
 
